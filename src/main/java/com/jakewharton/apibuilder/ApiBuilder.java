@@ -1,0 +1,210 @@
+package com.jakewharton.apibuilder;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class ApiBuilder {
+	private static final String DEFAULT_FORMAT = "json";
+	private static final String CONTENT_ENCODING = "UTF-8";
+        
+    /** The Constant API_URLS_PLACEHOLDER_START. */
+    private static final char API_URLS_PLACEHOLDER_START = '{';
+
+    /** The Constant API_URLS_PLACEHOLDER_END. */
+    private static final char API_URLS_PLACEHOLDER_END = '}';
+    
+	/** The url format. */
+    private final String urlFormat;
+    
+	/** The parameters map. */
+    private Map<String, String> parametersMap = new HashMap<String, String>();
+	
+	/** The fields map. */
+	private Map<String, String> fieldsMap = new HashMap<String, String>();
+    
+	/**
+	 * Instantiates a new API URL builder.
+	 * 
+	 * @param urlFormat The URL format.
+	 */
+    public ApiBuilder(String urlFormat) {
+    	this(urlFormat, DEFAULT_FORMAT);
+	}
+	
+	/**
+	 * Instantiates a new API URL builder.
+	 * 
+	 * @param urlFormat The URL format.
+	 * @param contentFormat The format.
+	 */
+    public ApiBuilder(String urlFormat, String contentFormat) {
+		this.urlFormat = urlFormat;
+	}
+    
+	/**
+	 * With parameter.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param value
+	 *            the value
+	 * 
+	 * @return the git hub api url builder
+	 */
+    public ApiBuilder parameter(String name, String value) {
+    	if ((value != null) && (value.length() > 0)) {
+    		this.parametersMap.put(name, encodeUrl(value));
+    	}
+		
+		return this;
+	}
+    
+	/**
+	 * With empty field.
+	 * 
+	 * @param name
+	 *            the name
+	 * 
+	 * @return the git hub api url builder
+	 */
+	public ApiBuilder field(String name) {
+		this.fieldsMap.put(name, "");
+
+		return this;
+	}
+
+	/**
+	 * With field.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param value
+	 *            the value
+	 * 
+	 * @return the git hub api url builder
+	 */
+	public ApiBuilder field(String name, String value) {
+		this.field(name, value, false);
+
+		return this;
+	}
+
+	/**
+	 * With field.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param value
+	 *            the value
+	 * @param escape
+	 *            the escape
+	 * 
+	 * @return the git hub api url builder
+	 */
+	public ApiBuilder field(String name, String value, boolean escape) {
+		if (escape) {
+			this.fieldsMap.put(name, encodeUrl(value));
+		} else {
+			this.fieldsMap.put(name, value);
+		}
+
+		return this;
+	}
+    
+	
+	/**
+	 * Build the URL.
+	 * 
+	 * @return String representation of the URL.
+	 * @since 1.0
+	 */
+	public String buildUrl() {
+		return this.buildUrl(true);
+	}
+	/**
+	 * Build the URL.
+	 * 
+	 * @param appendAllParameters Whether to append parameters that were not explicitly defined in the URI.
+	 * @return String representation of the URL.
+	 * @since 1.0
+	 */
+	public String buildUrl(boolean appendAllParameters) {
+		StringBuilder urlBuilder = new StringBuilder();
+		StringBuilder placeHolderBuilder = new StringBuilder();
+		boolean placeHolderFlag = false;
+		boolean firstParameter = true;
+		List<String> usedParameters = new LinkedList<String>();
+		for (int i = 0; i < this.urlFormat.length(); i++) {
+			if (this.urlFormat.charAt(i) == API_URLS_PLACEHOLDER_START) {
+				placeHolderBuilder = new StringBuilder();
+				placeHolderFlag = true;
+			} else if (placeHolderFlag && this.urlFormat.charAt(i) == API_URLS_PLACEHOLDER_END) {
+				String placeHolder = placeHolderBuilder.toString();
+				if (this.fieldsMap.containsKey(placeHolder)) {
+					urlBuilder.append(this.fieldsMap.get(placeHolder));
+				} else if (this.parametersMap.containsKey(placeHolder)) {
+					if (firstParameter) {
+						firstParameter = false;
+						urlBuilder.append("?");
+					} else {
+						urlBuilder.append("&");
+					}
+					urlBuilder.append(placeHolder);
+					urlBuilder.append("=");
+					urlBuilder.append(this.parametersMap.get(placeHolder));
+					usedParameters.add(placeHolder);
+				} else {
+					// we did not find a binding for the placeholder.
+					// skip it.
+					// urlBuilder.append(API_URLS_PLACEHOLDER_START);
+					// urlBuilder.append(placeHolder);
+					// urlBuilder.append(API_URLS_PLACEHOLDER_END);
+				}
+				placeHolderFlag = false;
+			} else if (placeHolderFlag) {
+				placeHolderBuilder.append(this.urlFormat.charAt(i));
+			} else {
+				urlBuilder.append(this.urlFormat.charAt(i));
+			}
+		}
+		
+		//Append all remaining parameters, if desired
+		if (appendAllParameters && (this.parametersMap.size() > usedParameters.size())) {
+			for (String parameterName : this.parametersMap.keySet()) {
+				if (!usedParameters.contains(parameterName)) {
+					if (firstParameter) {
+						firstParameter = false;
+						urlBuilder.append("?");
+					} else {
+						urlBuilder.append("&");
+					}
+					urlBuilder.append(parameterName);
+					urlBuilder.append("=");
+					urlBuilder.append(this.parametersMap.get(parameterName));
+				}
+			}
+		}
+		return urlBuilder.toString();
+	}
+	
+    /**
+	 * Encode url.
+	 * 
+	 * @param original
+	 *            the original
+	 * 
+	 * @return the string
+	 */
+    protected static String encodeUrl(String original) {
+    	try {
+			return URLEncoder.encode(original, CONTENT_ENCODING);
+		} catch (UnsupportedEncodingException e) {
+			// should never be here..
+			return original;
+		}
+    }
+}
