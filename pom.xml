@@ -9,7 +9,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>Pingdom Java Library</name>
-	<description>Java wrapper for the public Pingdom RESTful API.</description>
+	<description>A Java wrapper around the Pingdom RESTful API and a simple DSL for easy interaction.</description>
 	<url>https://github.com/JakeWharton/pingdom-java/</url>
 
 	<scm>
