@@ -18,18 +18,22 @@ public class ServiceManager {
 	
 	public ServiceManager() {}
 	
-	public void setAuthentication(String email, String password) {
+	public ServiceManager setAuthentication(String email, String password) {
 		this.email = email;
 		this.password = password;
+		return this;
 	}
-	public void setAppKey(String value) {
+	public ServiceManager setAppKey(String value) {
 		this.appKeyValue = value;
+		return this;
 	}
-	public void setConnectionTimeout(int connectionTimeout) {
+	public ServiceManager setConnectionTimeout(int connectionTimeout) {
 		this.connectionTimeout = connectionTimeout;
+		return this;
 	}
-	public void setReadTimeout(int readTimeout) {
+	public ServiceManager setReadTimeout(int readTimeout) {
 		this.readTimeout = readTimeout;
+		return this;
 	}
 	
 	private void setupService(PingdomApiService service) {
