@@ -98,8 +98,11 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	public ApiBuilder parameter(String name, Date value) {
 		return this.parameter(name, Long.toString(value.getTime() / MILLISECONDS_IN_SECOND));
 	}
-	public ApiBuilder parameter(String name, Integer value) {
+	public ApiBuilder parameter(String name, int value) {
 		return this.parameter(name, Integer.toString(value));
+	}
+	public ApiBuilder parameter(String name, boolean value) {
+		return this.parameter(name, Boolean.toString(value));
 	}
     public ApiBuilder parameter(String name, HasValue value) {
     	return this.parameter(name, value.value());
@@ -128,8 +131,11 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
     	return this.parameter(name, builder.toString());
 	}
     
-    public ApiBuilder field(String name, Integer value) {
+    public ApiBuilder field(String name, int value) {
     	return this.field(name, Integer.toString(value));
+    }
+    public ApiBuilder field(String name, boolean value) {
+    	return this.field(name, Boolean.toString(value));
     }
 	public ApiBuilder field(String name, HasValue value) {
 		if (value.value() == null || value.value().length() == 0) {
@@ -143,10 +149,10 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 		this.postParameters.put(name, value);
 		return this;
 	}
-	public PingdomApiBuilder<T> postParameter(String name, Boolean value) {
+	public PingdomApiBuilder<T> postParameter(String name, boolean value) {
 		return this.postParameter(name, Boolean.toString(value));
 	}
-	public PingdomApiBuilder<T> postParameter(String name, Integer value) {
+	public PingdomApiBuilder<T> postParameter(String name, int value) {
 		return this.postParameter(name, Integer.toString(value));
 	}
     public <K extends Object> PingdomApiBuilder<T> postParameter(String name, List<K> valueList) {

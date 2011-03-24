@@ -8,6 +8,7 @@ import com.jakewharton.pingdom.services.ProbeService;
 import com.jakewharton.pingdom.services.ReferenceService;
 import com.jakewharton.pingdom.services.ServerTimeService;
 import com.jakewharton.pingdom.services.SettingsService;
+import com.jakewharton.pingdom.services.SummaryAverageService;
 import com.jakewharton.pingdom.services.TraceRouteService;
 
 /**
@@ -187,6 +188,17 @@ public class ServiceManager {
 	}
 	
 	/**
+	 * Get summary average service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public SummaryAverageService summaryAverageService() {
+		SummaryAverageService service = ServiceManager.newSummaryAverageService();
+		this.setupService(service);
+		return service;
+	}
+	
+	/**
 	 * Get trace route service instance.
 	 * 
 	 * @return Instance.
@@ -268,6 +280,15 @@ public class ServiceManager {
 	 */
 	public static final SettingsService newSettingsService() {
 		return new SettingsService();
+	}
+	
+	/**
+	 * Create new summary average service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public static final SummaryAverageService newSummaryAverageService() {
+		return new SummaryAverageService();
 	}
 	
 	/**
