@@ -3,13 +3,13 @@ package com.jakewharton.pingdom.entities;
 import java.util.List;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class Reference extends PingdomEntity {
+public class Reference implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = 1520773720748154146L;
 
-	public static class Region extends PingdomEntity {
+	public static class Region implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */
@@ -33,7 +33,7 @@ public class Reference extends PingdomEntity {
 			return this;
 		}
 	}
-	public static class TimeZone extends PingdomEntity {
+	public static class TimeZone implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */
@@ -57,7 +57,7 @@ public class Reference extends PingdomEntity {
 			return this;
 		}
 	}
-	public static class DateTimeFormat extends PingdomEntity {
+	public static class DateTimeFormat implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */
@@ -81,7 +81,7 @@ public class Reference extends PingdomEntity {
 			return this;
 		}
 	}
-	public static class NumberFormat extends PingdomEntity {
+	public static class NumberFormat implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */

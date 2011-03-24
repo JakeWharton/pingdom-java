@@ -7,7 +7,7 @@ import java.util.Map;
 import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public final class Actions extends PingdomEntity {
+public final class Actions implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */
@@ -22,7 +22,7 @@ public final class Actions extends PingdomEntity {
 		this.alerts = alerts;
 	}
 	
-	public static class Alert extends PingdomEntity {
+	public static class Alert implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */

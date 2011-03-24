@@ -6,13 +6,13 @@ import java.util.Map;
 import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class Settings extends PingdomEntity {
+public class Settings implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = -6026433660169558378L;
 	
-	public static class Country extends PingdomEntity {
+	public static class Country implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */
@@ -36,7 +36,7 @@ public class Settings extends PingdomEntity {
 			return this;
 		}
 	}
-	public static class TimeZone extends PingdomEntity {
+	public static class TimeZone implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */
@@ -60,7 +60,7 @@ public class Settings extends PingdomEntity {
 			return this;
 		}
 	}
-	public static class PublicReports extends PingdomEntity {
+	public static class PublicReports implements PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */

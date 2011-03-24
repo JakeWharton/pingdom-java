@@ -2,7 +2,7 @@ package com.jakewharton.pingdom.entities;
 
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class TraceRoute extends PingdomEntity {
+public class TraceRoute implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */

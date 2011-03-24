@@ -6,7 +6,7 @@ import java.util.Map;
 import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class Check extends PingdomEntity {
+public class Check implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */

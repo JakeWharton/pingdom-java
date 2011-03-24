@@ -3,7 +3,7 @@ package com.jakewharton.pingdom.entities;
 import java.util.Date;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class ServerTime extends PingdomEntity {
+public class ServerTime implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */

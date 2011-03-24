@@ -2,7 +2,7 @@ package com.jakewharton.pingdom.entities;
 
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class Probe extends PingdomEntity {
+public class Probe implements PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */
