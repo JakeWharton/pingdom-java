@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Check;
+import com.jakewharton.pingdom.entities.Message;
 
 public class CheckService extends PingdomApiService {
 	/**
@@ -246,6 +247,30 @@ public class CheckService extends PingdomApiService {
 		public CreateBuilder notifyWhenBackUp(boolean value) {
 			this.postParameter(POST_NOTIFY_WHEN_BACK_UP, value);
 			return this;
+		}
+	}
+
+	/**
+	 * Deletes a check. THIS METHOD IS IRREVERSIBLE! You will lose all collected
+	 * data. Be careful!
+	 * 
+	 * @param checkId Check ID.
+	 * @return Builder instance.
+	 * @since 2.0
+	 */
+	public DeleteBuilder delete(int checkId) {
+		return new DeleteBuilder(this, checkId);
+	}
+	
+	public static final class DeleteBuilder extends PingdomApiBuilder<Message> {
+		private static final String FIELD_CHECK_ID = "checkid";
+		
+		private static final String URI = "/checks/{" + FIELD_CHECK_ID + "}";
+		
+		private DeleteBuilder(CheckService service, int checkId) {
+			super(service, new TypeToken<Message>() {}, URI, HttpMethod.Delete);
+			
+			this.field(FIELD_CHECK_ID, checkId);
 		}
 	}
 }
