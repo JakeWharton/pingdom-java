@@ -1,6 +1,8 @@
 package com.jakewharton.pingdom;
 
 import com.jakewharton.pingdom.services.ActionsService;
+import com.jakewharton.pingdom.services.AnalysisService;
+import com.jakewharton.pingdom.services.CheckService;
 
 public class ServiceManager {
 	private String appKeyValue;
@@ -31,10 +33,24 @@ public class ServiceManager {
 		this.setupService(service);
 		return service;
 	}
-	//TODO: other services...
+	public AnalysisService analysisService() {
+		AnalysisService service = ServiceManager.newAnalysisService();
+		this.setupService(service);
+		return service;
+	}
+	public CheckService checkService() {
+		CheckService service = ServiceManager.newCheckService();
+		this.setupService(service);
+		return service;
+	}
 	
 	public static final ActionsService newActionsService() {
 		return new ActionsService();
 	}
-	//TODO: other services...
+	public static final AnalysisService newAnalysisService() {
+		return new AnalysisService();
+	}
+	public static final CheckService newCheckService() {
+		return new CheckService();
+	}
 }

@@ -1,8 +1,8 @@
-package com.jakewharton.pingdom.entities;
+package com.jakewharton.pingdom;
 
 import java.io.Serializable;
 
-public class Entity implements Serializable {
+public class PingdomEntity implements Serializable {
 	/**
 	 * Serial Version UID.
 	 */

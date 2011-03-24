@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEntity;
 
-public class Actions extends Entity {
+public final class Actions extends PingdomEntity {
 	/**
 	 * Serial Version UID.
 	 */
@@ -20,7 +22,7 @@ public class Actions extends Entity {
 		this.alerts = alerts;
 	}
 	
-	public static class Alert extends Entity {
+	public static class Alert extends PingdomEntity {
 		/**
 		 * Serial Version UID.
 		 */
@@ -88,15 +90,15 @@ public class Actions extends Entity {
 		}
 		
 		private String contactName;
-		private int contactId;
-		private int checkId;
+		private Integer contactId;
+		private Integer checkId;
 		private Date time;
 		private Via via;
 		private Status status;
 		private String messageShort;
 		private String messageFull;
 		private String sentTo;
-		private boolean charged;
+		private Boolean charged;
 		
 		public String getContactName() {
 			return this.contactName;
@@ -104,16 +106,16 @@ public class Actions extends Entity {
 		public void setContactBame(String contactName) {
 			this.contactName = contactName;
 		}
-		public int getContactId() {
+		public Integer getContactId() {
 			return this.contactId;
 		}
-		public void setContactId(int contactId) {
+		public void setContactId(Integer contactId) {
 			this.contactId = contactId;
 		}
-		public int getCheckId() {
+		public Integer getCheckId() {
 			return this.checkId;
 		}
-		public void setCheckId(int checkId) {
+		public void setCheckId(Integer checkId) {
 			this.checkId = checkId;
 		}
 		public Date getTime() {
@@ -152,10 +154,10 @@ public class Actions extends Entity {
 		public void setSentTo(String sentTo) {
 			this.sentTo = sentTo;
 		}
-		public boolean getCharged() {
+		public Boolean getCharged() {
 			return this.charged;
 		}
-		public void setCharged(boolean charged) {
+		public void setCharged(Boolean charged) {
 			this.charged = charged;
 		}
 	}

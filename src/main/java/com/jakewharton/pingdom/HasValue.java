@@ -14,16 +14,17 @@
  * limitations under the License. 
  * 
  */
-package com.jakewharton.pingdom.entities;
+
+package com.jakewharton.pingdom;
 
 /**
- * The Interface ValueEnum.
+ * Interface denoting an object has a value.
  */
 public interface HasValue {
 	/**
-	 * Value.
+	 * Get value.
 	 * 
-	 * @return String representation of the enum value.
+	 * @return String representation of the value.
 	 */
 	public abstract String value();
 }

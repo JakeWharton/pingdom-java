@@ -115,6 +115,25 @@ public class ApiBuilder {
 		return this;
 	}
     
+	/**
+	 * Test if a parameter key already exists.
+	 * 
+	 * @param name Name of key.
+	 * @return Boolean.
+	 */
+	public boolean hasParameter(String name) {
+		return this.parametersMap.containsKey(name);
+	}
+	
+	/**
+	 * Test if a field key already exists.
+	 * 
+	 * @param name Name of key.
+	 * @return Boolean.
+	 */
+	public boolean hasField(String name) {
+		return this.fieldsMap.containsKey(name);
+	}
 	
 	/**
 	 * Build the URL.
@@ -125,6 +144,7 @@ public class ApiBuilder {
 	public String buildUrl() {
 		return this.buildUrl(true);
 	}
+	
 	/**
 	 * Build the URL.
 	 * 

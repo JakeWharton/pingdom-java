@@ -2,7 +2,7 @@ package com.jakewharton.pingdom.services;
 
 import java.util.Date;
 import java.util.List;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
@@ -10,16 +10,16 @@ import com.jakewharton.pingdom.entities.Actions;
 
 public final class ActionsService extends PingdomApiService {
 	/**
-	 * Returns a list of actions (alerts) that have been generated for your account.
+	 * Get actions (alerts) that have been generated for your account.
 	 * 
-	 * @since 2.0
 	 * @return Builder instance.
+	 * @since 2.0
 	 */
-	public final ListBuilder list() {
-		return new ListBuilder(this);
+	public final GetBuilder get() {
+		return new GetBuilder(this);
 	}
 	
-	public static final class ListBuilder extends PingdomApiBuilder<Actions> {
+	public static final class GetBuilder extends PingdomApiBuilder<Actions> {
 		private static final String PARAM_FROM = "from";
 		private static final String PARAM_TO = "to";
 		private static final String PARAM_LIMIT = "limit";
@@ -31,8 +31,13 @@ public final class ActionsService extends PingdomApiService {
 		
 		private static final String URI = "/actions";
 		
-		private ListBuilder(PingdomApiService service) {
+		private GetBuilder(PingdomApiService service) {
 			super(service, new TypeToken<Actions>() {}, URI);
+		}
+		
+		@Override
+		protected JsonElement execute() {
+			return super.execute().getAsJsonObject().get("actions").getAsJsonObject();
 		}
 		
 		/**
@@ -41,7 +46,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param from Starting timestamp.
 		 * @return Builder instance.
 		 */
-		public ListBuilder from(Date from) {
+		public GetBuilder from(Date from) {
 			this.parameter(PARAM_FROM, from);
 			return this;
 		}
@@ -52,7 +57,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param to Ending timestamp.
 		 * @return Builder instance.
 		 */
-		public ListBuilder to(Date to) {
+		public GetBuilder to(Date to) {
 			this.parameter(PARAM_TO, to);
 			return this;
 		}
@@ -63,7 +68,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param limit Result limit.
 		 * @return Builder instance.
 		 */
-		public ListBuilder limit(int limit) {
+		public GetBuilder limit(int limit) {
 			this.parameter(PARAM_LIMIT, limit);
 			return this;
 		}
@@ -74,7 +79,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param offset Offset amount.
 		 * @return Builder instance.
 		 */
-		public ListBuilder offset(int offset) {
+		public GetBuilder offset(int offset) {
 			this.parameter(PARAM_OFFSET, offset);
 			return this;
 		}
@@ -85,7 +90,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param checkIds List of IDs.
 		 * @return Builder instance.
 		 */
-		public ListBuilder checkIds(List<Integer> checkIds) {
+		public GetBuilder checkIds(List<Integer> checkIds) {
 			this.parameter(PARAM_CHECK_IDS, checkIds);
 			return this;
 		}
@@ -96,7 +101,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param contactIds List of IDs.
 		 * @return Builder instance.
 		 */
-		public ListBuilder contactIds(List<Integer> contactIds) {
+		public GetBuilder contactIds(List<Integer> contactIds) {
 			this.parameter(PARAM_CONTACT_IDS, contactIds);
 			return this;
 		}
@@ -107,7 +112,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param status Status to limit with.
 		 * @return Builder instance.
 		 */
-		public ListBuilder status(Actions.Alert.Status status) {
+		public GetBuilder status(Actions.Alert.Status status) {
 			this.parameter(PARAM_STATUS, status);
 			return this;
 		}
@@ -118,14 +123,9 @@ public final class ActionsService extends PingdomApiService {
 		 * @param via Via to limit with.
 		 * @return Builder instance.
 		 */
-		public ListBuilder via(Actions.Alert.Via via) {
+		public GetBuilder via(Actions.Alert.Via via) {
 			this.parameter(PARAM_VIA, via);
 			return this;
-		}
-		
-		@Override
-		protected JsonObject execute() {
-			return super.execute().get("actions").getAsJsonObject();
 		}
 	}
 }
