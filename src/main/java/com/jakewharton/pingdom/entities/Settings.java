@@ -1,10 +1,8 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
+import com.jakewharton.pingdom.enumerations.PublicReportMonths;
 
 public final class Settings implements PingdomEntity {
 	private static final long serialVersionUID = -6026433660169558378L;
@@ -38,40 +36,11 @@ public final class Settings implements PingdomEntity {
 	public static final class PublicReports implements PingdomEntity {
 		private static final long serialVersionUID = 2293995761282466640L;
 		
-		public enum Months implements HasValue {
-			None("none"),
-			All("all"),
-			Three("3");
-			
-			private final String value;
-			
-			private Months(String value) {
-				this.value = value;
-			}
-
-			@Override
-			public String value() {
-				return this.value;
-			}
-			
-			private static final Map<String, Months> stringToEnum = new HashMap<String, Months>();
-
-			static {
-				for (Months months : values()) {
-					stringToEnum.put(months.value(), months);
-				}
-			}
-			
-			public static Months fromValue(String value) {
-				return stringToEnum.get(value);
-			}
-		}
-		
 		private Boolean customDesign;
 		private String textColor;
 		private String backgroundColor;
 		private String logoUrl;
-		private Months months;
+		private PublicReportMonths months;
 		private Boolean showOverview;
 		private String customDomain;
 		
@@ -87,7 +56,7 @@ public final class Settings implements PingdomEntity {
 		public String getLogoUrl() {
 			return this.logoUrl;
 		}
-		public Months getMonths() {
+		public PublicReportMonths getMonths() {
 			return this.months;
 		}
 		public Boolean getShowOverview() {

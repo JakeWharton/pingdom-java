@@ -7,6 +7,8 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Actions;
+import com.jakewharton.pingdom.enumerations.AlertStatus;
+import com.jakewharton.pingdom.enumerations.AlertVia;
 
 public final class ActionsService extends PingdomApiService {
 	/**
@@ -112,7 +114,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param status Status to limit with.
 		 * @return Builder instance.
 		 */
-		public GetBuilder status(Actions.Alert.Status status) {
+		public GetBuilder status(AlertStatus status) {
 			this.parameter(PARAM_STATUS, status);
 			return this;
 		}
@@ -123,7 +125,7 @@ public final class ActionsService extends PingdomApiService {
 		 * @param via Via to limit with.
 		 * @return Builder instance.
 		 */
-		public GetBuilder via(Actions.Alert.Via via) {
+		public GetBuilder via(AlertVia via) {
 			this.parameter(PARAM_VIA, via);
 			return this;
 		}

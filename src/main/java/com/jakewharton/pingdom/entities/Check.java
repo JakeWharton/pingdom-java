@@ -1,44 +1,11 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
+import com.jakewharton.pingdom.enumerations.CheckStatus;
 
 public final class Check implements PingdomEntity {
 	private static final long serialVersionUID = 6610462680859684444L;
-	
-	public enum Status implements HasValue {
-		Up("up"),
-		Down("down"),
-		UnconfirmedDown("unconfirmed_down"),
-		Unknown("unknown"),
-		Paused("paused");
-		
-		private final String value;
-		
-		private Status(String value) {
-			this.value = value;
-		}
-
-		@Override
-		public String value() {
-			return this.value;
-		}
-		
-		private static final Map<String, Status> stringToEnum = new HashMap<String, Status>();
-
-		static {
-			for (Status status : values()) {
-				stringToEnum.put(status.value(), status);
-			}
-		}
-		
-		public static Status fromValue(String value) {
-			return stringToEnum.get(value);
-		}
-	}
 	
 	private Integer id;
 	private String name;
@@ -46,7 +13,7 @@ public final class Check implements PingdomEntity {
 	private Date lastErrorTime;
 	private Date lastTestTime;
 	private Date lastResponseTime;
-	private Status status;
+	private CheckStatus status;
 	private Integer resolution;
 	private String hostName;
 	private Boolean sendToEmail;
@@ -76,7 +43,7 @@ public final class Check implements PingdomEntity {
 	public Date getLastResponseTime() {
 		return this.lastResponseTime;
 	}
-	public Status getStatus() {
+	public CheckStatus getStatus() {
 		return this.status;
 	}
 	public Integer getResolution() {

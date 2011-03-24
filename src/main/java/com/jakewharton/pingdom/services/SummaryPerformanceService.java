@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.SummaryPerformance;
-import com.jakewharton.pingdom.entities.SummaryPerformance.Resolution;
+import com.jakewharton.pingdom.enumerations.PerformanceResolution;
 
 public class SummaryPerformanceService extends PingdomApiService {
 	/**
@@ -72,7 +72,7 @@ public class SummaryPerformanceService extends PingdomApiService {
 		 * @param resolution Value.
 		 * @return Builder instance.
 		 */
-		public GetBuilder resolution(Resolution resolution) {
+		public GetBuilder resolution(PerformanceResolution resolution) {
 			this.parameter(PARAM_RESOLUTION, resolution);
 			return this;
 		}

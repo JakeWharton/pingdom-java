@@ -7,7 +7,7 @@ import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Message;
 import com.jakewharton.pingdom.entities.Reference;
 import com.jakewharton.pingdom.entities.Settings;
-import com.jakewharton.pingdom.entities.Settings.PublicReports.Months;
+import com.jakewharton.pingdom.enumerations.PublicReportMonths;
 
 public class SettingsService extends PingdomApiService {
 	/**
@@ -362,7 +362,7 @@ public class SettingsService extends PingdomApiService {
 		 * @param publicReportsMonths Value (none, all, 3).
 		 * @return Builder instance.
 		 */
-		public ModifyBuilder publicReportMonths(Months publicReportsMonths) {
+		public ModifyBuilder publicReportMonths(PublicReportMonths publicReportsMonths) {
 			this.postParameter(POST_PUBLIC_REPORT_MONTHS, publicReportsMonths);
 			return this;
 		}

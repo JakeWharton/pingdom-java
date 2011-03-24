@@ -1,43 +1,11 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
 
 public final class SummaryPerformance implements PingdomEntity {
 	private static final long serialVersionUID = 4741817235617335661L;
-	
-	public enum Resolution implements HasValue {
-		Hour("hour"),
-		Day("day"),
-		Week("week");
-		
-		private final String value;
-		
-		private Resolution(String value) {
-			this.value = value;
-		}
-
-		@Override
-		public String value() {
-			return this.value;
-		}
-		
-		private static final Map<String, Resolution> stringToEnum = new HashMap<String, Resolution>();
-
-		static {
-			for (Resolution resolution : values()) {
-				stringToEnum.put(resolution.value(), resolution);
-			}
-		}
-		
-		public static Resolution fromValue(String value) {
-			return stringToEnum.get(value);
-		}
-	}
 
 	public static final class Hour implements PingdomEntity {
 		private static final long serialVersionUID = 8901699621396348130L;

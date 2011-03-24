@@ -1,11 +1,9 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
+import com.jakewharton.pingdom.enumerations.StateStatus;
 
 public final class SummaryOutage implements PingdomEntity {
 	private static final long serialVersionUID = -6524469170240039400L;
@@ -13,40 +11,11 @@ public final class SummaryOutage implements PingdomEntity {
 	public static final class State implements PingdomEntity {
 		private static final long serialVersionUID = -875880227361545768L;
 		
-		public enum Status implements HasValue {
-			Up("up"),
-			Down("down"),
-			Unknown("unknown");
-			
-			private final String value;
-			
-			private Status(String value) {
-				this.value = value;
-			}
-
-			@Override
-			public String value() {
-				return this.value;
-			}
-			
-			private static final Map<String, Status> stringToEnum = new HashMap<String, Status>();
-
-			static {
-				for (Status status : values()) {
-					stringToEnum.put(status.value(), status);
-				}
-			}
-			
-			public static Status fromValue(String value) {
-				return stringToEnum.get(value);
-			}
-		}
-		
-		private Status status;
+		private StateStatus status;
 		private Date timeFrom;
 		private Date timeTo;
 		
-		public Status getStatus() {
+		public StateStatus getStatus() {
 			return this.status;
 		}
 		public Date getTimeFrom() {

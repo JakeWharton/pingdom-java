@@ -21,10 +21,13 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.apibuilder.ApiService;
 import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
-import com.jakewharton.pingdom.entities.Actions;
-import com.jakewharton.pingdom.entities.Check;
-import com.jakewharton.pingdom.entities.Contact;
-import com.jakewharton.pingdom.entities.Settings;
+import com.jakewharton.pingdom.enumerations.AlertStatus;
+import com.jakewharton.pingdom.enumerations.AlertVia;
+import com.jakewharton.pingdom.enumerations.CheckStatus;
+import com.jakewharton.pingdom.enumerations.PerformanceResolution;
+import com.jakewharton.pingdom.enumerations.PublicReportMonths;
+import com.jakewharton.pingdom.enumerations.SmsProvider;
+import com.jakewharton.pingdom.enumerations.StateStatus;
 import com.jakewharton.pingdom.util.Base64;
 
 public abstract class PingdomApiService extends ApiService {
@@ -156,16 +159,16 @@ public abstract class PingdomApiService extends ApiService {
 		GsonBuilder builder = new GsonBuilder();
 		builder.setFieldNamingStrategy(new PingdomFieldNamingStrategy());
 		
-		builder.registerTypeAdapter(Actions.Alert.Status.class, new JsonDeserializer<Actions.Alert.Status>() {
+		builder.registerTypeAdapter(AlertStatus.class, new JsonDeserializer<AlertStatus>() {
 			@Override
-			public Actions.Alert.Status deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return Actions.Alert.Status.fromValue(json.getAsString());
+			public AlertStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return AlertStatus.fromValue(json.getAsString());
 			}
 		});
-		builder.registerTypeAdapter(Actions.Alert.Via.class, new JsonDeserializer<Actions.Alert.Via>() {
+		builder.registerTypeAdapter(AlertVia.class, new JsonDeserializer<AlertVia>() {
 			@Override
-			public Actions.Alert.Via deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return Actions.Alert.Via.fromValue(json.getAsString());
+			public AlertVia deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return AlertVia.fromValue(json.getAsString());
 			}
 		});
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
@@ -174,24 +177,35 @@ public abstract class PingdomApiService extends ApiService {
 				return new Date(json.getAsInt() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
 			}
 		});
-		builder.registerTypeAdapter(Check.Status.class, new JsonDeserializer<Check.Status>() {
+		builder.registerTypeAdapter(CheckStatus.class, new JsonDeserializer<CheckStatus>() {
 			@Override
-			public Check.Status deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return Check.Status.fromValue(json.getAsString());
+			public CheckStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return CheckStatus.fromValue(json.getAsString());
 			}
 		});
-		builder.registerTypeAdapter(Settings.PublicReports.Months.class, new JsonDeserializer<Settings.PublicReports.Months>() {
+		builder.registerTypeAdapter(PublicReportMonths.class, new JsonDeserializer<PublicReportMonths>() {
 			@Override
-			public Settings.PublicReports.Months deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return Settings.PublicReports.Months.fromValue(json.getAsString());
+			public PublicReportMonths deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return PublicReportMonths.fromValue(json.getAsString());
 			}
 		});
-		builder.registerTypeAdapter(Contact.DefaultSmsProvider.class, new JsonDeserializer<Contact.DefaultSmsProvider>() {
+		builder.registerTypeAdapter(SmsProvider.class, new JsonDeserializer<SmsProvider>() {
 			@Override
-			public Contact.DefaultSmsProvider deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return Contact.DefaultSmsProvider.fromValue(json.getAsString());
+			public SmsProvider deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return SmsProvider.fromValue(json.getAsString());
 			}
-			
+		});
+		builder.registerTypeAdapter(StateStatus.class, new JsonDeserializer<StateStatus>() {
+			@Override
+			public StateStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return StateStatus.fromValue(json.getAsString());
+			}
+		});
+		builder.registerTypeAdapter(PerformanceResolution.class, new JsonDeserializer<PerformanceResolution>() {
+			@Override
+			public PerformanceResolution deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return PerformanceResolution.fromValue(json.getAsString());
+			}
 		});
 		
 		return builder;
