@@ -3,6 +3,7 @@ package com.jakewharton.pingdom;
 import com.jakewharton.pingdom.services.ActionsService;
 import com.jakewharton.pingdom.services.AnalysisService;
 import com.jakewharton.pingdom.services.CheckService;
+import com.jakewharton.pingdom.services.ProbeService;
 import com.jakewharton.pingdom.services.ReferenceService;
 import com.jakewharton.pingdom.services.TraceRouteService;
 
@@ -45,6 +46,11 @@ public class ServiceManager {
 		this.setupService(service);
 		return service;
 	}
+	public ProbeService probeService() {
+		ProbeService service = ServiceManager.newProbeService();
+		this.setupService(service);
+		return service;
+	}
 	public ReferenceService referenceService() {
 		ReferenceService service = ServiceManager.newReferenceService();
 		this.setupService(service);
@@ -64,6 +70,9 @@ public class ServiceManager {
 	}
 	public static final CheckService newCheckService() {
 		return new CheckService();
+	}
+	public static final ProbeService newProbeService() {
+		return new ProbeService();
 	}
 	public static final ReferenceService newReferenceService() {
 		return new ReferenceService();
