@@ -6,10 +6,10 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Message;
-import com.jakewharton.pingdom.entities.ReportEmailSubscription;
+import com.jakewharton.pingdom.entities.ReportSubscription;
 import com.jakewharton.pingdom.enumerations.ReportFrequency;
 
-public class ReportEmailService extends PingdomApiService {
+public class ReportsEmailService extends PingdomApiService {
 	/**
 	 * Returns a list of email report subscriptions.
 	 * 
@@ -19,11 +19,11 @@ public class ReportEmailService extends PingdomApiService {
 		return new ListBuilder(this);
 	}
 	
-	public static final class ListBuilder extends PingdomApiBuilder<List<ReportEmailSubscription>> {
+	public static final class ListBuilder extends PingdomApiBuilder<List<ReportSubscription>> {
 		private static final String URI = "/reports.email";
 		
-		private ListBuilder(ReportEmailService service) {
-			super(service, new TypeToken<List<ReportEmailSubscription>>() {}, URI);
+		private ListBuilder(ReportsEmailService service) {
+			super(service, new TypeToken<List<ReportSubscription>>() {}, URI);
 		}
 		
 		@Override
@@ -52,7 +52,7 @@ public class ReportEmailService extends PingdomApiService {
 		
 		private static final String URI = "/reports.email";
 		
-		private CreateBuilder(ReportEmailService service, String name) {
+		private CreateBuilder(ReportsEmailService service, String name) {
 			super(service, new TypeToken<Message>() {}, URI, HttpMethod.Post);
 			
 			this.postParameter(POST_NAME, name);
@@ -125,7 +125,7 @@ public class ReportEmailService extends PingdomApiService {
 		
 		private static final String URI = "/reports.email/{" + FIELD_REPORT_ID + "}";
 		
-		private ModifyBuilder(ReportEmailService service, int reportId) {
+		private ModifyBuilder(ReportsEmailService service, int reportId) {
 			super(service, new TypeToken<Message>() {}, URI, HttpMethod.Put);
 			
 			this.field(FIELD_REPORT_ID, reportId);
@@ -203,7 +203,7 @@ public class ReportEmailService extends PingdomApiService {
 		
 		private static final String URI = "/reports.emamil/{" + FIELD_REPORT_ID + "}";
 		
-		private DeleteBuilder(ReportEmailService service, int reportId) {
+		private DeleteBuilder(ReportsEmailService service, int reportId) {
 			super(service, new TypeToken<Message>() {}, URI, HttpMethod.Delete);
 			
 			this.field(FIELD_REPORT_ID, reportId);

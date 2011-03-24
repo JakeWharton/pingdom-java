@@ -6,7 +6,7 @@ import com.jakewharton.pingdom.services.CheckService;
 import com.jakewharton.pingdom.services.ContactService;
 import com.jakewharton.pingdom.services.ProbeService;
 import com.jakewharton.pingdom.services.ReferenceService;
-import com.jakewharton.pingdom.services.ReportEmailService;
+import com.jakewharton.pingdom.services.ReportsEmailService;
 import com.jakewharton.pingdom.services.ReportsPublicService;
 import com.jakewharton.pingdom.services.ServerTimeService;
 import com.jakewharton.pingdom.services.SettingsService;
@@ -175,8 +175,8 @@ public class ServiceManager {
 	 * 
 	 * @return Instance.
 	 */
-	public ReportEmailService reportEmailService() {
-		ReportEmailService service = ServiceManager.newReportEmailService();
+	public ReportsEmailService reportsEmailService() {
+		ReportsEmailService service = ServiceManager.newReportsEmailService();
 		this.setupService(service);
 		return service;
 	}
@@ -329,8 +329,8 @@ public class ServiceManager {
 	 * 
 	 * @return Instance.
 	 */
-	public static final ReportEmailService newReportEmailService() {
-		return new ReportEmailService();
+	public static final ReportsEmailService newReportsEmailService() {
+		return new ReportsEmailService();
 	}
 	
 	/**

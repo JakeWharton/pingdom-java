@@ -3,7 +3,7 @@ package com.jakewharton.pingdom.entities;
 import java.util.List;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public final class ReportEmailSubscription implements PingdomEntity {
+public final class ReportSubscription implements PingdomEntity {
 	private static final long serialVersionUID = -3601535119841289488L;
 
 	private Integer id;
