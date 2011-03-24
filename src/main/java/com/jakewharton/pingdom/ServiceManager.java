@@ -3,6 +3,7 @@ package com.jakewharton.pingdom;
 import com.jakewharton.pingdom.services.ActionsService;
 import com.jakewharton.pingdom.services.AnalysisService;
 import com.jakewharton.pingdom.services.CheckService;
+import com.jakewharton.pingdom.services.TraceRouteService;
 
 public class ServiceManager {
 	private String appKeyValue;
@@ -43,6 +44,11 @@ public class ServiceManager {
 		this.setupService(service);
 		return service;
 	}
+	public TraceRouteService traceRouteService() {
+		TraceRouteService service = ServiceManager.newTraceRouteService();
+		this.setupService(service);
+		return service;
+	}
 	
 	public static final ActionsService newActionsService() {
 		return new ActionsService();
@@ -52,5 +58,8 @@ public class ServiceManager {
 	}
 	public static final CheckService newCheckService() {
 		return new CheckService();
+	}
+	public static final TraceRouteService newTraceRouteService() {
+		return new TraceRouteService();
 	}
 }
