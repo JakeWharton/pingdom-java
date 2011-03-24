@@ -7,7 +7,8 @@ import com.jakewharton.pingdom.HasValue;
 public enum StateStatus implements HasValue {
 	Up("up"),
 	Down("down"),
-	Unknown("unknown");
+	Unknown("unknown"),
+	Unconfirmed("unconfirmed");
 	
 	private final String value;
 	
