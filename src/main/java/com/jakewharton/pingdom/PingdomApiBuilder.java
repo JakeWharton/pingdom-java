@@ -16,17 +16,27 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	private static final String BASE_URL = "https://api.pingdom.com";
 	private static final String BASE_URI = "/api/{" + FIELD_VERSION + "}";
 	
+	/** Number of milliseconds in a single second. */
 	static final int MILLISECONDS_IN_SECOND = 1000;
+	
+	/** Default API version. */
 	private static final String DEFAULT_VERSION = "2.0";
+	
+	/** Valued-list seperator. */
 	private static final char SEPERATOR = ',';
 	
+	/** Valid HTTP request methods. */
 	public enum HttpMethod {
 		Get, Post, Delete, Put
 	}
 	
+	/** Service instance. */
 	private final PingdomApiService service;
+	/** Type token of return type. */
 	private final TypeToken<T> token;
+	/** HTTP request method to use. */
 	private final HttpMethod method;
+	/** Parameters to send in body of request. */
 	private final Map<String, String> postParameters;
 	
 	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat) {

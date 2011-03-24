@@ -17,8 +17,8 @@ import java.util.Map.Entry;
 import java.util.zip.GZIPInputStream;
 
 public abstract class ApiService {
-	private static final int DEFAULT_TIMEOUT_CONNECT = 60 * 1000;
-	private static final int DEFAULT_TIMEOUT_READ = 60 * 1000;
+	private static final int DEFAULT_TIMEOUT_CONNECT = -1;
+	private static final int DEFAULT_TIMEOUT_READ = -1;
 	private static final String GZIP = "gzip";
 	private static final String HTTP_METHOD_POST = "POST";
 	private static final String HTTP_METHOD_DELETE = "DELETE";

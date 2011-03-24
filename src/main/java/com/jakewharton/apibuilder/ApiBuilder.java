@@ -11,19 +11,19 @@ public class ApiBuilder {
 	private static final String DEFAULT_FORMAT = "json";
 	private static final String CONTENT_ENCODING = "UTF-8";
         
-    /** The Constant API_URLS_PLACEHOLDER_START. */
+    /** Opening bracket of a field variable. */
     private static final char API_URLS_PLACEHOLDER_START = '{';
 
-    /** The Constant API_URLS_PLACEHOLDER_END. */
+    /** Closing bracket of a field variable. */
     private static final char API_URLS_PLACEHOLDER_END = '}';
     
-	/** The url format. */
+	/** The URL format. */
     private final String urlFormat;
     
-	/** The parameters map. */
+	/** Map of parameters. */
     private Map<String, String> parametersMap = new HashMap<String, String>();
 	
-	/** The fields map. */
+	/** Map of fields. */
 	private Map<String, String> fieldsMap = new HashMap<String, String>();
     
 	/**
@@ -53,7 +53,7 @@ public class ApiBuilder {
 	 * @param value
 	 *            the value
 	 * 
-	 * @return the git hub api url builder
+	 * @return Current instance for builder pattern.
 	 */
     public ApiBuilder parameter(String name, String value) {
     	if ((value != null) && (value.length() > 0)) {
@@ -69,7 +69,7 @@ public class ApiBuilder {
 	 * @param name
 	 *            the name
 	 * 
-	 * @return the git hub api url builder
+	 * @return Current instance for builder pattern.
 	 */
 	public ApiBuilder field(String name) {
 		this.fieldsMap.put(name, "");
@@ -85,7 +85,7 @@ public class ApiBuilder {
 	 * @param value
 	 *            the value
 	 * 
-	 * @return the git hub api url builder
+	 * @return Current instance for builder pattern.
 	 */
 	public ApiBuilder field(String name, String value) {
 		this.field(name, value, false);
@@ -103,7 +103,7 @@ public class ApiBuilder {
 	 * @param escape
 	 *            the escape
 	 * 
-	 * @return the git hub api url builder
+	 * @return Current instance for builder pattern.
 	 */
 	public ApiBuilder field(String name, String value, boolean escape) {
 		if (escape) {

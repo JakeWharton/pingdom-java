@@ -27,7 +27,9 @@ import com.jakewharton.pingdom.entities.Settings;
 import com.jakewharton.pingdom.util.Base64;
 
 public abstract class PingdomApiService extends ApiService {
+	/** Default connection timeout (in milliseconds). */
 	private static final int DEFAULT_TIMEOUT_CONNECT = 60 * 1000;
+	/** Default read timeout (in milliseconds). */
 	private static final int DEFAULT_TIMEOUT_READ = 60 * 1000;
 	private static final String HEADER_AUTHORIZATION = "Authorization";
 	private static final String HEADER_AUTHORIZATION_TYPE = "Basic";
@@ -47,19 +49,54 @@ public abstract class PingdomApiService extends ApiService {
 		this.acceptGzip();
 	}
 	
+	/**
+	 * Execute request using HTTP GET.
+	 * 
+	 * @param url URL to request.
+	 * @return JSON object.
+	 */
 	public JsonObject get(String url) {
 		return this.unmarshall(this.executeGet(url));
 	}
+	
+	/**
+	 * Execute request using HTTP POST.
+	 * 
+	 * @param url URL to request.
+	 * @param parameters Parameters to place in the request body.
+	 * @return JSON object.
+	 */
 	public JsonObject post(String url, Map<String, String> parameters) {
 		return this.unmarshall(this.executePost(url, parameters));
 	}
+	
+	/**
+	 * Execute request using HTTP DELETE.
+	 * 
+	 * @param url URL to request.
+	 * @return JSON object.
+	 */
 	public JsonObject delete(String url) {
 		return this.unmarshall(this.executeDelete(url));
 	}
+	
+	/**
+	 * Execute request using HTTP PUT.
+	 * 
+	 * @param url URL to request.
+	 * @param parameters Parameters to place in request body.
+	 * @return JSON object.
+	 */
 	public JsonObject put(String url, Map<String, String> parameters) {
 		return this.unmarshall(this.executeMethod(url, getParametersString(parameters), null, HTTP_METHOD_PUT, HttpURLConnection.HTTP_OK));
 	}
 	
+	/**
+	 * Set email and password to use for HTTP basic authentication.
+	 * 
+	 * @param email Email.
+	 * @param password Password.
+	 */
 	public void setAuthentication(String email, String password) {
 		if ((email == null) || (email.length() == 0)) {
 			throw new IllegalArgumentException("Email must not be empty.");
@@ -73,6 +110,12 @@ public abstract class PingdomApiService extends ApiService {
 		
 		this.addRequestHeader(HEADER_AUTHORIZATION, authentication);
 	}
+	
+	/**
+	 * Set API key to use for client authentication by Pingdom.
+	 * 
+	 * @param value API key.
+	 */
 	public void setAppKey(String value) {
 		this.addRequestHeader(HEADER_APP_KEY, value);
 	}
