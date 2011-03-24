@@ -23,6 +23,7 @@ import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
 import com.jakewharton.pingdom.entities.Actions;
 import com.jakewharton.pingdom.entities.Check;
+import com.jakewharton.pingdom.entities.Contact;
 import com.jakewharton.pingdom.entities.Settings;
 import com.jakewharton.pingdom.util.Base64;
 
@@ -184,6 +185,13 @@ public abstract class PingdomApiService extends ApiService {
 			public Settings.PublicReports.Months deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 				return Settings.PublicReports.Months.fromValue(json.getAsString());
 			}
+		});
+		builder.registerTypeAdapter(Contact.DefaultSmsProvider.class, new JsonDeserializer<Contact.DefaultSmsProvider>() {
+			@Override
+			public Contact.DefaultSmsProvider deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return Contact.DefaultSmsProvider.fromValue(json.getAsString());
+			}
+			
 		});
 		
 		return builder;
