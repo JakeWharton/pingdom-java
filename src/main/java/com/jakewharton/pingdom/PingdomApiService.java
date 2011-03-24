@@ -110,8 +110,7 @@ public abstract class PingdomApiService extends ApiService {
 
 	protected GsonBuilder getGsonBuilder() {
 		GsonBuilder builder = new GsonBuilder();
-		
-		builder.setFieldNamingStrategy(PingdomFieldNamingStrategy.INSTANCE);
+		builder.setFieldNamingStrategy(new PingdomFieldNamingStrategy());
 		
 		builder.registerTypeAdapter(Actions.Alert.Status.class, new JsonDeserializer<Actions.Alert.Status>() {
 			@Override
