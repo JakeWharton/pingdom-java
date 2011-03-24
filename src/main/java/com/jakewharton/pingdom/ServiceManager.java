@@ -13,6 +13,8 @@ public class ServiceManager {
 	private String appKeyValue;
 	private String email;
 	private String password;
+	private Integer connectionTimeout;
+	private Integer readTimeout;
 	
 	public ServiceManager() {}
 	
@@ -23,6 +25,12 @@ public class ServiceManager {
 	public void setAppKey(String value) {
 		this.appKeyValue = value;
 	}
+	public void setConnectionTimeout(int connectionTimeout) {
+		this.connectionTimeout = connectionTimeout;
+	}
+	public void setReadTimeout(int readTimeout) {
+		this.readTimeout = readTimeout;
+	}
 	
 	private void setupService(PingdomApiService service) {
 		if (this.appKeyValue != null) {
@@ -30,6 +38,12 @@ public class ServiceManager {
 		}
 		if ((this.email != null) && (this.password != null)) {
 			service.setAuthentication(this.email, this.password);
+		}
+		if (this.connectionTimeout != null) {
+			service.setConnectTimeout(this.connectionTimeout);
+		}
+		if (this.readTimeout != null) {
+			service.setReadTimeout(this.readTimeout);
 		}
 	}
 	
