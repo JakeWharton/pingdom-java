@@ -3,6 +3,7 @@ package com.jakewharton.pingdom;
 import com.jakewharton.pingdom.services.ActionsService;
 import com.jakewharton.pingdom.services.AnalysisService;
 import com.jakewharton.pingdom.services.CheckService;
+import com.jakewharton.pingdom.services.ContactService;
 import com.jakewharton.pingdom.services.ProbeService;
 import com.jakewharton.pingdom.services.ReferenceService;
 import com.jakewharton.pingdom.services.ServerTimeService;
@@ -131,6 +132,17 @@ public class ServiceManager {
 	}
 	
 	/**
+	 * Get contact service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public ContactService contactService() {
+		ContactService service = ServiceManager.newContactService();
+		this.setupService(service);
+		return service;
+	}
+	
+	/**
 	 * Get probe service instance.
 	 * 
 	 * @return Instance.
@@ -211,6 +223,15 @@ public class ServiceManager {
 	 */
 	public static final CheckService newCheckService() {
 		return new CheckService();
+	}
+	
+	/**
+	 * Create new contact service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public static final ContactService newContactService() {
+		return new ContactService();
 	}
 	
 	/**
