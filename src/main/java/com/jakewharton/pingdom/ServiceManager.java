@@ -6,6 +6,7 @@ import com.jakewharton.pingdom.services.CheckService;
 import com.jakewharton.pingdom.services.ProbeService;
 import com.jakewharton.pingdom.services.ReferenceService;
 import com.jakewharton.pingdom.services.ServerTimeService;
+import com.jakewharton.pingdom.services.SettingsService;
 import com.jakewharton.pingdom.services.TraceRouteService;
 
 public class ServiceManager {
@@ -62,6 +63,11 @@ public class ServiceManager {
 		this.setupService(service);
 		return service;
 	}
+	public SettingsService settingsService() {
+		SettingsService service = ServiceManager.newSettingsService();
+		this.setupService(service);
+		return service;
+	}
 	public TraceRouteService traceRouteService() {
 		TraceRouteService service = ServiceManager.newTraceRouteService();
 		this.setupService(service);
@@ -85,6 +91,9 @@ public class ServiceManager {
 	}
 	public static final ServerTimeService newServerTimeService() {
 		return new ServerTimeService();
+	}
+	public static final SettingsService newSettingsService() {
+		return new SettingsService();
 	}
 	public static final TraceRouteService newTraceRouteService() {
 		return new TraceRouteService();
