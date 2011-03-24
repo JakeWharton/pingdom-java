@@ -11,6 +11,7 @@ import com.jakewharton.pingdom.services.SettingsService;
 import com.jakewharton.pingdom.services.SummaryAverageService;
 import com.jakewharton.pingdom.services.SummaryOutageService;
 import com.jakewharton.pingdom.services.SummaryPerformanceService;
+import com.jakewharton.pingdom.services.SummaryProbeService;
 import com.jakewharton.pingdom.services.TraceRouteService;
 
 /**
@@ -223,6 +224,17 @@ public class ServiceManager {
 	}
 	
 	/**
+	 * Get summary probe service.
+	 * 
+	 * @return Instance.
+	 */
+	public SummaryProbeService summaryProbeService() {
+		SummaryProbeService service = ServiceManager.newSummaryProbeService();
+		this.setupService(service);
+		return service;
+	}
+	
+	/**
 	 * Get trace route service instance.
 	 * 
 	 * @return Instance.
@@ -331,6 +343,15 @@ public class ServiceManager {
 	 */
 	public static final SummaryPerformanceService newSummaryPerformanceService() {
 		return new SummaryPerformanceService();
+	}
+	
+	/**
+	 * Create new summary probe service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public static final SummaryProbeService newSummaryProbeService() {
+		return new SummaryProbeService();
 	}
 	
 	/**
