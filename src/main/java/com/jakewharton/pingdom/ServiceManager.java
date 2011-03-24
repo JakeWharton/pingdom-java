@@ -9,6 +9,7 @@ import com.jakewharton.pingdom.services.ReferenceService;
 import com.jakewharton.pingdom.services.ServerTimeService;
 import com.jakewharton.pingdom.services.SettingsService;
 import com.jakewharton.pingdom.services.SummaryAverageService;
+import com.jakewharton.pingdom.services.SummaryOutageService;
 import com.jakewharton.pingdom.services.TraceRouteService;
 
 /**
@@ -199,6 +200,17 @@ public class ServiceManager {
 	}
 	
 	/**
+	 * Get summary outage service.
+	 * 
+	 * @return Instance.
+	 */
+	public SummaryOutageService summaryOutageService() {
+		SummaryOutageService service = ServiceManager.newSummaryOutageService();
+		this.setupService(service);
+		return service;
+	}
+	
+	/**
 	 * Get trace route service instance.
 	 * 
 	 * @return Instance.
@@ -289,6 +301,15 @@ public class ServiceManager {
 	 */
 	public static final SummaryAverageService newSummaryAverageService() {
 		return new SummaryAverageService();
+	}
+	
+	/**
+	 * Create new summary outage service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public static final SummaryOutageService newSummaryOutageService() {
+		return new SummaryOutageService();
 	}
 	
 	/**
