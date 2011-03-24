@@ -15,19 +15,22 @@ public class Analysis implements PingdomEntity {
 	public Integer getId() {
 		return this.id;
 	}
-	public void setId(Integer id) {
+	public Analysis setId(Integer id) {
 		this.id = id;
+		return this;
 	}
 	public Integer getTimeFirstTest() {
 		return this.timeFirstTest;
 	}
-	public void setTimeFirstTest(Integer timeFirstTest) {
+	public Analysis setTimeFirstTest(Integer timeFirstTest) {
 		this.timeFirstTest = timeFirstTest;
+		return this;
 	}
 	public Integer getTimeConfirmTest() {
 		return this.timeConfirmTest;
 	}
-	public void setTimeConfirmTest(Integer timeConfirmTest) {
+	public Analysis setTimeConfirmTest(Integer timeConfirmTest) {
 		this.timeConfirmTest = timeConfirmTest;
+		return this;
 	}
 }

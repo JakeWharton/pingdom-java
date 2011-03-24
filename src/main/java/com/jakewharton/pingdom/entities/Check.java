@@ -64,103 +64,120 @@ public class Check implements PingdomEntity {
 	public Integer getId() {
 		return this.id;
 	}
-	public void setId(Integer id) {
+	public Check setId(Integer id) {
 		this.id = id;
+		return this;
 	}
 	public String getName() {
 		return this.name;
 	}
-	public void setName(String name) {
+	public Check setName(String name) {
 		this.name = name;
+		return this;
 	}
 	//public Object getType() {
 	//	return this.type;
 	//}
-	//public void setType(Object type) {
+	//public Check setType(Object type) {
 	//	this.type = type;
+	//	return this;
 	//}
 	public Date getLastErrorTime() {
 		return this.lastErrorTime;
 	}
-	public void setLastErrorTime(Date lastErrorTime) {
+	public Check setLastErrorTime(Date lastErrorTime) {
 		this.lastErrorTime = lastErrorTime;
+		return this;
 	}
 	public Date getLastTestTime() {
 		return this.lastTestTime;
 	}
-	public void setLastTestTime(Date lastTestTime) {
+	public Check setLastTestTime(Date lastTestTime) {
 		this.lastTestTime = lastTestTime;
+		return this;
 	}
 	public Date getLastResponseTime() {
 		return this.lastResponseTime;
 	}
-	public void setLastResponseTime(Date lastResponseTime) {
+	public Check setLastResponseTime(Date lastResponseTime) {
 		this.lastResponseTime = lastResponseTime;
+		return this;
 	}
 	public Status getStatus() {
 		return this.status;
 	}
-	public void setStatus(Status status) {
+	public Check setStatus(Status status) {
 		this.status = status;
+		return this;
 	}
 	public Integer getResolution() {
 		return this.resolution;
 	}
-	public void setResolution(Integer resolution) {
+	public Check setResolution(Integer resolution) {
 		this.resolution = resolution;
+		return this;
 	}
 	public String getHostName() {
 		return this.hostName;
 	}
-	public void setHostName(String hostName) {
+	public Check setHostName(String hostName) {
 		this.hostName = hostName;
+		return this;
 	}
 	public Boolean getSendToEmail() {
 		return this.sendToEmail;
 	}
-	public void setSendToEmail(Boolean sendToEmail) {
+	public Check setSendToEmail(Boolean sendToEmail) {
 		this.sendToEmail = sendToEmail;
+		return this;
 	}
 	public Boolean getSendToSms() {
 		return this.sendToSms;
 	}
-	public void setSendToSms(Boolean sendToSms) {
+	public Check setSendToSms(Boolean sendToSms) {
 		this.sendToSms = sendToSms;
+		return this;
 	}
 	public Boolean getSendToTwitter() {
 		return this.sendToTwitter;
 	}
-	public void setSendToTwitter(Boolean sendToTwitter) {
+	public Check setSendToTwitter(Boolean sendToTwitter) {
 		this.sendToTwitter = sendToTwitter;
+		return this;
 	}
 	public Boolean getSendToIPhone() {
 		return this.sendToIPhone;
 	}
-	public void setSendToIPhone(Boolean sendToIPhone) {
+	public Check setSendToIPhone(Boolean sendToIPhone) {
 		this.sendToIPhone = sendToIPhone;
+		return this;
 	}
 	public Integer getSendNotificationWhenDown() {
 		return this.sendNotificationWhenDown;
 	}
-	public void setSendNotificationWhenDown(Integer sendNotificationWhenDown) {
+	public Check setSendNotificationWhenDown(Integer sendNotificationWhenDown) {
 		this.sendNotificationWhenDown = sendNotificationWhenDown;
+		return this;
 	}
 	public Integer getNotifyAgainEvery() {
 		return this.notifyAgainEvery;
 	}
-	public void setNotifyAgainEvery(Integer notifyAgainEvery) {
+	public Check setNotifyAgainEvery(Integer notifyAgainEvery) {
 		this.notifyAgainEvery = notifyAgainEvery;
+		return this;
 	}
 	public Boolean getNotifyWhenBackUp() {
 		return this.notifyWhenBackUp;
 	}
-	public void setNotifyWhenBackUp(Boolean notifyWhenBackUp) {
+	public Check setNotifyWhenBackUp(Boolean notifyWhenBackUp) {
 		this.notifyWhenBackUp = notifyWhenBackUp;
+		return this;
 	}
 	public Date getCreated() {
 		return this.created;
 	}
-	public void setCreated(Date created) {
+	public Check setCreated(Date created) {
 		this.created = created;
+		return this;
 	}
 }
