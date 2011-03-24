@@ -6,10 +6,7 @@ import java.util.Map;
 import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class Contact implements PingdomEntity {
-	/**
-	 * Serial Version UID.
-	 */
+public final class Contact implements PingdomEntity {
 	private static final long serialVersionUID = -1534828012196092863L;
 	
 	public enum DefaultSmsProvider implements HasValue {
@@ -54,57 +51,25 @@ public class Contact implements PingdomEntity {
 	public Integer getId() {
 		return this.id;
 	}
-	public Contact setId(Integer id) {
-		this.id = id;
-		return this;
-	}
 	public String getName() {
 		return this.name;
-	}
-	public Contact setName(String name) {
-		this.name = name;
-		return this;
 	}
 	public String getCellPhone() {
 		return this.cellPhone;
 	}
-	public Contact setCellPhone(String cellPhone) {
-		this.cellPhone = cellPhone;
-		return this;
-	}
 	public DefaultSmsProvider getDefaultSmsProvider() {
 		return this.defaultSmsProvider;
-	}
-	public Contact setDefaultSmsProvider(DefaultSmsProvider defaultSmsProvider) {
-		this.defaultSmsProvider = defaultSmsProvider;
-		return this;
 	}
 	public Boolean getDirectTwitter() {
 		return this.directTwitter;
 	}
-	public Contact setDirectTwitter(Boolean directTwitter) {
-		this.directTwitter = directTwitter;
-		return this;
-	}
 	public String getTwitterUser() {
 		return this.twitterUser;
-	}
-	public Contact setTwitterUser(String twitterUser) {
-		this.twitterUser = twitterUser;
-		return this;
 	}
 	public List<String> getiPhoneTokens() {
 		return this.iPhoneTokens;
 	}
-	public Contact setiPhoneTokens(List<String> iPhoneTokens) {
-		this.iPhoneTokens = iPhoneTokens;
-		return this;
-	}
 	public Boolean getPaused() {
 		return this.paused;
-	}
-	public Contact setPaused(Boolean paused) {
-		this.paused = paused;
-		return this;
 	}
 }

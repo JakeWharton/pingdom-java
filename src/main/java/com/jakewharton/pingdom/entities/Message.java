@@ -2,10 +2,7 @@ package com.jakewharton.pingdom.entities;
 
 import com.jakewharton.pingdom.PingdomEntity;
 
-public class Message implements PingdomEntity {
-	/**
-	 * Serial Version UID.
-	 */
+public final class Message implements PingdomEntity {
 	private static final long serialVersionUID = -2236235836826419242L;
 
 	private String message;
