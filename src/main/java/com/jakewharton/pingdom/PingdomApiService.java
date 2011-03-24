@@ -3,6 +3,7 @@ package com.jakewharton.pingdom;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +23,7 @@ import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
 import com.jakewharton.pingdom.entities.Actions;
 import com.jakewharton.pingdom.entities.Check;
-import com.jakewharton.pingdom.entities.Check.Status;
+import com.jakewharton.pingdom.entities.Settings;
 import com.jakewharton.pingdom.util.Base64;
 
 public abstract class PingdomApiService extends ApiService {
@@ -32,6 +33,7 @@ public abstract class PingdomApiService extends ApiService {
 	private static final String HEADER_AUTHORIZATION_TYPE = "Basic";
 	private static final String HEADER_APP_KEY = "App-Key";
 	private static final Charset UTF_8_CHAR_SET = Charset.forName(ApiService.CONTENT_ENCODING);
+	private static final String HTTP_METHOD_PUT = "PUT";
 	
     private final JsonParser parser;
     private final List<AsyncResponseHandler<List<? extends PingdomEntity>>> handlers;
@@ -53,6 +55,9 @@ public abstract class PingdomApiService extends ApiService {
 	}
 	public JsonObject delete(String url) {
 		return this.unmarshall(this.executeDelete(url));
+	}
+	public JsonObject put(String url, Map<String, String> parameters) {
+		return this.unmarshall(this.executeMethod(url, getParametersString(parameters), null, HTTP_METHOD_PUT, HttpURLConnection.HTTP_OK));
 	}
 	
 	public void setAuthentication(String email, String password) {
@@ -123,13 +128,19 @@ public abstract class PingdomApiService extends ApiService {
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
 			@Override
 			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return new Date(json.getAsInt() * 1000); //S to MS
+				return new Date(json.getAsInt() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
 			}
 		});
 		builder.registerTypeAdapter(Check.Status.class, new JsonDeserializer<Check.Status>() {
 			@Override
-			public Status deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+			public Check.Status deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 				return Check.Status.fromValue(json.getAsString());
+			}
+		});
+		builder.registerTypeAdapter(Settings.PublicReports.Months.class, new JsonDeserializer<Settings.PublicReports.Months>() {
+			@Override
+			public Settings.PublicReports.Months deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return Settings.PublicReports.Months.fromValue(json.getAsString());
 			}
 		});
 		

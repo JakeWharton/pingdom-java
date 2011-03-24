@@ -173,7 +173,7 @@ public abstract class ApiService {
 	        throw new ApiException(e);
 	    }
 	}
-	protected InputStream executeMethod(String apiUrl, String xmlContent, String contentType, String method, int expected) {
+	protected InputStream executeMethod(String apiUrl, String content, String contentType, String method, int expected) {
 	    try {
 	        URL url = new URL(apiUrl);
 	        HttpURLConnection request = (HttpURLConnection) url.openConnection();
@@ -196,10 +196,10 @@ public abstract class ApiService {
 	            request.setRequestProperty(HEADER_CONTENT_TYPE, contentType);
 	        }
 
-	        if (xmlContent != null) {
+	        if (content != null) {
 	            PrintStream out = new PrintStream(new BufferedOutputStream(request.getOutputStream()));
 
-	            out.print(xmlContent);
+	            out.print(content);
 	            out.flush();
 	            out.close();
 	        }

@@ -1,6 +1,9 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import com.jakewharton.pingdom.HasValue;
 import com.jakewharton.pingdom.PingdomEntity;
 
 public class Settings extends PingdomEntity {
@@ -63,11 +66,40 @@ public class Settings extends PingdomEntity {
 		 */
 		private static final long serialVersionUID = 2293995761282466640L;
 		
+		public enum Months implements HasValue {
+			None("none"),
+			All("all"),
+			Three("3");
+			
+			private final String value;
+			
+			private Months(String value) {
+				this.value = value;
+			}
+
+			@Override
+			public String value() {
+				return this.value;
+			}
+			
+			private static final Map<String, Months> stringToEnum = new HashMap<String, Months>();
+
+			static {
+				for (Months months : values()) {
+					stringToEnum.put(months.value(), months);
+				}
+			}
+			
+			public static Months fromValue(String value) {
+				return stringToEnum.get(value);
+			}
+		}
+		
 		private Boolean customDesign;
 		private String textColor;
 		private String backgroundColor;
 		private String logoUrl;
-		private String months;
+		private Months months;
 		private Boolean showOverview;
 		private String customDomain;
 		
@@ -99,10 +131,10 @@ public class Settings extends PingdomEntity {
 			this.logoUrl = logoUrl;
 			return this;
 		}
-		public String getMonths() {
+		public Months getMonths() {
 			return this.months;
 		}
-		public PublicReports setMonths(String months) {
+		public PublicReports setMonths(Months months) {
 			this.months = months;
 			return this;
 		}
@@ -121,7 +153,7 @@ public class Settings extends PingdomEntity {
 			return this;
 		}
 	}
-
+	
 	private String firstName;
 	private String lastName;
 	private String company;

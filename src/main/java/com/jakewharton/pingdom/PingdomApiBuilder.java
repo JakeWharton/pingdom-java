@@ -16,12 +16,12 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	private static final String BASE_URL = "https://api.pingdom.com";
 	private static final String BASE_URI = "/api/{" + FIELD_VERSION + "}";
 	
+	static final int MILLISECONDS_IN_SECOND = 1000;
 	private static final String DEFAULT_VERSION = "2.0";
-	private static final int MILLISECONDS_IN_SECOND = 1000;
 	private static final char SEPERATOR = ',';
 	
 	public enum HttpMethod {
-		Get, Post, Delete
+		Get, Post, Delete, Put
 	}
 	
 	private final PingdomApiService service;
@@ -77,6 +77,8 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 				return this.service.post(url, this.postParameters);
 			case Delete:
 				return this.service.delete(url);
+			case Put:
+				return this.service.put(url, this.postParameters);
 			default:
 				throw new IllegalArgumentException("Unknown HttpMethod type " + this.method.toString());
 		}
@@ -132,12 +134,10 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 		return this;
 	}
 	public PingdomApiBuilder<T> postParameter(String name, Boolean value) {
-		this.postParameters.put(name, Boolean.toString(value));
-		return this;
+		return this.postParameter(name, Boolean.toString(value));
 	}
 	public PingdomApiBuilder<T> postParameter(String name, Integer value) {
-		this.postParameters.put(name, Integer.toString(value));
-		return this;
+		return this.postParameter(name, Integer.toString(value));
 	}
     public <K extends Object> PingdomApiBuilder<T> postParameter(String name, List<K> valueList) {
     	StringBuilder builder = new StringBuilder();
@@ -148,7 +148,9 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
     			builder.append(SEPERATOR);
     		}
 		}
-    	this.postParameters.put(name, builder.toString());
-    	return this;
+    	return this.postParameter(name, builder.toString());
+    }
+    public <K extends HasValue> PingdomApiBuilder<T> postParameter(String name, K hasValue) {
+    	return this.postParameter(name, hasValue.value());
     }
 }
