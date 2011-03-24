@@ -7,6 +7,7 @@ import com.jakewharton.pingdom.services.ContactService;
 import com.jakewharton.pingdom.services.ProbeService;
 import com.jakewharton.pingdom.services.ReferenceService;
 import com.jakewharton.pingdom.services.ReportEmailService;
+import com.jakewharton.pingdom.services.ReportsPublicService;
 import com.jakewharton.pingdom.services.ServerTimeService;
 import com.jakewharton.pingdom.services.SettingsService;
 import com.jakewharton.pingdom.services.SummaryAverageService;
@@ -181,6 +182,17 @@ public class ServiceManager {
 	}
 	
 	/**
+	 * Get reports public service.
+	 * 
+	 * @return Instance.
+	 */
+	public ReportsPublicService reportsPublicService() {
+		ReportsPublicService service = ServiceManager.newReportsPublicService();
+		this.setupService(service);
+		return service;
+	}
+	
+	/**
 	 * Get server time service instance.
 	 * 
 	 * @return Instance.
@@ -319,6 +331,15 @@ public class ServiceManager {
 	 */
 	public static final ReportEmailService newReportEmailService() {
 		return new ReportEmailService();
+	}
+	
+	/**
+	 * Create new reports public service instance.
+	 * 
+	 * @return Instance.
+	 */
+	public static final ReportsPublicService newReportsPublicService() {
+		return new ReportsPublicService();
 	}
 	
 	/**
