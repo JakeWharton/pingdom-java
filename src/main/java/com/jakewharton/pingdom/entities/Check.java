@@ -1,7 +1,6 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.jakewharton.pingdom.PingdomEntity;
@@ -25,34 +24,41 @@ public final class Check implements PingdomEntity {
 		public CheckType getNative() {
 			return this.typeNative;
 		}
-		public CheckTypeBase getObject() {
+		public CheckTypeBase getTypeObject() {
 			return this.typeObject;
+		}
+		
+		public HttpType asHttp() {
+			return new HttpType(this.typeObject);
+		}
+		public HttpCustomType asHttpCustom() {
+			return new HttpCustomType(this.typeObject);
+		}
+		public TcpType asTcp() {
+			return new TcpType(this.typeObject);
+		}
+		public PingType asPing() {
+			return new PingType(this.typeObject);
+		}
+		public DnsType asDns() {
+			return new DnsType(this.typeObject);
+		}
+		public UdpType asUdp() {
+			return new UdpType(this.typeObject);
+		}
+		public SmtpType asSmtp() {
+			return new SmtpType(this.typeObject);
+		}
+		public Pop3Type asPop3() {
+			return new Pop3Type(this.typeObject);
+		}
+		public ImapType asImap() {
+			return new ImapType(this.typeObject);
 		}
 	}
 	
-	/**
-	 * Mapping of {@link CheckType} to {@link CheckTypeBase} subclasses.
-	 */
-	public static final Map<CheckType, Class<? extends CheckTypeBase>> CLASS_MAP = new HashMap<CheckType, Class<? extends CheckTypeBase>>();
-	
-	static {
-		//Initialize type-to-class mapping
-		CLASS_MAP.put(CheckType.Http, HttpType.class);
-		CLASS_MAP.put(CheckType.HttpCustom, HttpCustomType.class);
-		CLASS_MAP.put(CheckType.Tcp, TcpType.class);
-		CLASS_MAP.put(CheckType.Ping, PingType.class);
-		CLASS_MAP.put(CheckType.Dns, DnsType.class);
-		CLASS_MAP.put(CheckType.Udp, UdpType.class);
-		CLASS_MAP.put(CheckType.Smtp, SmtpType.class);
-		CLASS_MAP.put(CheckType.Pop3, Pop3Type.class);
-		CLASS_MAP.put(CheckType.Imap, ImapType.class);
-	}
-	
-	public static abstract class CheckTypeBase implements PingdomEntity {
+	public static final class CheckTypeBase implements PingdomEntity {
 		private static final long serialVersionUID = 1813724658931962637L;
-	}
-	public static final class HttpType extends CheckTypeBase {
-		private static final long serialVersionUID = 8746503435697435856L;
 		
 		private String url;
 		private Boolean encryption;
@@ -63,171 +69,228 @@ public final class Check implements PingdomEntity {
 		private String shouldNotContain;
 		private String postData;
 		private Map<String, String> requestHeaders;
-		
-		public String getUrl() {
-			return url;
-		}
-		public Boolean getEncryption() {
-			return encryption;
-		}
-		public Integer getPort() {
-			return port;
-		}
-		public String getUsername() {
-			return username;
-		}
-		public String getPassword() {
-			return password;
-		}
-		public String getShouldContain() {
-			return shouldContain;
-		}
-		public String getShouldNotContain() {
-			return shouldNotContain;
-		}
-		public String getPostData() {
-			return postData;
-		}
-		public Map<String, String> getRequestHeaders() {
-			return requestHeaders;
-		}
-	}
-	public static final class HttpCustomType extends CheckTypeBase {
-		private static final long serialVersionUID = 4471055299456348927L;
-		
-		private String url;
-		private Boolean encryption;
-		private Integer port;
-		private String username;
-		private String password;
 		private List<String> additionalUrls;
-		
-		public String getUrl() {
-			return url;
-		}
-		public Boolean getEncryption() {
-			return encryption;
-		}
-		public Integer getPort() {
-			return port;
-		}
-		public String getUsername() {
-			return username;
-		}
-		public String getPassword() {
-			return password;
-		}
-		public List<String> getAdditionalUrls() {
-			return additionalUrls;
-		}
-	}
-	public static final class TcpType extends CheckTypeBase {
-		private static final long serialVersionUID = 6901903180365258256L;
-		
-		private Integer port;
 		private String stringToSend;
 		private String stringToExpect;
-		
-		public Integer getPort() {
-			return port;
-		}
-		public String getStringToSend() {
-			return stringToSend;
-		}
-		public String getStringToExpect() {
-			return stringToExpect;
-		}
-	}
-	public static final class PingType extends CheckTypeBase {
-		private static final long serialVersionUID = 4274637575207052368L;
-	}
-	public static final class DnsType extends CheckTypeBase {
-		private static final long serialVersionUID = -383887207810094123L;
-		
 		private String nameServer;
 		private String expectedIp;
 		
-		public String getNameServer() {
-			return nameServer;
+		public String getUrl() {
+			return this.url;
 		}
-		public String getExpectedIp() {
-			return expectedIp;
+		public Boolean getEncryption() {
+			return this.encryption;
 		}
-	}
-	public static final class UdpType extends CheckTypeBase {
-		private static final long serialVersionUID = 102679977818218440L;
-		
-		private Integer port;
-		private String stringToSend;
-		private String stringToExpect;
-		
 		public Integer getPort() {
-			return port;
-		}
-		public String getStringToSend() {
-			return stringToSend;
-		}
-		public String getStringToExpect() {
-			return stringToExpect;
-		}
-	}
-	public static final class SmtpType extends CheckTypeBase {
-		private static final long serialVersionUID = 3753689361049225171L;
-		
-		private Integer port;
-		private String username;
-		private String password;
-		private Boolean encryption;
-		private String stringToExpect;
-		
-		public Integer getPort() {
-			return port;
+			return this.port;
 		}
 		public String getUsername() {
-			return username;
+			return this.username;
 		}
 		public String getPassword() {
-			return password;
+			return this.password;
 		}
-		public Boolean getEncryption() {
-			return encryption;
+		public String getShouldContain() {
+			return this.shouldContain;
+		}
+		public String getShouldNotContain() {
+			return this.shouldNotContain;
+		}
+		public String getPostData() {
+			return this.postData;
+		}
+		public Map<String, String> getRequestHeaders() {
+			return this.requestHeaders;
+		}
+		public List<String> getAdditionalUrls() {
+			return this.additionalUrls;
+		}
+		public String getStringToSend() {
+			return this.stringToSend;
 		}
 		public String getStringToExpect() {
-			return stringToExpect;
+			return this.stringToExpect;
+		}
+		public String getNameServer() {
+			return this.nameServer;
+		}
+		public String getExpectedIp() {
+			return this.expectedIp;
 		}
 	}
-	public static final class Pop3Type extends CheckTypeBase {
-		private static final long serialVersionUID = -5366736202575589403L;
+	
+	public static final class HttpType {
+		private final CheckTypeBase base;
 		
-		private Integer port;
-		private Boolean encryption;
-		private String stringToExpect;
+		private HttpType(CheckTypeBase base) {
+			this.base = base;
+		}
 		
-		public Integer getPort() {
-			return port;
+		public String getUrl() {
+			return this.base.getUrl();
 		}
 		public Boolean getEncryption() {
-			return encryption;
+			return this.base.getEncryption();
 		}
-		public String getStringToExpect() {
-			return stringToExpect;
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public String getUsername() {
+			return this.base.getUsername();
+		}
+		public String getPassword() {
+			return this.base.getPassword();
+		}
+		public String getShouldContain() {
+			return this.base.getShouldContain();
+		}
+		public String getShouldNotContain() {
+			return this.base.getShouldNotContain();
+		}
+		public String getPostData() {
+			return this.base.getPostData();
+		}
+		public Map<String, String> getRequestHeaders() {
+			return this.base.getRequestHeaders();
 		}
 	}
-	public static final class ImapType extends CheckTypeBase {
-		private static final long serialVersionUID = 738277068049535332L;
+	public static final class HttpCustomType {
+		private final CheckTypeBase base;
 		
-		private Integer port;
-		private Boolean encryption;
-		private String stringToExpect;
-		
-		public Integer getPort() {
-			return port;
+		private HttpCustomType(CheckTypeBase base) {
+			this.base = base;
+		}
+
+		public String getUrl() {
+			return this.base.getUrl();
 		}
 		public Boolean getEncryption() {
-			return encryption;
+			return this.base.getEncryption();
+		}
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public String getUsername() {
+			return this.base.getUsername();
+		}
+		public String getPassword() {
+			return this.base.getPassword();
+		}
+		public List<String> getAdditionalUrls() {
+			return this.base.getAdditionalUrls();
+		}
+	}
+	public static final class TcpType {
+		private final CheckTypeBase base;
+		
+		private TcpType(CheckTypeBase base) {
+			this.base = base;
+		}
+		
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public String getStringToSend() {
+			return this.base.getStringToSend();
 		}
 		public String getStringToExpect() {
-			return stringToExpect;
+			return this.base.getStringToExpect();
+		}
+	}
+	public static final class PingType {
+		@SuppressWarnings("unused")
+		private final CheckTypeBase base;
+		
+		private PingType(CheckTypeBase base) {
+			this.base = base;
+		}
+	}
+	public static final class DnsType {
+		private final CheckTypeBase base;
+		
+		private DnsType(CheckTypeBase base) {
+			this.base = base;
+		}
+		
+		public String getNameServer() {
+			return this.base.getNameServer();
+		}
+		public String getExpectedIp() {
+			return this.base.getExpectedIp();
+		}
+	}
+	public static final class UdpType {
+		private final CheckTypeBase base;
+		
+		private UdpType(CheckTypeBase base) {
+			this.base = base;
+		}
+		
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public String getStringToSend() {
+			return this.base.getStringToSend();
+		}
+		public String getStringToExpect() {
+			return this.base.getStringToExpect();
+		}
+	}
+	public static final class SmtpType {
+		private final CheckTypeBase base;
+		
+		private SmtpType(CheckTypeBase base) {
+			this.base = base;
+		}
+		
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public String getUsername() {
+			return this.base.getUsername();
+		}
+		public String getPassword() {
+			return this.base.getPassword();
+		}
+		public Boolean getEncryption() {
+			return this.base.getEncryption();
+		}
+		public String getStringToExpect() {
+			return this.base.getStringToExpect();
+		}
+	}
+	public static final class Pop3Type {
+		private final CheckTypeBase base;
+		
+		private Pop3Type(CheckTypeBase base) {
+			this.base = base;
+		}
+		
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public Boolean getEncryption() {
+			return this.base.getEncryption();
+		}
+		public String getStringToExpect() {
+			return this.base.getStringToExpect();
+		}
+	}
+	public static final class ImapType {
+		private final CheckTypeBase base;
+		
+		private ImapType(CheckTypeBase base) {
+			this.base = base;
+		}
+		
+		public Integer getPort() {
+			return this.base.getPort();
+		}
+		public Boolean getEncryption() {
+			return this.base.getEncryption();
+		}
+		public String getStringToExpect() {
+			return this.base.getStringToExpect();
 		}
 	}
 	

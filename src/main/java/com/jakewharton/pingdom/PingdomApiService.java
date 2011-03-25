@@ -22,7 +22,6 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.apibuilder.ApiService;
 import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
-import com.jakewharton.pingdom.entities.Check;
 import com.jakewharton.pingdom.entities.Check.CheckTypeBase;
 import com.jakewharton.pingdom.entities.Check.CheckTypeWrapper;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
@@ -175,16 +174,15 @@ public abstract class PingdomApiService extends ApiService {
 				CheckTypeBase typeObject = null;
 				
 				if (json.isJsonPrimitive()) {
+					//Get the type from the string
 					typeNative = CheckType.fromValue(json.getAsString());
 				} else {
 					//Get the first key/value pair (should be the only one)
 					Entry<String, JsonElement> entry = json.getAsJsonObject().entrySet().iterator().next();
-					//Get our type from the key string
+					//Get the type from the key string
 					typeNative = CheckType.fromValue(entry.getKey());
-					//Get the JSON object for the instance
-					JsonObject typeJson = entry.getValue().getAsJsonObject();
 					//De-serialize to the proper class
-					typeObject = context.deserialize(typeJson, Check.CLASS_MAP.get(typeNative));
+					typeObject = context.deserialize(entry.getValue(), CheckTypeBase.class);
 				}
 				
 				return new CheckTypeWrapper(typeNative, typeObject);
