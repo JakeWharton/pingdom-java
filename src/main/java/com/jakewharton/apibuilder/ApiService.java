@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.zip.GZIPInputStream;
 
-public abstract class ApiService {
+public class ApiService {
 	private static final int DEFAULT_TIMEOUT_CONNECT = -1;
 	private static final int DEFAULT_TIMEOUT_READ = -1;
 	private static final String GZIP = "gzip";
@@ -31,7 +31,7 @@ public abstract class ApiService {
 	private int connectTimeout;
 	private int readTimeout;
 	
-	protected ApiService() {
+	public ApiService() {
 		this.requestHeaders = new HashMap<String, String>();
 		this.requestParameters = new HashMap<String, String>();
 		
@@ -40,31 +40,85 @@ public abstract class ApiService {
 
 	}
 	
+	/**
+	 * Add the HTTP header denoting that we accept GZIP.
+	 */
 	public void acceptGzip() {
 		this.addRequestHeader(HEADER_ACCEPT_ENCODING, GZIP);
 	}
+	
+	/**
+	 * Add an HTTP request header.
+	 * 
+	 * @param name Header name.
+	 * @param value Header value.
+	 */
 	public void addRequestHeader(String name, String value) {
 		this.requestHeaders.put(name, value);
 	}
+	
+	/**
+	 * Remove an HTTP request header.
+	 * 
+	 * @param name Header name.
+	 */
 	public void removeRequestHeader(String name) {
 		this.requestHeaders.remove(name);
 	}
+	
+	/**
+	 * Get connection timeout value.
+	 * 
+	 * @return Timeout (in milliseconds).
+	 */
 	public int getConnectTimeout() {
 		return this.connectTimeout;
 	}
+	
+	/**
+	 * Set the connection timeout value.
+	 * 
+	 * @param connectTimeout Timeout (in milliseconds).
+	 */
 	public void setConnectTimeout(int connectTimeout) {
 		this.connectTimeout = connectTimeout;
 	}
+	
+	/**
+	 * Get read timeout value.
+	 * 
+	 * @return Timout (in milliseconds).
+	 */
 	public int getReadTimeout() {
 		return this.readTimeout;
 	}
+	
+	/**
+	 * Set read timeout value.
+	 * 
+	 * @param readTimeout Timeout (in milliseconds).
+	 */
 	public void setReadTimeout(int readTimeout) {
 		this.readTimeout = readTimeout;
 	}
 
+	/**
+	 * Execute the URL using HTTP GET.
+	 * 
+	 * @param apiUrl URL.
+	 * @return Response stream.
+	 */
 	protected InputStream executeGet(String apiUrl) {
 		return this.executeGet(apiUrl, HttpURLConnection.HTTP_OK);
 	}
+	
+	/**
+	 * Execute the URL using HTTP GET.
+	 * 
+	 * @param apiUrl URL.
+	 * @param expected Expected HTTP response code.
+	 * @return Response stream.
+	 */
 	protected InputStream executeGet(String apiUrl, int expected) {
 	    try {
 	        URL url = new URL(apiUrl);
@@ -100,9 +154,26 @@ public abstract class ApiService {
 	        throw new ApiException(e);
 	    }
 	}
+	
+	/**
+	 * Execute the URL using HTTP POST.
+	 * 
+	 * @param apiUrl URL.
+	 * @param parameters POST body parameters.
+	 * @return Response stream.
+	 */
 	protected InputStream executePost(String apiUrl, Map<String, String> parameters) {
 		return this.executePost(apiUrl, parameters, HttpURLConnection.HTTP_OK);
 	}
+	
+	/**
+	 * Execute the URL using HTTP POST
+	 * 
+	 * @param apiUrl URL.
+	 * @param parameters POST body parameters.
+	 * @param expected Excepted HTTP response code.
+	 * @return Response stream.
+	 */
 	protected InputStream executePost(String apiUrl, Map<String, String> parameters, int expected) {
 		try {
             URL url = new URL(apiUrl);
@@ -141,9 +212,24 @@ public abstract class ApiService {
 			throw new ApiException(e);
 		}
 	}
+	
+	/**
+	 * Execute the URL using HTTP DELETE.
+	 * 
+	 * @param apiUrl URL.
+	 * @return Response stream.
+	 */
 	protected InputStream executeDelete(String apiUrl) {
 		return this.executeDelete(apiUrl, HttpURLConnection.HTTP_OK);
 	}
+	
+	/**
+	 * Execute the URL using HTTP DELETE.
+	 * 
+	 * @param apiUrl URL.
+	 * @param expected Expected HTTP response code.
+	 * @return Response stream.
+	 */
 	protected InputStream executeDelete(String apiUrl, int expected) {
 	    try {
 	        URL url = new URL(apiUrl);
@@ -173,6 +259,17 @@ public abstract class ApiService {
 	        throw new ApiException(e);
 	    }
 	}
+	
+	/**
+	 * Execute URL using the specified HTTP method name.
+	 * 
+	 * @param apiUrl URL.
+	 * @param content Request body content.
+	 * @param contentType Request body content type.
+	 * @param method HTTP method name.
+	 * @param expected Expected HTTP response code.
+	 * @return Response stream.
+	 */
 	protected InputStream executeMethod(String apiUrl, String content, String contentType, String method, int expected) {
 	    try {
 	        URL url = new URL(apiUrl);
@@ -215,6 +312,14 @@ public abstract class ApiService {
 	        throw new ApiException(e);
 	    }
 	}
+	
+	
+	/**
+	 * Assemble a parameter string from a mapping.
+	 * 
+	 * @param parameters Mapping of parameter names to values.
+	 * @return String representation.
+	 */
 	protected static String getParametersString(Map<String, String> parameters) {
 		StringBuilder builder = new StringBuilder();
 		for (Entry<String, String> entry : parameters.entrySet()) {
@@ -229,6 +334,12 @@ public abstract class ApiService {
 
 		return builder.toString();
 	}
+	
+	/**
+	 * Close the specified stream.
+	 * 
+	 * @param is Stream to close.
+	 */
 	protected static void closeStream(InputStream is) {
 	    try {
 	    	if (is != null) {
@@ -238,6 +349,12 @@ public abstract class ApiService {
 	    	e.printStackTrace();
 	    }
 	}
+	
+	/**
+	 * Close the specified connection.
+	 * 
+	 * @param connection Connection to close.
+	 */
 	protected static void closeConnection(HttpURLConnection connection) {
 	    try {
 	    	if (connection != null) {
@@ -247,6 +364,15 @@ public abstract class ApiService {
 	    	e.printStackTrace();
 	    }
 	}
+	
+	/**
+	 * Properly wrap the stream accounting for GZIP.
+	 * 
+	 * @param is Stream to wrap.
+	 * @param gzip Whether or not to include a GZIP wrapper.
+	 * @return Wrapped stream.
+	 * @throws IOException
+	 */
 	protected static InputStream getWrappedInputStream(InputStream is, boolean gzip) throws IOException {
 	    if (gzip) {
 	        return new BufferedInputStream(new GZIPInputStream(is));
@@ -254,6 +380,13 @@ public abstract class ApiService {
 	        return new BufferedInputStream(is);
 	    }
 	}
+	
+	/**
+	 * Encoe the URL.
+	 * 
+	 * @param original Original URL.
+	 * @return Encoded URL.
+	 */
     private static String encodeUrl(String original) {
     	try {
 			return URLEncoder.encode(original, CONTENT_ENCODING);
@@ -263,6 +396,12 @@ public abstract class ApiService {
 		}
     }
 	
+    /**
+     * Read an entire stream to end and assemble in a string.
+     * 
+     * @param is Stream to read.
+     * @return Entire stream contents.
+     */
 	protected static String convertStreamToString(InputStream is) {
 	    /*
 	     * To convert the InputStream to String we use the BufferedReader.readLine()

@@ -88,9 +88,7 @@ public class ApiBuilder {
 	 * @return Current instance for builder pattern.
 	 */
 	public ApiBuilder field(String name, String value) {
-		this.field(name, value, false);
-
-		return this;
+		return this.field(name, value, false);
 	}
 
 	/**
@@ -107,7 +105,7 @@ public class ApiBuilder {
 	 */
 	public ApiBuilder field(String name, String value, boolean escape) {
 		if (escape) {
-			this.fieldsMap.put(name, encodeUrl(value));
+			this.fieldsMap.put(name, ApiBuilder.encodeUrl(value));
 		} else {
 			this.fieldsMap.put(name, value);
 		}
@@ -139,7 +137,6 @@ public class ApiBuilder {
 	 * Build the URL.
 	 * 
 	 * @return String representation of the URL.
-	 * @since 1.0
 	 */
 	public String buildUrl() {
 		return this.buildUrl(true);
@@ -150,7 +147,6 @@ public class ApiBuilder {
 	 * 
 	 * @param appendAllParameters Whether to append parameters that were not explicitly defined in the URI.
 	 * @return String representation of the URL.
-	 * @since 1.0
 	 */
 	public String buildUrl(boolean appendAllParameters) {
 		StringBuilder urlBuilder = new StringBuilder();
@@ -212,7 +208,7 @@ public class ApiBuilder {
 	}
 	
     /**
-	 * Encode url.
+	 * Encode URL.
 	 * 
 	 * @param original
 	 *            the original

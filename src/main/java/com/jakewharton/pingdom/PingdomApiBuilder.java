@@ -39,15 +39,51 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	/** Parameters to send in body of request. */
 	private final Map<String, String> postParameters;
 	
+	
+	/**
+	 * Initialize a new builder for an HTTP GET call.
+	 * 
+	 * @param service Service to bind to.
+	 * @param token Return type token.
+	 * @param urlFormat URL format string.
+	 */
 	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat) {
 		this(service, token, urlFormat, HttpMethod.Get, DEFAULT_VERSION);
 	}
+	
+	/**
+	 * Initialize a new builder for the specified HTTP method call.
+	 * 
+	 * @param service Service to bind to.
+	 * @param token Return type token.
+	 * @param urlFormat URL format string.
+	 * @param method HTTP method.
+	 */
 	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, HttpMethod method) {
 		this(service, token, urlFormat, method, DEFAULT_VERSION);
 	}
+	
+	/**
+	 * Initalize a new builder for an HTTP GET call with specified API version.
+	 * 
+	 * @param service Service to bind to.
+	 * @param token Return type token.
+	 * @param urlFormat URL format string.
+	 * @param apiVersion API version.
+	 */
 	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, String apiVersion) {
 		this(service, token, urlFormat, HttpMethod.Get, apiVersion);
 	}
+	
+	/**
+	 * Initialize a new builder for the specified HTTP method and API version.
+	 * 
+	 * @param service Service to bind to.
+	 * @param token Return type token.
+	 * @param urlFormat URL format string.
+	 * @param method HTTP method.
+	 * @param apiVersion API version.
+	 */
 	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, HttpMethod method, String apiVersion) {
 		super(BASE_URL + BASE_URI + urlFormat);
 		
@@ -95,18 +131,57 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	}
 	
 	
+	/**
+	 * Add a URL parameter value.
+	 * 
+	 * @param name Name.
+	 * @param value Value.
+	 * @return Current instance for builder pattern.
+	 */
 	public ApiBuilder parameter(String name, Date value) {
 		return this.parameter(name, Long.toString(value.getTime() / MILLISECONDS_IN_SECOND));
 	}
+	
+	/**
+	 * Add a URL parameter value.
+	 * 
+	 * @param name Name.
+	 * @param value Value.
+	 * @return Current instance for builder pattern.
+	 */
 	public ApiBuilder parameter(String name, int value) {
 		return this.parameter(name, Integer.toString(value));
 	}
+	
+	/**
+	 * Add a URL parameter value.
+	 * 
+	 * @param name Name.
+	 * @param value Value.
+	 * @return Current instance for builder pattern.
+	 */
 	public ApiBuilder parameter(String name, boolean value) {
 		return this.parameter(name, Boolean.toString(value));
 	}
+	
+	/**
+	 * Add a URL parameter value.
+	 * 
+	 * @param name Name.
+	 * @param value Value.
+	 * @return Current instance for builder pattern.
+	 */
     public ApiBuilder parameter(String name, HasValue value) {
     	return this.parameter(name, value.value());
 	}
+	
+	/**
+	 * Add a URL parameter value.
+	 * 
+	 * @param name Name.
+	 * @param valueList List of values.
+	 * @return Current instance for builder pattern.
+	 */
     public <K extends Object> ApiBuilder parameter(String name, List<K> valueList) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueList.iterator();
@@ -118,6 +193,14 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 		}
     	return this.parameter(name, builder.toString());
     }
+	
+	/**
+	 * Add a URL parameter value.
+	 * 
+	 * @param name Name.
+	 * @param valueSet Set of values.
+	 * @return Current instance for builder pattern.
+	 */
     public <K extends HasValue> ApiBuilder parameter(String name, Set<K> valueSet) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueSet.iterator();
@@ -131,12 +214,35 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
     	return this.parameter(name, builder.toString());
 	}
     
+    /**
+     * Add a URL field value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
     public ApiBuilder field(String name, int value) {
     	return this.field(name, Integer.toString(value));
     }
+    
+    /**
+     * Add a URL field value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
     public ApiBuilder field(String name, boolean value) {
     	return this.field(name, Boolean.toString(value));
     }
+    
+    /**
+     * Add a URL field value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
 	public ApiBuilder field(String name, HasValue value) {
 		if (value.value() == null || value.value().length() == 0) {
 			return this.field(name);
@@ -144,17 +250,48 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 			return this.field(name, value.value());
 		}
 	}
-	
+    
+    /**
+     * Add a request body parameter value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
 	public PingdomApiBuilder<T> postParameter(String name, String value) {
 		this.postParameters.put(name, value);
 		return this;
 	}
+    
+    /**
+     * Add a request body parameter value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
 	public PingdomApiBuilder<T> postParameter(String name, boolean value) {
 		return this.postParameter(name, Boolean.toString(value));
 	}
+    
+    /**
+     * Add a request body parameter value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
 	public PingdomApiBuilder<T> postParameter(String name, int value) {
 		return this.postParameter(name, Integer.toString(value));
 	}
+    
+    /**
+     * Add a request body parameter value.
+     * 
+     * @param name Name.
+     * @param valueList List of value.
+     * @return Current instance for builder pattern.
+     */
     public <K extends Object> PingdomApiBuilder<T> postParameter(String name, List<K> valueList) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueList.iterator();
@@ -166,6 +303,14 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 		}
     	return this.postParameter(name, builder.toString());
     }
+    
+    /**
+     * Add a request body parameter value.
+     * 
+     * @param name Name.
+     * @param value Value.
+     * @return Current instance for builder pattern.
+     */
     public <K extends HasValue> PingdomApiBuilder<T> postParameter(String name, K hasValue) {
     	return this.postParameter(name, hasValue.value());
     }

@@ -23,9 +23,12 @@ import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
 import com.jakewharton.pingdom.enumerations.AlertVia;
+import com.jakewharton.pingdom.enumerations.BannerType;
 import com.jakewharton.pingdom.enumerations.CheckStatus;
 import com.jakewharton.pingdom.enumerations.PerformanceResolution;
 import com.jakewharton.pingdom.enumerations.PublicReportMonths;
+import com.jakewharton.pingdom.enumerations.ReportFrequency;
+import com.jakewharton.pingdom.enumerations.SharedReportType;
 import com.jakewharton.pingdom.enumerations.SmsProvider;
 import com.jakewharton.pingdom.enumerations.StateStatus;
 import com.jakewharton.pingdom.util.Base64;
@@ -92,7 +95,8 @@ public abstract class PingdomApiService extends ApiService {
 	 * @return JSON object.
 	 */
 	public JsonObject put(String url, Map<String, String> parameters) {
-		return this.unmarshall(this.executeMethod(url, getParametersString(parameters), null, HTTP_METHOD_PUT, HttpURLConnection.HTTP_OK));
+		String content = ApiService.getParametersString(parameters);
+		return this.unmarshall(this.executeMethod(url, content, null, HTTP_METHOD_PUT, HttpURLConnection.HTTP_OK));
 	}
 	
 	/**
@@ -141,11 +145,11 @@ public abstract class PingdomApiService extends ApiService {
         } catch (Exception e) {
             throw new ApiException(e);
         } finally {
-	        closeStream(jsonContent);
+	        ApiService.closeStream(jsonContent);
 	    }
 	}
 	
-	protected void notifyObservers(List<? extends PingdomEntity> response) {
+	protected <T extends PingdomEntity> void notifyObservers(List<T> response) {
 		for(AsyncResponseHandler<List<? extends PingdomEntity>> handler : this.handlers) {
 			handler.handleResponse(response);
 		}
@@ -155,9 +159,16 @@ public abstract class PingdomApiService extends ApiService {
 		this.handlers.add(handler);
 	}
 
-	protected GsonBuilder getGsonBuilder() {
+	private GsonBuilder getGsonBuilder() {
 		GsonBuilder builder = new GsonBuilder();
 		builder.setFieldNamingStrategy(new PingdomFieldNamingStrategy());
+
+		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+			@Override
+			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return new Date(json.getAsInt() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
+			}
+		});
 		
 		builder.registerTypeAdapter(AlertStatus.class, new JsonDeserializer<AlertStatus>() {
 			@Override
@@ -171,10 +182,10 @@ public abstract class PingdomApiService extends ApiService {
 				return AlertVia.fromValue(json.getAsString());
 			}
 		});
-		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+		builder.registerTypeAdapter(BannerType.class, new JsonDeserializer<BannerType>() {
 			@Override
-			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return new Date(json.getAsInt() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
+			public BannerType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return BannerType.fromValue(json.getAsString());
 			}
 		});
 		builder.registerTypeAdapter(CheckStatus.class, new JsonDeserializer<CheckStatus>() {
@@ -183,10 +194,28 @@ public abstract class PingdomApiService extends ApiService {
 				return CheckStatus.fromValue(json.getAsString());
 			}
 		});
+		builder.registerTypeAdapter(PerformanceResolution.class, new JsonDeserializer<PerformanceResolution>() {
+			@Override
+			public PerformanceResolution deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return PerformanceResolution.fromValue(json.getAsString());
+			}
+		});
 		builder.registerTypeAdapter(PublicReportMonths.class, new JsonDeserializer<PublicReportMonths>() {
 			@Override
 			public PublicReportMonths deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 				return PublicReportMonths.fromValue(json.getAsString());
+			}
+		});
+		builder.registerTypeAdapter(ReportFrequency.class, new JsonDeserializer<ReportFrequency>() {
+			@Override
+			public ReportFrequency deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return ReportFrequency.fromValue(json.getAsString());
+			}
+		});
+		builder.registerTypeAdapter(SharedReportType.class, new JsonDeserializer<SharedReportType>() {
+			@Override
+			public SharedReportType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return SharedReportType.fromValue(json.getAsString());
 			}
 		});
 		builder.registerTypeAdapter(SmsProvider.class, new JsonDeserializer<SmsProvider>() {
@@ -199,12 +228,6 @@ public abstract class PingdomApiService extends ApiService {
 			@Override
 			public StateStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 				return StateStatus.fromValue(json.getAsString());
-			}
-		});
-		builder.registerTypeAdapter(PerformanceResolution.class, new JsonDeserializer<PerformanceResolution>() {
-			@Override
-			public PerformanceResolution deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return PerformanceResolution.fromValue(json.getAsString());
 			}
 		});
 		
