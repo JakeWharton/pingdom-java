@@ -11,7 +11,7 @@ import com.jakewharton.pingdom.enumerations.CheckType;
 public final class Check implements PingdomEntity {
 	private static final long serialVersionUID = 6610462680859684444L;
 	
-	public static final class CheckTypeWrapper implements PingdomEntity {
+	public static final class CheckTypeWrapper {
 		private static final long serialVersionUID = -3920151255560101200L;
 		
 		public CheckTypeWrapper(CheckType typeNative, CheckTypeBase typeObject) {
