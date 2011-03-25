@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -21,10 +22,14 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.apibuilder.ApiService;
 import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
+import com.jakewharton.pingdom.entities.Check;
+import com.jakewharton.pingdom.entities.Check.CheckTypeBase;
+import com.jakewharton.pingdom.entities.Check.CheckTypeWrapper;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
 import com.jakewharton.pingdom.enumerations.AlertVia;
 import com.jakewharton.pingdom.enumerations.BannerType;
 import com.jakewharton.pingdom.enumerations.CheckStatus;
+import com.jakewharton.pingdom.enumerations.CheckType;
 import com.jakewharton.pingdom.enumerations.PerformanceResolution;
 import com.jakewharton.pingdom.enumerations.PublicReportMonths;
 import com.jakewharton.pingdom.enumerations.ReportFrequency;
@@ -163,6 +168,28 @@ public abstract class PingdomApiService extends ApiService {
 		GsonBuilder builder = new GsonBuilder();
 		builder.setFieldNamingStrategy(new PingdomFieldNamingStrategy());
 
+		builder.registerTypeAdapter(CheckTypeWrapper.class, new JsonDeserializer<CheckTypeWrapper>() {
+			@Override
+			public CheckTypeWrapper deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				CheckType typeNative = null;
+				CheckTypeBase typeObject = null;
+				
+				if (json.isJsonPrimitive()) {
+					typeNative = CheckType.fromValue(json.getAsString());
+				} else {
+					//Get the first key/value pair (should be the only one)
+					Entry<String, JsonElement> entry = json.getAsJsonObject().entrySet().iterator().next();
+					//Get our type from the key string
+					typeNative = CheckType.fromValue(entry.getKey());
+					//Get the JSON object for the instance
+					JsonObject typeJson = entry.getValue().getAsJsonObject();
+					//De-serialize to the proper class
+					typeObject = context.deserialize(typeJson, Check.CLASS_MAP.get(typeNative));
+				}
+				
+				return new CheckTypeWrapper(typeNative, typeObject);
+			}
+		});
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
 			@Override
 			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -192,6 +219,12 @@ public abstract class PingdomApiService extends ApiService {
 			@Override
 			public CheckStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 				return CheckStatus.fromValue(json.getAsString());
+			}
+		});
+		builder.registerTypeAdapter(CheckType.class, new JsonDeserializer<CheckType>() {
+			@Override
+			public CheckType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				return CheckType.fromValue(json.getAsString());
 			}
 		});
 		builder.registerTypeAdapter(PerformanceResolution.class, new JsonDeserializer<PerformanceResolution>() {

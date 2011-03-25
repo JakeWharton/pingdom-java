@@ -7,6 +7,7 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Check;
 import com.jakewharton.pingdom.entities.Message;
+import com.jakewharton.pingdom.enumerations.CheckType;
 
 public class CheckService extends PingdomApiService {
 	/**
@@ -104,7 +105,7 @@ public class CheckService extends PingdomApiService {
 	 * @return Builder instance.
 	 * @since 2.0
 	 */
-	public CreateBuilder create(String name, String host, String type) {
+	public CreateBuilder create(String name, String host, CheckType type) {
 		return new CreateBuilder(this, name, host, type);
 	}
 	
@@ -125,7 +126,7 @@ public class CheckService extends PingdomApiService {
 		
 		private static final String URI = "/checks";
 		
-		private CreateBuilder(CheckService service, String name, String host, String type) {
+		private CreateBuilder(CheckService service, String name, String host, CheckType type) {
 			super(service, new TypeToken<Check>() {}, URI, HttpMethod.Post);
 			
 			this.postParameter(POST_NAME, name);
