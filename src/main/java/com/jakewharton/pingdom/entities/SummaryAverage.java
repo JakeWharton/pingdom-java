@@ -1,6 +1,7 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
+import java.util.List;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
@@ -28,10 +29,30 @@ public final class SummaryAverage implements PingdomEntity {
 			}
 		}
 		
+		public static final class AvgResponseWrapper {
+			private final Integer single;
+			private final List<ProbeResponseTime> list;
+			
+			public AvgResponseWrapper(int avgResponse) {
+				this.single = avgResponse;
+				this.list = null;
+			}
+			public AvgResponseWrapper(List<ProbeResponseTime> avgResponses) {
+				this.single = null;
+				this.list = avgResponses;
+			}
+			
+			public Integer getSingle() {
+				return this.single;
+			}
+			public List<ProbeResponseTime> getList() {
+				return this.list;
+			}
+		}
+		
 		@Since(2.0) private Date from;
 		@Since(2.0) private Date to;
-		@Since(2.0) private Integer avgResponse;
-		//private List<ProbeResponseTime> avgResponse;
+		@Since(2.0) private AvgResponseWrapper avgResponse;
 		
 		public Date getFrom() {
 			return this.from;
@@ -39,7 +60,7 @@ public final class SummaryAverage implements PingdomEntity {
 		public Date getTo() {
 			return this.to;
 		}
-		public Integer getAvgResponse() {
+		public AvgResponseWrapper getAvgResponse() {
 			return this.avgResponse;
 		}
 	}

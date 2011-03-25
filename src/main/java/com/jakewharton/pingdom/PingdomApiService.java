@@ -24,6 +24,8 @@ import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
 import com.jakewharton.pingdom.entities.Check.CheckTypeBase;
 import com.jakewharton.pingdom.entities.Check.CheckTypeWrapper;
+import com.jakewharton.pingdom.entities.SummaryAverage.ResponseTime.AvgResponseWrapper;
+import com.jakewharton.pingdom.entities.SummaryAverage.ResponseTime.ProbeResponseTime;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
 import com.jakewharton.pingdom.enumerations.AlertVia;
 import com.jakewharton.pingdom.enumerations.BannerType;
@@ -203,6 +205,19 @@ public abstract class PingdomApiService extends ApiService {
 			@Override
 			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 				return new Date(json.getAsInt() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
+			}
+		});
+		builder.registerTypeAdapter(AvgResponseWrapper.class, new JsonDeserializer<AvgResponseWrapper>() {
+			@Override
+			public AvgResponseWrapper deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+				if (json.isJsonPrimitive()) {
+					return new AvgResponseWrapper(json.getAsInt());
+				} else if (json.isJsonArray()) {
+					Type type = (new TypeToken<List<ProbeResponseTime>>() {}).getType();
+					return new AvgResponseWrapper(context.<List<ProbeResponseTime>>deserialize(json.getAsJsonArray(), type));
+				} else {
+					throw new JsonParseException("Unknown average reponse JSON: " + json.toString());
+				}
 			}
 		});
 		
