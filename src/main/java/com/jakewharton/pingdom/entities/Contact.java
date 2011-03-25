@@ -1,20 +1,21 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.List;
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.SmsProvider;
 
 public final class Contact implements PingdomEntity {
 	private static final long serialVersionUID = -1534828012196092863L;
 
-	private Integer id;
-	private String name;
-	private String cellPhone;
-	private SmsProvider defaultSmsProvider;
-	private Boolean directTwitter;
-	private String twitterUser;
-	private List<String> iPhoneTokens;
-	private Boolean paused;
+	@Since(2.0) private Integer id;
+	@Since(2.0) private String name;
+	@Since(2.0) private String cellPhone;
+	@Since(2.0) private SmsProvider defaultSmsProvider;
+	@Since(2.0) private Boolean directTwitter;
+	@Since(2.0) private String twitterUser;
+	@Since(2.0) private List<String> iPhoneTokens;
+	@Since(2.0) private Boolean paused;
 	
 	public Integer getId() {
 		return this.id;

@@ -1,18 +1,19 @@
 package com.jakewharton.pingdom.entities;
 
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
 public final class Probe implements PingdomEntity {
 	private static final long serialVersionUID = 8109107446632814955L;
 
-	private Integer id;
-	private String country;
-	private String city;
-	private String name;
-	private Boolean active;
-	private String hostName;
-	private String ip;
-	private String countryIso;
+	@Since(2.0) private Integer id;
+	@Since(2.0) private String country;
+	@Since(2.0) private String city;
+	@Since(2.0) private String name;
+	@Since(2.0) private Boolean active;
+	@Since(2.0) private String hostName;
+	@Since(2.0) private String ip;
+	@Since(2.0) private String countryIso;
 	
 	public Integer getId() {
 		return this.id;

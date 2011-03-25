@@ -50,6 +50,8 @@ public abstract class PingdomApiService extends ApiService {
 	
     private final JsonParser parser;
     private final List<AsyncResponseHandler<List<? extends PingdomEntity>>> handlers;
+    
+    private double apiVersion;
 	
 	public PingdomApiService() {
 		this.parser = new JsonParser();
@@ -131,10 +133,19 @@ public abstract class PingdomApiService extends ApiService {
 	public void setAppKey(String value) {
 		this.addRequestHeader(HEADER_APP_KEY, value);
 	}
+	
+	/**
+	 * Set the API version.
+	 * 
+	 * @param apiVersion API version.
+	 */
+	public void setApiVersion(double apiVersion) {
+		this.apiVersion = apiVersion;
+	}
 
 	@SuppressWarnings("unchecked")
 	protected <T> T unmarshall(TypeToken<T> typeToken, JsonElement response) {
-		Gson gson = this.getGsonBuilder().create();
+		Gson gson = this.getGsonBuilder().setVersion(this.apiVersion).create();
 		return (T)gson.fromJson(response, typeToken.getType());
 	}
 	

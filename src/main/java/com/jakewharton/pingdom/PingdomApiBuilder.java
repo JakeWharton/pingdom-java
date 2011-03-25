@@ -20,7 +20,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	static final int MILLISECONDS_IN_SECOND = 1000;
 	
 	/** Default API version. */
-	private static final String DEFAULT_VERSION = "2.0";
+	private static final double DEFAULT_VERSION = 2.0;
 	
 	/** Valued-list seperator. */
 	private static final char SEPERATOR = ',';
@@ -71,7 +71,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param urlFormat URL format string.
 	 * @param apiVersion API version.
 	 */
-	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, String apiVersion) {
+	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, double apiVersion) {
 		this(service, token, urlFormat, HttpMethod.Get, apiVersion);
 	}
 	
@@ -84,15 +84,17 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param method HTTP method.
 	 * @param apiVersion API version.
 	 */
-	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, HttpMethod method, String apiVersion) {
+	public PingdomApiBuilder(PingdomApiService service, TypeToken<T> token, String urlFormat, HttpMethod method, double apiVersion) {
 		super(BASE_URL + BASE_URI + urlFormat);
 		
 		this.service = service;
+		this.service.setApiVersion(apiVersion);
+		
 		this.token = token;
 		this.method = method;
 		this.postParameters = new HashMap<String, String>();
 		
-		this.field(FIELD_VERSION, apiVersion);
+		this.field(FIELD_VERSION, Double.toString(apiVersion));
 	}
 
 	

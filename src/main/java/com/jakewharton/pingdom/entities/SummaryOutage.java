@@ -2,6 +2,7 @@ package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
 import java.util.List;
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.StateStatus;
 
@@ -11,9 +12,9 @@ public final class SummaryOutage implements PingdomEntity {
 	public static final class State implements PingdomEntity {
 		private static final long serialVersionUID = -875880227361545768L;
 		
-		private StateStatus status;
-		private Date timeFrom;
-		private Date timeTo;
+		@Since(2.0) private StateStatus status;
+		@Since(2.0) private Date timeFrom;
+		@Since(2.0) private Date timeTo;
 		
 		public StateStatus getStatus() {
 			return this.status;
@@ -26,7 +27,7 @@ public final class SummaryOutage implements PingdomEntity {
 		}
 	}
 	
-	private List<State> states;
+	@Since(2.0) private List<State> states;
 	
 	public List<State> getStates() {
 		return this.states;

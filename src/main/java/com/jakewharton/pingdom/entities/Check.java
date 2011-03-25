@@ -3,6 +3,7 @@ package com.jakewharton.pingdom.entities;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.CheckStatus;
 import com.jakewharton.pingdom.enumerations.CheckType;
@@ -60,20 +61,20 @@ public final class Check implements PingdomEntity {
 	public static final class CheckTypeBase implements PingdomEntity {
 		private static final long serialVersionUID = 1813724658931962637L;
 		
-		private String url;
-		private Boolean encryption;
-		private Integer port;
-		private String username;
-		private String password;
-		private String shouldContain;
-		private String shouldNotContain;
-		private String postData;
-		private Map<String, String> requestHeaders;
-		private List<String> additionalUrls;
-		private String stringToSend;
-		private String stringToExpect;
-		private String nameServer;
-		private String expectedIp;
+		@Since(2.0) private String url;
+		@Since(2.0) private Boolean encryption;
+		@Since(2.0) private Integer port;
+		@Since(2.0) private String username;
+		@Since(2.0) private String password;
+		@Since(2.0) private String shouldContain;
+		@Since(2.0) private String shouldNotContain;
+		@Since(2.0) private String postData;
+		@Since(2.0) private Map<String, String> requestHeaders;
+		@Since(2.0) private List<String> additionalUrls;
+		@Since(2.0) private String stringToSend;
+		@Since(2.0) private String stringToExpect;
+		@Since(2.0) private String nameServer;
+		@Since(2.0) private String expectedIp;
 		
 		public String getUrl() {
 			return this.url;
@@ -294,23 +295,23 @@ public final class Check implements PingdomEntity {
 		}
 	}
 	
-	private Integer id;
-	private String name;
-	private CheckTypeWrapper type;
-	private Date lastErrorTime;
-	private Date lastTestTime;
-	private Date lastResponseTime;
-	private CheckStatus status;
-	private Integer resolution;
-	private String hostName;
-	private Boolean sendToEmail;
-	private Boolean sendToSms;
-	private Boolean sendToTwitter;
-	private Boolean sendToIPhone;
-	private Integer sendNotificationWhenDown;
-	private Integer notifyAgainEvery;
-	private Boolean notifyWhenBackUp;
-	private Date created;
+	@Since(2.0) private Integer id;
+	@Since(2.0) private String name;
+	@Since(2.0) private CheckTypeWrapper type;
+	@Since(2.0) private Date lastErrorTime;
+	@Since(2.0) private Date lastTestTime;
+	@Since(2.0) private Date lastResponseTime;
+	@Since(2.0) private CheckStatus status;
+	@Since(2.0) private Integer resolution;
+	@Since(2.0) private String hostName;
+	@Since(2.0) private Boolean sendToEmail;
+	@Since(2.0) private Boolean sendToSms;
+	@Since(2.0) private Boolean sendToTwitter;
+	@Since(2.0) private Boolean sendToIPhone;
+	@Since(2.0) private Integer sendNotificationWhenDown;
+	@Since(2.0) private Integer notifyAgainEvery;
+	@Since(2.0) private Boolean notifyWhenBackUp;
+	@Since(2.0) private Date created;
 	
 	public Integer getId() {
 		return this.id;

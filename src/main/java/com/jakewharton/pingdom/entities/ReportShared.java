@@ -1,6 +1,7 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.List;
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.BannerType;
 
@@ -10,18 +11,18 @@ public final class ReportShared implements PingdomEntity {
 	public static final class Banner implements PingdomEntity {
 		private static final long serialVersionUID = -5407286248217918402L;
 		
-		private Integer id;
-		private String name;
-		private Integer checkId;
-		private Boolean auto;
-		private BannerType type;
-		private String url;
-		private Integer fromYear;
-		private Integer fromMonth;
-		private Integer fromDay;
-		private Integer toYear;
-		private Integer toMonth;
-		private Integer toDay;
+		@Since(2.0) private Integer id;
+		@Since(2.0) private String name;
+		@Since(2.0) private Integer checkId;
+		@Since(2.0) private Boolean auto;
+		@Since(2.0) private BannerType type;
+		@Since(2.0) private String url;
+		@Since(2.0) private Integer fromYear;
+		@Since(2.0) private Integer fromMonth;
+		@Since(2.0) private Integer fromDay;
+		@Since(2.0) private Integer toYear;
+		@Since(2.0) private Integer toMonth;
+		@Since(2.0) private Integer toDay;
 		
 		public Integer getId() {
 			return this.id;
@@ -61,7 +62,7 @@ public final class ReportShared implements PingdomEntity {
 		}
 	}
 
-	public List<Banner> banners;
+	@Since(2.0) public List<Banner> banners;
 	
 	public List<Banner> getBanners() {
 		return this.banners;

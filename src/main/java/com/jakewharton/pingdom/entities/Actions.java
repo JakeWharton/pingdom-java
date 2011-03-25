@@ -2,6 +2,7 @@ package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
 import java.util.List;
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
 import com.jakewharton.pingdom.enumerations.AlertVia;
@@ -12,16 +13,16 @@ public final class Actions implements PingdomEntity {
 	public static final class Alert implements PingdomEntity {
 		private static final long serialVersionUID = 5463127549305988443L;
 		
-		private String contactName;
-		private Integer contactId;
-		private Integer checkId;
-		private Date time;
-		private AlertVia via;
-		private AlertStatus status;
-		private String messageShort;
-		private String messageFull;
-		private String sentTo;
-		private Boolean charged;
+		@Since(2.0) private String contactName;
+		@Since(2.0) private Integer contactId;
+		@Since(2.0) private Integer checkId;
+		@Since(2.0) private Date time;
+		@Since(2.0) private AlertVia via;
+		@Since(2.0) private AlertStatus status;
+		@Since(2.0) private String messageShort;
+		@Since(2.0) private String messageFull;
+		@Since(2.0) private String sentTo;
+		@Since(2.0) private Boolean charged;
 		
 		public String getContactName() {
 			return this.contactName;

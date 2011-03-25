@@ -1,6 +1,7 @@
 package com.jakewharton.pingdom.entities;
 
 import java.util.Date;
+import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.PublicReportMonths;
 
@@ -10,8 +11,8 @@ public final class Settings implements PingdomEntity {
 	public static class Country implements PingdomEntity {
 		private static final long serialVersionUID = 1903607660627351396L;
 		
-		private String name;
-		private String iso;
+		@Since(2.0) private String name;
+		@Since(2.0) private String iso;
 		
 		public String getName() {
 			return this.name;
@@ -23,8 +24,8 @@ public final class Settings implements PingdomEntity {
 	public static final class TimeZone implements PingdomEntity {
 		private static final long serialVersionUID = 3197864693073444070L;
 		
-		private String id;
-		private String description;
+		@Since(2.0) private String id;
+		@Since(2.0) private String description;
 		
 		public String getId() {
 			return this.id;
@@ -36,13 +37,13 @@ public final class Settings implements PingdomEntity {
 	public static final class PublicReports implements PingdomEntity {
 		private static final long serialVersionUID = 2293995761282466640L;
 		
-		private Boolean customDesign;
-		private String textColor;
-		private String backgroundColor;
-		private String logoUrl;
-		private PublicReportMonths months;
-		private Boolean showOverview;
-		private String customDomain;
+		@Since(2.0) private Boolean customDesign;
+		@Since(2.0) private String textColor;
+		@Since(2.0) private String backgroundColor;
+		@Since(2.0) private String logoUrl;
+		@Since(2.0) private PublicReportMonths months;
+		@Since(2.0) private Boolean showOverview;
+		@Since(2.0) private String customDomain;
 		
 		public Boolean getCustomDesign() {
 			return this.customDesign;
@@ -67,27 +68,27 @@ public final class Settings implements PingdomEntity {
 		}
 	}
 	
-	private String firstName;
-	private String lastName;
-	private String company;
-	private String email;
-	private String phone;
-	private String cellPhone;
-	private String address;
-	private String address2;
-	private String zip;
-	private String location;
-	private String status;
-	private Boolean autoLogout;
-	private Country country;
-	private String region;
-	private Date accountCreated;
-	private TimeZone timeZone;
-	private String dateFormat;
-	private String timeFormat;
-	private String numberFormat;
-	private String numberExample;
-	private PublicReports publicReports;
+	@Since(2.0) private String firstName;
+	@Since(2.0) private String lastName;
+	@Since(2.0) private String company;
+	@Since(2.0) private String email;
+	@Since(2.0) private String phone;
+	@Since(2.0) private String cellPhone;
+	@Since(2.0) private String address;
+	@Since(2.0) private String address2;
+	@Since(2.0) private String zip;
+	@Since(2.0) private String location;
+	@Since(2.0) private String status;
+	@Since(2.0) private Boolean autoLogout;
+	@Since(2.0) private Country country;
+	@Since(2.0) private String region;
+	@Since(2.0) private Date accountCreated;
+	@Since(2.0) private TimeZone timeZone;
+	@Since(2.0) private String dateFormat;
+	@Since(2.0) private String timeFormat;
+	@Since(2.0) private String numberFormat;
+	@Since(2.0) private String numberExample;
+	@Since(2.0) private PublicReports publicReports;
 	
 	public String getFirstName() {
 		return this.firstName;
