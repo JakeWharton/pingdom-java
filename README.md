@@ -4,8 +4,30 @@ pingdom-java
 A Java wrapper around the Pingdom RESTful API and a simple DSL for easy
 interaction.
 
-**WARNING**: This library is under rapid development and APIs are subject to
-change at any time without warning.
+Remote services are grouped into local service objects which can be centrally
+managed by a `ServiceManager` instance. The manager will act as a factory for
+all of the services and will automatically initialize them with your
+credentials and API key.
+
+Each service contains methods which correspond to a remote method. Each of
+these methods instantiates a class that will allow for you to build the
+parameters using the Java builder pattern.
+
+Required remote method parameters will be arguments to the service method and
+all of the methods in the returned builder are optional.
+
+When fully assembled, you can trigger the remote execution by calling the
+`fire()` method. This will return a native object which represents the result
+of the execution. All returned objects are immutable and should be handled
+as such.
+
+
+**Note**: While the Pingdom RESTful API remains in public beta all of the
+released versions of this library will be in the 0.9.x series. Only when the
+API is declared fully stable will version 1.0 be released. During this grace
+period the wrapper API should remain relatively stable. However, this is not a
+guarantee and all implementing programs should consult the change log file to
+learn about any changes with new versions.
 
 
 
@@ -58,6 +80,13 @@ Developed By
 ============
 
 * Jake Wharton - <jakewharton@gmail.com>
+
+
+Contributors
+------------
+
+The overall package and class layout as well as approximately 50% of the code
+in the `Pingdom*` classes are based on nabeelmukhtar's github-java-sdk library.
 
 
 
