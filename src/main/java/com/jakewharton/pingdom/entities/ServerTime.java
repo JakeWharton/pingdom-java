@@ -4,6 +4,9 @@ import java.util.Date;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom server time object.
+ */
 public final class ServerTime implements PingdomEntity {
 	private static final long serialVersionUID = -3782819340976494833L;
 

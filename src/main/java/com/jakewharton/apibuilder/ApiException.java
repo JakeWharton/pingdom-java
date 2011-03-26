@@ -1,9 +1,11 @@
 package com.jakewharton.apibuilder;
 
+/**
+ * Represents an exception which occured executing a remote API method.
+ * 
+ * @author Jake Wharton <jakewharton@gmail.com>
+ */
 public class ApiException extends RuntimeException {
-	/**
-	 * Serial Version UID.
-	 */
 	private static final long serialVersionUID = -6336249534326959151L;
 	
 	public ApiException(Throwable e) {

@@ -7,6 +7,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.SummaryOutage;
 
+/**
+ * Represents Pingdom's remote summary outage service.
+ */
 public class SummaryOutageService extends PingdomApiService {
 	/**
 	 * Get a list of status changes for a specified check and time period.

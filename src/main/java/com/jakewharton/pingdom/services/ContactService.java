@@ -8,6 +8,9 @@ import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Contact;
 import com.jakewharton.pingdom.entities.Message;
 
+/**
+ * Represents Pingdom's remote contact service.
+ */
 public class ContactService extends PingdomApiService {
 	/**
 	 * Returns a list of all contacts.

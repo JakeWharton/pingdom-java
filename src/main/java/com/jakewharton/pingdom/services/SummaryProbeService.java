@@ -7,6 +7,9 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 
+/**
+ * Represents Pingdom's remote summary probe service.
+ */
 public class SummaryProbeService extends PingdomApiService {
 	/**
 	 * Get a list of probes that performed tests for a specified check during a

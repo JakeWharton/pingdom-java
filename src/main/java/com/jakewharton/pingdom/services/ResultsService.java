@@ -8,6 +8,9 @@ import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.RawResults;
 import com.jakewharton.pingdom.enumerations.StateStatus;
 
+/**
+ * Represents Pingdom's remote results service.
+ */
 public class ResultsService extends PingdomApiService {
 	/**
 	 * Return raw test results for a specified check.

@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum CheckStatus implements HasValue {
+/**
+ * Represents a Pingdom check status enumeration.
+ */
+public enum CheckStatus implements PingdomEnumeration {
 	Up("up"),
 	Down("down"),
 	UnconfirmedDown("unconfirmed_down"),
@@ -18,19 +21,19 @@ public enum CheckStatus implements HasValue {
 	}
 
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, CheckStatus> stringToEnum = new HashMap<String, CheckStatus>();
+	private static final Map<String, CheckStatus> STRING_MAPPING = new HashMap<String, CheckStatus>();
 
 	static {
-		for (CheckStatus status : values()) {
-			stringToEnum.put(status.value(), status);
+		for (CheckStatus status : CheckStatus.values()) {
+			STRING_MAPPING.put(status.toString(), status);
 		}
 	}
 	
 	public static CheckStatus fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

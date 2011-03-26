@@ -5,6 +5,9 @@ import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.SmsProvider;
 
+/**
+ * Represents a Pingdom contact object.
+ */
 public final class Contact implements PingdomEntity {
 	private static final long serialVersionUID = -1534828012196092863L;
 

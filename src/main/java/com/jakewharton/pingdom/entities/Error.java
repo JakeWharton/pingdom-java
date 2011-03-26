@@ -3,6 +3,9 @@ package com.jakewharton.pingdom.entities;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom error object.
+ */
 public final class Error implements PingdomEntity {
 	private static final long serialVersionUID = 4351246390203620969L;
 

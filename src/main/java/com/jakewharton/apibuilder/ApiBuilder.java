@@ -7,15 +7,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>Quickly and efficiently assemble URLs which contain both in-URL fields
+ * and appended parameters.</p>
+ * 
+ * <p>Parts of the code for this class are from Nabeel Mukhtar's
+ * github-java-sdk library.</p>
+ * 
+ * @author Jake Wharton <jakewharton@gmail>
+ */
 public class ApiBuilder {
 	private static final String DEFAULT_FORMAT = "json";
 	private static final String CONTENT_ENCODING = "UTF-8";
         
     /** Opening bracket of a field variable. */
-    private static final char API_URLS_PLACEHOLDER_START = '{';
+    public static final char API_URL_PLACEHOLDER_START = '{';
 
     /** Closing bracket of a field variable. */
-    private static final char API_URLS_PLACEHOLDER_END = '}';
+    public static final char API_URL_PLACEHOLDER_END = '}';
     
 	/** The URL format. */
     private final String urlFormat;
@@ -155,10 +164,10 @@ public class ApiBuilder {
 		boolean firstParameter = true;
 		List<String> usedParameters = new LinkedList<String>();
 		for (int i = 0; i < this.urlFormat.length(); i++) {
-			if (this.urlFormat.charAt(i) == API_URLS_PLACEHOLDER_START) {
+			if (this.urlFormat.charAt(i) == API_URL_PLACEHOLDER_START) {
 				placeHolderBuilder = new StringBuilder();
 				placeHolderFlag = true;
-			} else if (placeHolderFlag && this.urlFormat.charAt(i) == API_URLS_PLACEHOLDER_END) {
+			} else if (placeHolderFlag && this.urlFormat.charAt(i) == API_URL_PLACEHOLDER_END) {
 				String placeHolder = placeHolderBuilder.toString();
 				if (this.fieldsMap.containsKey(placeHolder)) {
 					urlBuilder.append(this.fieldsMap.get(placeHolder));

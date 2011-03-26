@@ -7,9 +7,15 @@ import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
 import com.jakewharton.pingdom.enumerations.AlertVia;
 
+/**
+ * Represents a Pingdom actions object.
+ */
 public final class Actions implements PingdomEntity {
 	private static final long serialVersionUID = -1156218153258462856L;
 	
+	/**
+	 * Represents a Pingdom alert object.
+	 */
 	public static final class Alert implements PingdomEntity {
 		private static final long serialVersionUID = 5463127549305988443L;
 		

@@ -9,6 +9,9 @@ import com.jakewharton.pingdom.entities.Message;
 import com.jakewharton.pingdom.entities.ReportShared;
 import com.jakewharton.pingdom.enumerations.SharedReportType;
 
+/**
+ * Represents Pingdom's remote shared reports service.
+ */
 public class ReportsSharedService extends PingdomApiService {
 	/**
 	 * Returns shared reports (banners).

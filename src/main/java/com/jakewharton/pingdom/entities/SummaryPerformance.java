@@ -5,9 +5,15 @@ import java.util.List;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom summary performance object.
+ */
 public final class SummaryPerformance implements PingdomEntity {
 	private static final long serialVersionUID = 4741817235617335661L;
 
+	/**
+	 * Represents a Pingdom summary performance hour object.
+	 */
 	public static final class Hour implements PingdomEntity {
 		private static final long serialVersionUID = 8901699621396348130L;
 		
@@ -67,6 +73,10 @@ public final class SummaryPerformance implements PingdomEntity {
 			return this.unmonitored;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom summary performance day object.
+	 */
 	public static final class Day implements PingdomEntity {
 		private static final long serialVersionUID = 4373734505420295307L;
 		
@@ -126,6 +136,10 @@ public final class SummaryPerformance implements PingdomEntity {
 			return this.unmonitored;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom summary performance week object.
+	 */
 	public static final class Week implements PingdomEntity {
 		private static final long serialVersionUID = -3145455384315445757L;
 		

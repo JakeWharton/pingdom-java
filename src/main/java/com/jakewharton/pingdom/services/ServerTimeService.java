@@ -5,6 +5,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.ServerTime;
 
+/**
+ * Represents Pingdom's remote server time service.
+ */
 public class ServerTimeService extends PingdomApiService {
 	/**
 	 * Get the current time of the API server.

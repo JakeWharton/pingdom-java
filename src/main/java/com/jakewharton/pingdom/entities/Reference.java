@@ -4,9 +4,15 @@ import java.util.List;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom reference object.
+ */
 public final class Reference implements PingdomEntity {
 	private static final long serialVersionUID = 1520773720748154146L;
 
+	/**
+	 * Represents a Pingdom region object.
+	 */
 	public static final class Region implements PingdomEntity {
 		private static final long serialVersionUID = 724802908814038335L;
 		
@@ -33,6 +39,10 @@ public final class Reference implements PingdomEntity {
 			return this.description;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom time zone object.
+	 */
 	public static final class TimeZone implements PingdomEntity {
 		private static final long serialVersionUID = 120109984053431615L;
 		
@@ -59,6 +69,10 @@ public final class Reference implements PingdomEntity {
 			return this.description;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom date/time format object.
+	 */
 	public static final class DateTimeFormat implements PingdomEntity {
 		private static final long serialVersionUID = 7727285130594582813L;
 		
@@ -85,6 +99,10 @@ public final class Reference implements PingdomEntity {
 			return this.description;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom number object.
+	 */
 	public static final class NumberFormat implements PingdomEntity {
 		private static final long serialVersionUID = 5715785072740352075L;
 		

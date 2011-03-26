@@ -3,6 +3,9 @@ package com.jakewharton.pingdom.entities;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom trace route object.
+ */
 public class TraceRoute implements PingdomEntity {
 	private static final long serialVersionUID = 7173775526745510114L;
 

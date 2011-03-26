@@ -16,6 +16,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.zip.GZIPInputStream;
 
+/**
+ * <p>HTTP method execution.</p>
+ * 
+ * <p>Parts of the code for this class are from Nabeel Mukhtar's
+ * github-java-sdk library.</p>
+ * 
+ * @author Jake Wharton <jakewharton@gmail.com>
+ */
 public class ApiService {
 	private static final int DEFAULT_TIMEOUT_CONNECT = -1;
 	private static final int DEFAULT_TIMEOUT_READ = -1;

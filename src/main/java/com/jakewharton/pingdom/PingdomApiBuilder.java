@@ -10,10 +10,21 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.jakewharton.apibuilder.ApiBuilder;
 
+/**
+ * Pingdom-specific API builder extension which provides helper methods for
+ * adding fields, parameters, and post-parameters commonly used in the API.
+ * 
+ * @param <T> Native class type of the HTTP method call result.
+ * @author Jake Wharton <jakewharton@gmail.com>
+ */
 public abstract class PingdomApiBuilder<T> extends ApiBuilder {
+	/** URI field name for API version. */
 	private static final String FIELD_VERSION = "version";
 	
+	/** Pingdom API URL base. */
 	private static final String BASE_URL = "https://api.pingdom.com";
+	
+	/** Pingdom API URI base. */
 	private static final String BASE_URI = "/api/{" + FIELD_VERSION + "}";
 	
 	/** Number of milliseconds in a single second. */
@@ -25,10 +36,12 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	/** Valued-list seperator. */
 	private static final char SEPERATOR = ',';
 	
+	
 	/** Valid HTTP request methods. */
 	public enum HttpMethod {
 		Get, Post, Delete, Put
 	}
+	
 	
 	/** Service instance. */
 	private final PingdomApiService service;
@@ -173,8 +186,12 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param value Value.
 	 * @return Current instance for builder pattern.
 	 */
-    public ApiBuilder parameter(String name, HasValue value) {
-    	return this.parameter(name, value.value());
+    public <K extends PingdomEnumeration> ApiBuilder parameter(String name, K value) {
+		if ((value == null) || (value.toString() == null) || (value.toString().length() == 0)) {
+			return this.parameter(name, "");
+		} else {
+			return this.parameter(name, value.toString());
+		}
 	}
 	
 	/**
@@ -203,11 +220,11 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param valueSet Set of values.
 	 * @return Current instance for builder pattern.
 	 */
-    public <K extends HasValue> ApiBuilder parameter(String name, Set<K> valueSet) {
+    public <K extends PingdomEnumeration> ApiBuilder parameter(String name, Set<K> valueSet) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueSet.iterator();
     	while (iterator.hasNext()) {
-    		builder.append(encodeUrl(iterator.next().value()));
+    		builder.append(ApiBuilder.encodeUrl(iterator.next().toString()));
     		if (iterator.hasNext()) {
     			builder.append(SEPERATOR);
     		}
@@ -245,11 +262,11 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-	public ApiBuilder field(String name, HasValue value) {
-		if (value.value() == null || value.value().length() == 0) {
+	public <K extends PingdomEnumeration> ApiBuilder field(String name, K value) {
+		if ((value == null) || (value.toString() == null) || (value.toString().length() == 0)) {
 			return this.field(name);
 		} else {
-			return this.field(name, value.value());
+			return this.field(name, value.toString());
 		}
 	}
     
@@ -310,10 +327,10 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * Add a request body parameter value.
      * 
      * @param name Name.
-     * @param hasValue Value.
+     * @param value Value.
      * @return Current instance for builder pattern.
      */
-    public <K extends HasValue> PingdomApiBuilder<T> postParameter(String name, K hasValue) {
-    	return this.postParameter(name, hasValue.value());
+    public <K extends PingdomEnumeration> PingdomApiBuilder<T> postParameter(String name, K value) {
+    	return this.postParameter(name, value.toString());
     }
 }

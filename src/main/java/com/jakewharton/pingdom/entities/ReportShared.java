@@ -5,9 +5,15 @@ import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.BannerType;
 
+/**
+ * Represents a Pingdom shared report object.
+ */
 public final class ReportShared implements PingdomEntity {
 	private static final long serialVersionUID = 7591271345410192470L;
 
+	/**
+	 * Represents a Pingdom shared report banner object.
+	 */
 	public static final class Banner implements PingdomEntity {
 		private static final long serialVersionUID = -5407286248217918402L;
 		

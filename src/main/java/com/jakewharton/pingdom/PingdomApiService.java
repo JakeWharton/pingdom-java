@@ -2,15 +2,15 @@ package com.jakewharton.pingdom;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import com.google.gson.Gson;
+import com.google.gson.FieldNamingStrategy;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -18,9 +18,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.google.gson.annotations.Since;
 import com.google.gson.reflect.TypeToken;
 import com.jakewharton.apibuilder.ApiService;
-import com.jakewharton.apibuilder.AsyncResponseHandler;
 import com.jakewharton.apibuilder.ApiException;
 import com.jakewharton.pingdom.entities.Check.CheckTypeBase;
 import com.jakewharton.pingdom.entities.Check.CheckTypeWrapper;
@@ -39,30 +39,58 @@ import com.jakewharton.pingdom.enumerations.SmsProvider;
 import com.jakewharton.pingdom.enumerations.StateStatus;
 import com.jakewharton.pingdom.util.Base64;
 
+/**
+ * Pingdom-specific API service extension which facilitates provides helper
+ * methods for performing remote method calls as well as deserializing the
+ * corresponding JSON responses.
+ * 
+ * @author Jake Wharton <jakewharton@gmail.com>
+ */
 public abstract class PingdomApiService extends ApiService {
 	/** Default connection timeout (in milliseconds). */
 	private static final int DEFAULT_TIMEOUT_CONNECT = 60 * 1000;
+	
 	/** Default read timeout (in milliseconds). */
 	private static final int DEFAULT_TIMEOUT_READ = 60 * 1000;
+	
+	/** HTTP header name for authorization. */
 	private static final String HEADER_AUTHORIZATION = "Authorization";
+	
+	/** HTTP authorization type. */
 	private static final String HEADER_AUTHORIZATION_TYPE = "Basic";
+	
+	/** HTTP header name for the Pingdom API KEY */
 	private static final String HEADER_APP_KEY = "App-Key";
+	
+	/** Character set used for encoding and decoding transmitted values. */
 	private static final Charset UTF_8_CHAR_SET = Charset.forName(ApiService.CONTENT_ENCODING);
+	
+	/** REST HTTP method name used when modifying values. */
 	private static final String HTTP_METHOD_PUT = "PUT";
 	
-    private final JsonParser parser;
-    private final List<AsyncResponseHandler<List<? extends PingdomEntity>>> handlers;
-    
-    private double apiVersion;
 	
+	/** JSON parser for reading the content stream. */
+    private final JsonParser parser;
+
+    /**
+     * Optional API version level to limit the deserialization to only class
+     * fields annotated with a {@link Since} annotation equal to or less than
+     * this value.
+     */
+    private Double apiVersion;
+	
+    
+    /**
+     * Create a new Pingdom service with our proper default values.
+     */
 	public PingdomApiService() {
 		this.parser = new JsonParser();
-		this.handlers = new ArrayList<AsyncResponseHandler<List<? extends PingdomEntity>>>();
 		
 		this.setConnectTimeout(DEFAULT_TIMEOUT_CONNECT);
 		this.setReadTimeout(DEFAULT_TIMEOUT_READ);
 		this.acceptGzip();
 	}
+	
 	
 	/**
 	 * Execute request using HTTP GET.
@@ -145,15 +173,33 @@ public abstract class PingdomApiService extends ApiService {
 		this.apiVersion = apiVersion;
 	}
 
+	/**
+	 * Use GSON to deserialize a JSON object to a native class representation.
+	 * 
+	 * @param <T> Native class type.
+	 * @param typeToken Native class type wrapper.
+	 * @param response Serialized JSON object.
+	 * @return Deserialized native instance.
+	 */
 	@SuppressWarnings("unchecked")
 	protected <T> T unmarshall(TypeToken<T> typeToken, JsonElement response) {
-		Gson gson = PingdomApiService.getGsonBuilder().setVersion(this.apiVersion).create();
-		return (T)gson.fromJson(response, typeToken.getType());
+		GsonBuilder gsonBuilder = PingdomApiService.getGsonBuilder();
+		if (this.apiVersion != null) {
+			gsonBuilder.setVersion(this.apiVersion);
+		}
+		
+		return (T)gsonBuilder.create().fromJson(response, typeToken.getType());
 	}
 	
+	/**
+	 * Read the entirety of an input stream and parse to a JSON object.
+	 * 
+	 * @param jsonContent JSON content input stream.
+	 * @return Parsed JSON object.
+	 */
 	protected JsonObject unmarshall(InputStream jsonContent) {
         try {
-        	JsonElement element = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
+        	JsonElement element = this.parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
         	if (element.isJsonObject()) {
         		return element.getAsJsonObject();
         	} else {
@@ -165,21 +211,18 @@ public abstract class PingdomApiService extends ApiService {
 	        ApiService.closeStream(jsonContent);
 	    }
 	}
-	
-	protected <T extends PingdomEntity> void notifyObservers(List<T> response) {
-		for(AsyncResponseHandler<List<? extends PingdomEntity>> handler : this.handlers) {
-			handler.handleResponse(response);
-		}
-	}
 
-	public void addResonseHandler(AsyncResponseHandler<List<? extends PingdomEntity>> handler) {
-		this.handlers.add(handler);
-	}
-
+	/**
+	 * Create a {@link GsonBuilder} and register all of the custom types needed
+	 * in order to properly deserialize complex Pingdom-specific type.
+	 * 
+	 * @return Assembled GSON builder instance.
+	 */
 	static GsonBuilder getGsonBuilder() {
 		GsonBuilder builder = new GsonBuilder();
 		builder.setFieldNamingStrategy(new PingdomFieldNamingStrategy());
 
+		//CLASS types
 		builder.registerTypeAdapter(CheckTypeWrapper.class, new JsonDeserializer<CheckTypeWrapper>() {
 			@Override
 			public CheckTypeWrapper deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -216,11 +259,12 @@ public abstract class PingdomApiService extends ApiService {
 					Type type = (new TypeToken<List<ProbeResponseTime>>() {}).getType();
 					return new AvgResponseWrapper(context.<List<ProbeResponseTime>>deserialize(json.getAsJsonArray(), type));
 				} else {
-					throw new JsonParseException("Unknown average reponse JSON: " + json.toString());
+					throw new JsonParseException("Unknown 'average reponse' JSON: " + json.toString());
 				}
 			}
 		});
 		
+		//ENUM types
 		builder.registerTypeAdapter(AlertStatus.class, new JsonDeserializer<AlertStatus>() {
 			@Override
 			public AlertStatus deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -289,5 +333,16 @@ public abstract class PingdomApiService extends ApiService {
 		});
 		
 		return builder;
+	}
+	
+	/**
+	 * Custom GSON field naming strategy which simply converts the field to all
+	 * lowercase letters.
+	 */
+	private static final class PingdomFieldNamingStrategy implements FieldNamingStrategy {
+		@Override
+		public String translateName(Field field) {
+			return field.getName().toLowerCase();
+		}
 	}
 }

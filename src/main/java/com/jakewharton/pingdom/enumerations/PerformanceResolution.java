@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum PerformanceResolution implements HasValue {
+/**
+ * Represents a Pingdom performance resolution enumeration.
+ */
+public enum PerformanceResolution implements PingdomEnumeration {
 	Hour("hour"),
 	Day("day"),
 	Week("week");
@@ -16,19 +19,19 @@ public enum PerformanceResolution implements HasValue {
 	}
 
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, PerformanceResolution> stringToEnum = new HashMap<String, PerformanceResolution>();
+	private static final Map<String, PerformanceResolution> STRING_MAPPING = new HashMap<String, PerformanceResolution>();
 
 	static {
-		for (PerformanceResolution resolution : values()) {
-			stringToEnum.put(resolution.value(), resolution);
+		for (PerformanceResolution resolution : PerformanceResolution.values()) {
+			STRING_MAPPING.put(resolution.toString(), resolution);
 		}
 	}
 	
 	public static PerformanceResolution fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

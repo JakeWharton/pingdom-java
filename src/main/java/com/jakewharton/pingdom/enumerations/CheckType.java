@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum CheckType implements HasValue {
+/**
+ * Represents a Pingdom check type enumeration.
+ */
+public enum CheckType implements PingdomEnumeration {
 	Http("http"),
 	HttpCustom("httpcustom"),
 	Tcp("tcp"),
@@ -22,19 +25,19 @@ public enum CheckType implements HasValue {
 	}
 
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, CheckType> stringToEnum = new HashMap<String, CheckType>();
+	private static final Map<String, CheckType> STRING_MAPPING = new HashMap<String, CheckType>();
 
 	static {
-		for (CheckType status : values()) {
-			stringToEnum.put(status.value(), status);
+		for (CheckType status : CheckType.values()) {
+			STRING_MAPPING.put(status.toString(), status);
 		}
 	}
 	
 	public static CheckType fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

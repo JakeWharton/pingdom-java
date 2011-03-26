@@ -6,9 +6,15 @@ import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.StateStatus;
 
+/**
+ * Represents a Pingdom summary outage object.
+ */
 public final class SummaryOutage implements PingdomEntity {
 	private static final long serialVersionUID = -6524469170240039400L;
 
+	/**
+	 * Represents a Pingdom summary outage status object.
+	 */
 	public static final class State implements PingdomEntity {
 		private static final long serialVersionUID = -875880227361545768L;
 		

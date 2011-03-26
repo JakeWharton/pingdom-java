@@ -9,6 +9,9 @@ import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.SummaryPerformance;
 import com.jakewharton.pingdom.enumerations.PerformanceResolution;
 
+/**
+ * Represents Pingdom's remote summary performance service.
+ */
 public class SummaryPerformanceService extends PingdomApiService {
 	/**
 	 * Get the average response time and uptime for a list of intervals. Useful

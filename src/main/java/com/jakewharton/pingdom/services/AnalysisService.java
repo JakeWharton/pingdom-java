@@ -6,6 +6,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Analysis;
 
+/**
+ * Represents Pingdom's remote analysis service.
+ */
 public final class AnalysisService extends PingdomApiService {
 	/**
 	 * Returns a list of the latest error analysis results for a specified check.

@@ -5,12 +5,21 @@ import java.util.List;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom summary average object.
+ */
 public final class SummaryAverage implements PingdomEntity {
 	private static final long serialVersionUID = 3520826935687167298L;
 	
+	/**
+	 * Represents a Pingdom response time object.
+	 */
 	public static final class ResponseTime implements PingdomEntity {
 		private static final long serialVersionUID = 8364849955528404640L;
 		
+		/**
+		 * Represents a Pingdom probe response time object.
+		 */
 		public static final class ProbeResponseTime implements PingdomEntity {
 			private static final long serialVersionUID = -3534320994889323071L;
 			
@@ -49,6 +58,13 @@ public final class SummaryAverage implements PingdomEntity {
 			}
 		}
 		
+		/**
+		 * Wrapper for the average response field of a {@link ResponseTime}
+		 * providing either a single integer value or a list of
+		 * probe-specific response times.
+		 * 
+		 * @author Jake Wharton <jakewharton@gmail.com>
+		 */
 		public static final class AvgResponseWrapper {
 			private final Integer single;
 			private final List<ProbeResponseTime> list;
@@ -115,6 +131,10 @@ public final class SummaryAverage implements PingdomEntity {
 			return this.avgResponse;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom summary average status object.
+	 */
 	public static final class Status implements PingdomEntity {
 		private static final long serialVersionUID = -3936926231697862075L;
 		

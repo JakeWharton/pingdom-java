@@ -9,6 +9,9 @@ import com.jakewharton.pingdom.entities.Message;
 import com.jakewharton.pingdom.entities.ReportSubscription;
 import com.jakewharton.pingdom.enumerations.ReportFrequency;
 
+/**
+ * Represents Pingdom's remote email reports service.
+ */
 public class ReportsEmailService extends PingdomApiService {
 	/**
 	 * Returns a list of email report subscriptions.

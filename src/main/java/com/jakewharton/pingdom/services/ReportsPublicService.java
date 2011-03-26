@@ -8,6 +8,9 @@ import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Message;
 import com.jakewharton.pingdom.entities.ReportPublic;
 
+/**
+ * Represents Pingdom's remote public reports service.
+ */
 public class ReportsPublicService extends PingdomApiService {
 	/**
 	 * Returns a list of public (web-based) reports.

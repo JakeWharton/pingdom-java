@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum AlertVia implements HasValue {
+/**
+ * Represents a Pingdom alert via enumeration.
+ */
+public enum AlertVia implements PingdomEnumeration {
 	Email("email"),
 	Sms("sms"),
 	Twitter("twitter"),
@@ -17,19 +20,19 @@ public enum AlertVia implements HasValue {
 	}
 	
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, AlertVia> stringToEnum = new HashMap<String, AlertVia>();
+	private static final Map<String, AlertVia> STRING_MAPPING = new HashMap<String, AlertVia>();
 
 	static {
-		for (AlertVia via : values()) {
-			stringToEnum.put(via.value(), via);
+		for (AlertVia via : AlertVia.values()) {
+			STRING_MAPPING.put(via.toString(), via);
 		}
 	}
 	
 	public static AlertVia fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

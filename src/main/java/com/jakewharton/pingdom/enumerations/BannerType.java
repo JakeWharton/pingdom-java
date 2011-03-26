@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum BannerType implements HasValue {
+/**
+ * Represents a Pingdom banner type enumeration.
+ */
+public enum BannerType implements PingdomEnumeration {
 	Response("response"),
 	Uptime("uptime");
 	
@@ -15,19 +18,19 @@ public enum BannerType implements HasValue {
 	}
 	
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, BannerType> stringToEnum = new HashMap<String, BannerType>();
+	private static final Map<String, BannerType> STRING_MAPPING = new HashMap<String, BannerType>();
 
 	static {
-		for (BannerType via : values()) {
-			stringToEnum.put(via.value(), via);
+		for (BannerType via : BannerType.values()) {
+			STRING_MAPPING.put(via.toString(), via);
 		}
 	}
 	
 	public static BannerType fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

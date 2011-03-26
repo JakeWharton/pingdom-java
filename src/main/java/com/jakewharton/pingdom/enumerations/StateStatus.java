@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum StateStatus implements HasValue {
+/**
+ * Represents a Pingdom state status enumeration.
+ */
+public enum StateStatus implements PingdomEnumeration {
 	Up("up"),
 	Down("down"),
 	Unknown("unknown"),
@@ -17,15 +20,15 @@ public enum StateStatus implements HasValue {
 	}
 
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
 	private static final Map<String, StateStatus> stringToEnum = new HashMap<String, StateStatus>();
 
 	static {
-		for (StateStatus status : values()) {
-			stringToEnum.put(status.value(), status);
+		for (StateStatus status : StateStatus.values()) {
+			stringToEnum.put(status.toString(), status);
 		}
 	}
 	

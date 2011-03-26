@@ -9,6 +9,9 @@ import com.jakewharton.pingdom.entities.Reference;
 import com.jakewharton.pingdom.entities.Settings;
 import com.jakewharton.pingdom.enumerations.PublicReportMonths;
 
+/**
+ * Represents Pingdom's remote settings service.
+ */
 public class SettingsService extends PingdomApiService {
 	/**
 	 * Returns all account-specific settings.

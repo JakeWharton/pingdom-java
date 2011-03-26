@@ -6,6 +6,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.TraceRoute;
 
+/**
+ * Represents Pingdom's remote trace route service.
+ */
 public class TraceRouteService extends PingdomApiService {
 	/**
 	 * Perform a traceroute to a specified target from a specified Pingdom

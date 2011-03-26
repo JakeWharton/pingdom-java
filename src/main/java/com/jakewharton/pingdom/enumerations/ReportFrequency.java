@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum ReportFrequency implements HasValue {
+/**
+ * Represents a Pingdom report frequency enumeration.
+ */
+public enum ReportFrequency implements PingdomEnumeration {
 	Daily("daily"),
 	Weekly("weekly"),
 	Monthly("monthly");
@@ -16,19 +19,19 @@ public enum ReportFrequency implements HasValue {
 	}
 
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, ReportFrequency> stringToEnum = new HashMap<String, ReportFrequency>();
+	private static final Map<String, ReportFrequency> STRING_MAPPING = new HashMap<String, ReportFrequency>();
 
 	static {
-		for (ReportFrequency frequency : values()) {
-			stringToEnum.put(frequency.value(), frequency);
+		for (ReportFrequency frequency : ReportFrequency.values()) {
+			STRING_MAPPING.put(frequency.toString(), frequency);
 		}
 	}
 	
 	public static ReportFrequency fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

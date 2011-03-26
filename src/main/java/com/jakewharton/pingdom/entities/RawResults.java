@@ -6,9 +6,15 @@ import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.CheckStatus;
 
+/**
+ * Represents a Pingdom raw results object.
+ */
 public final class RawResults implements PingdomEntity {
 	private static final long serialVersionUID = 1337764235518032289L;
 
+	/**
+	 * Represents a Pingdom results object.
+	 */
 	public static final class Results implements PingdomEntity {
 		private static final long serialVersionUID = -1523654956707062927L;
 		

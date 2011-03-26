@@ -3,6 +3,9 @@ package com.jakewharton.pingdom.entities;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom public report object.
+ */
 public final class ReportPublic implements PingdomEntity {
 	private static final long serialVersionUID = -9170672319763547666L;
 

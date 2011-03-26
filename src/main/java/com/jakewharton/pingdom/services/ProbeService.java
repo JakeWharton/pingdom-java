@@ -7,6 +7,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Probe;
 
+/**
+ * Represents Pingdom's remote probe service.
+ */
 public class ProbeService extends PingdomApiService {
 	/**
 	 * Returns a list of all Pingdom probe servers.

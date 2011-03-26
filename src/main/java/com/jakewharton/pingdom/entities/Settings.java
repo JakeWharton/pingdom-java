@@ -5,9 +5,15 @@ import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.PublicReportMonths;
 
+/**
+ * Represents a Pingdom settings object.
+ */
 public final class Settings implements PingdomEntity {
 	private static final long serialVersionUID = -6026433660169558378L;
 	
+	/**
+	 * Represents a Pingdom country object.
+	 */
 	public static class Country implements PingdomEntity {
 		private static final long serialVersionUID = 1903607660627351396L;
 		
@@ -34,6 +40,10 @@ public final class Settings implements PingdomEntity {
 			return this.iso;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom time zone object.
+	 */
 	public static final class TimeZone implements PingdomEntity {
 		private static final long serialVersionUID = 3197864693073444070L;
 		
@@ -60,6 +70,10 @@ public final class Settings implements PingdomEntity {
 			return this.description;
 		}
 	}
+	
+	/**
+	 * Represents a Pingdom public report settings object.
+	 */
 	public static final class PublicReports implements PingdomEntity {
 		private static final long serialVersionUID = 2293995761282466640L;
 		

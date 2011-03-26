@@ -14,10 +14,14 @@
  * limitations under the License. 
  * 
  */
+
 package com.jakewharton.pingdom.util;
  
 /**
- * The Class Base64.
+ * <p>Provides serialization and deserialization between a regular string and a
+ * base-64 encoded string.</p>
+ * 
+ * <p>This class was taken from Nabeel Mukhtar's github-java-sdk.</p>
  */
 public class Base64
 {

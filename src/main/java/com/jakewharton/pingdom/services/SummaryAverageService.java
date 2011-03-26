@@ -8,6 +8,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.SummaryAverage;
 
+/**
+ * Represents Pingdom's remote summary average service.
+ */
 public class SummaryAverageService extends PingdomApiService {
 	/**
 	 * Get a summarized response time / uptime value for a specified check and

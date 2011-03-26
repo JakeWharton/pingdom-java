@@ -2,9 +2,12 @@ package com.jakewharton.pingdom.enumerations;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.jakewharton.pingdom.HasValue;
+import com.jakewharton.pingdom.PingdomEnumeration;
 
-public enum SharedReportType implements HasValue {
+/**
+ * Represents a Pingdom shared report type enumeration.
+ */
+public enum SharedReportType implements PingdomEnumeration {
 	Banner("banner");
 	
 	private final String value;
@@ -14,19 +17,19 @@ public enum SharedReportType implements HasValue {
 	}
 
 	@Override
-	public String value() {
+	public String toString() {
 		return this.value;
 	}
 	
-	private static final Map<String, SharedReportType> stringToEnum = new HashMap<String, SharedReportType>();
+	private static final Map<String, SharedReportType> STRING_MAPPING = new HashMap<String, SharedReportType>();
 
 	static {
-		for (SharedReportType months : values()) {
-			stringToEnum.put(months.value(), months);
+		for (SharedReportType months : SharedReportType.values()) {
+			STRING_MAPPING.put(months.toString(), months);
 		}
 	}
 	
 	public static SharedReportType fromValue(String value) {
-		return stringToEnum.get(value);
+		return STRING_MAPPING.get(value);
 	}
 }

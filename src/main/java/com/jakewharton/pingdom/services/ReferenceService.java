@@ -5,6 +5,9 @@ import com.jakewharton.pingdom.PingdomApiBuilder;
 import com.jakewharton.pingdom.PingdomApiService;
 import com.jakewharton.pingdom.entities.Reference;
 
+/**
+ * Represents Pingdom's remote reference service.
+ */
 public class ReferenceService extends PingdomApiService {
 	/**
 	 * Get a reference of regions, timezones and date/time/number formats and

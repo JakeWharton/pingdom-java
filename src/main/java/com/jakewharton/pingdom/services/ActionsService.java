@@ -10,6 +10,9 @@ import com.jakewharton.pingdom.entities.Actions;
 import com.jakewharton.pingdom.enumerations.AlertStatus;
 import com.jakewharton.pingdom.enumerations.AlertVia;
 
+/**
+ * Represents Pingdom's remote actions service.
+ */
 public final class ActionsService extends PingdomApiService {
 	/**
 	 * Get actions (alerts) that have been generated for your account.

@@ -8,9 +8,19 @@ import com.jakewharton.pingdom.PingdomEntity;
 import com.jakewharton.pingdom.enumerations.CheckStatus;
 import com.jakewharton.pingdom.enumerations.CheckType;
 
+/**
+ * Represents a Pingdom check object.
+ */
 public final class Check implements PingdomEntity {
 	private static final long serialVersionUID = 6610462680859684444L;
 	
+	/**
+	 * Wrapper for {@link CheckType} which allows for deserializing either the
+	 * simple string type or a more complex object representation of the type
+	 * with a single class.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class CheckTypeWrapper {
 		private static final long serialVersionUID = -3920151255560101200L;
 		
@@ -127,6 +137,12 @@ public final class Check implements PingdomEntity {
 		}
 	}
 	
+	/**
+	 * <p>An encompassing base class which allows for the deserialization of
+	 * all complex check-type objects to a single native object.</p>
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class CheckTypeBase implements PingdomEntity {
 		private static final long serialVersionUID = 1813724658931962637L;
 		
@@ -189,6 +205,12 @@ public final class Check implements PingdomEntity {
 		}
 	}
 	
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * an HTTP check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class HttpType {
 		private final CheckTypeBase base;
 		
@@ -288,6 +310,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getRequestHeaders();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * an HTTP custom check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class HttpCustomType {
 		private final CheckTypeBase base;
 		
@@ -355,6 +384,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getAdditionalUrls();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * a TCP check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class TcpType {
 		private final CheckTypeBase base;
 		
@@ -392,6 +428,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getStringToExpect();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * a ping check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class PingType {
 		@SuppressWarnings("unused")
 		private final CheckTypeBase base;
@@ -400,6 +443,13 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * a DNS check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class DnsType {
 		private final CheckTypeBase base;
 		
@@ -427,6 +477,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getExpectedIp();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * a UDP check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class UdpType {
 		private final CheckTypeBase base;
 		
@@ -464,6 +521,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getStringToExpect();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * an SMTP check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class SmtpType {
 		private final CheckTypeBase base;
 		
@@ -521,6 +585,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getStringToExpect();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * a POP 3 check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class Pop3Type {
 		private final CheckTypeBase base;
 		
@@ -558,6 +629,13 @@ public final class Check implements PingdomEntity {
 			return this.base.getStringToExpect();
 		}
 	}
+
+	/**
+	 * {@link CheckTypeBase} wrapper which only exposes methods appropriate for
+	 * an HTTP check type.
+	 * 
+	 * @author Jake Wharton <jakewharton@gmail.com>
+	 */
 	public static final class ImapType {
 		private final CheckTypeBase base;
 		

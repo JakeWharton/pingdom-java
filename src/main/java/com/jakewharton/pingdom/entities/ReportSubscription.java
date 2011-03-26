@@ -4,6 +4,9 @@ import java.util.List;
 import com.google.gson.annotations.Since;
 import com.jakewharton.pingdom.PingdomEntity;
 
+/**
+ * Represents a Pingdom report subscription object.
+ */
 public final class ReportSubscription implements PingdomEntity {
 	private static final long serialVersionUID = -3601535119841289488L;
 

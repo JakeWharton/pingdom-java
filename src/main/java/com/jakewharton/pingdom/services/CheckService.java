@@ -9,6 +9,9 @@ import com.jakewharton.pingdom.entities.Check;
 import com.jakewharton.pingdom.entities.Message;
 import com.jakewharton.pingdom.enumerations.CheckType;
 
+/**
+ * Represents Pingdom's remote check service.
+ */
 public class CheckService extends PingdomApiService {
 	/**
 	 * Returns a list overview of all checks.
