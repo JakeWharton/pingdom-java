@@ -18,12 +18,32 @@ public final class SummaryAverage implements PingdomEntity {
 			@Since(2.0) private Integer probeId;
 			@Since(2.0) private Integer avgResponse;
 			
+			/**
+			 * Country group ISO code.
+			 * 
+			 * @return Value.
+			 * @since 2.0
+			 */
 			public String getCountryIso() {
 				return this.countryIso;
 			}
+			
+			/**
+			 * Probe group probe identifier.
+			 * 
+			 * @return Value.
+			 * @since 2.0
+			 */
 			public Integer getProbeId() {
 				return this.probeId;
 			}
+
+			/**
+			 * Group average response time in milliseconds.
+			 * 
+			 * @return Value.
+			 * @since 2.0
+			 */
 			public Integer getAvgResponse() {
 				return this.avgResponse;
 			}
@@ -42,9 +62,20 @@ public final class SummaryAverage implements PingdomEntity {
 				this.list = avgResponses;
 			}
 			
+			/**
+			 * Get as single value.
+			 * 
+			 * @return Value.
+			 */
 			public Integer getSingle() {
 				return this.single;
 			}
+			
+			/**
+			 * Get as list of values.
+			 * 
+			 * @return List of values.
+			 */
 			public List<ProbeResponseTime> getList() {
 				return this.list;
 			}
@@ -54,12 +85,32 @@ public final class SummaryAverage implements PingdomEntity {
 		@Since(2.0) private Date to;
 		@Since(2.0) private AvgResponseWrapper avgResponse;
 		
+		/**
+		 * Start time of period.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Date getFrom() {
 			return this.from;
 		}
+		
+		/**
+		 * End time of period.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Date getTo() {
 			return this.to;
 		}
+		
+		/**
+		 * Total average response time in milliseconds.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public AvgResponseWrapper getAvgResponse() {
 			return this.avgResponse;
 		}
@@ -71,12 +122,36 @@ public final class SummaryAverage implements PingdomEntity {
 		@Since(2.0) private Integer totalDown;
 		@Since(2.0) private Integer totalUnknown;
 		
+		/**
+		 * Total uptime in seconds (Please note that the accuracy of this value
+		 * is depending on your check resolution).
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getTotalUp() {
 			return this.totalUp;
 		}
+		
+		/**
+		 * Total downtime in seconds (Please note that the accuracy of this
+		 * value is depending on your check resolution).
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getTotalDown() {
 			return this.totalDown;
 		}
+		
+		/**
+		 * Total unknown/unmonitored/paused in seconds (Please note that the
+		 * accuracy of this value is depending on your check resolution. Also
+		 * note that time before the check was created counts as unknown).
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getTotalUnknown() {
 			return this.totalUnknown;
 		}
@@ -85,9 +160,22 @@ public final class SummaryAverage implements PingdomEntity {
 	@Since(2.0) private ResponseTime responseTime;
 	@Since(2.0) private Status status;
 	
+	/**
+	 * Get response time information.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public ResponseTime getResponseTime() {
 		return this.responseTime;
 	}
+	
+	/**
+	 * Get status information.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Status getStatus() {
 		return this.status;
 	}

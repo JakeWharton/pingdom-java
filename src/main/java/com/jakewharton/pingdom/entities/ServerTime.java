@@ -9,6 +9,12 @@ public final class ServerTime implements PingdomEntity {
 
 	@Since(2.0) private Date serverTime;
 	
+	/**
+	 * Current server time.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Date getServiceTime() {
 		return this.serverTime;
 	}

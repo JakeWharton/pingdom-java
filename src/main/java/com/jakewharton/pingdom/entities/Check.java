@@ -22,37 +22,106 @@ public final class Check implements PingdomEntity {
 		private final CheckType typeNative;
 		private final CheckTypeBase typeObject;
 		
+		/**
+		 * Get native type enum value.
+		 * 
+		 * @return Value.
+		 */
 		public CheckType getNative() {
 			return this.typeNative;
 		}
+		
+		/**
+		 * <p>Get type object representation.</p>
+		 * 
+		 * <p>This is a general inflation target which contains all possible
+		 * values for all types. You should call {@link #getNative()} in your
+		 * code and then the corresponding <code>asXXX()</code> method.</p>
+		 * 
+		 * @return Type object.
+		 */
 		public CheckTypeBase getTypeObject() {
 			return this.typeObject;
 		}
 		
+		
+		/**
+		 * Wrap type object as an {@link HttpType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public HttpType asHttp() {
 			return new HttpType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link HttpCustomType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public HttpCustomType asHttpCustom() {
 			return new HttpCustomType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link TcpType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public TcpType asTcp() {
 			return new TcpType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link PingType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public PingType asPing() {
 			return new PingType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link DnsType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public DnsType asDns() {
 			return new DnsType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link UdpType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public UdpType asUdp() {
 			return new UdpType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link SmtpType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public SmtpType asSmtp() {
 			return new SmtpType(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link Pop3Type}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public Pop3Type asPop3() {
 			return new Pop3Type(this.typeObject);
 		}
+		
+		/**
+		 * Wrap type object as an {@link ImapType}.
+		 * 
+		 * @return Wrapped type.
+		 */
 		public ImapType asImap() {
 			return new ImapType(this.typeObject);
 		}
@@ -76,46 +145,46 @@ public final class Check implements PingdomEntity {
 		@Since(2.0) private String nameServer;
 		@Since(2.0) private String expectedIp;
 		
-		public String getUrl() {
+		/*package*/ String getUrl() {
 			return this.url;
 		}
-		public Boolean getEncryption() {
+		/*package*/ Boolean getEncryption() {
 			return this.encryption;
 		}
-		public Integer getPort() {
+		/*package*/ Integer getPort() {
 			return this.port;
 		}
-		public String getUsername() {
+		/*package*/ String getUsername() {
 			return this.username;
 		}
-		public String getPassword() {
+		/*package*/ String getPassword() {
 			return this.password;
 		}
-		public String getShouldContain() {
+		/*package*/ String getShouldContain() {
 			return this.shouldContain;
 		}
-		public String getShouldNotContain() {
+		/*package*/ String getShouldNotContain() {
 			return this.shouldNotContain;
 		}
-		public String getPostData() {
+		/*package*/ String getPostData() {
 			return this.postData;
 		}
-		public Map<String, String> getRequestHeaders() {
+		/*package*/ Map<String, String> getRequestHeaders() {
 			return this.requestHeaders;
 		}
-		public List<String> getAdditionalUrls() {
+		/*package*/ List<String> getAdditionalUrls() {
 			return this.additionalUrls;
 		}
-		public String getStringToSend() {
+		/*package*/ String getStringToSend() {
 			return this.stringToSend;
 		}
-		public String getStringToExpect() {
+		/*package*/ String getStringToExpect() {
 			return this.stringToExpect;
 		}
-		public String getNameServer() {
+		/*package*/ String getNameServer() {
 			return this.nameServer;
 		}
-		public String getExpectedIp() {
+		/*package*/ String getExpectedIp() {
 			return this.expectedIp;
 		}
 	}
@@ -127,30 +196,94 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 		
+		/**
+		 * Path to target on server.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getUrl() {
 			return this.base.getUrl();
 		}
+		
+		/**
+		 * Connection encryption.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getEncryption() {
 			return this.base.getEncryption();
 		}
+		
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * Username for target HTTP authentication.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getUsername() {
 			return this.base.getUsername();
 		}
+		
+		/**
+		 * Password for target HTTP authentication.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getPassword() {
 			return this.base.getPassword();
 		}
+		
+		/**
+		 * Target site should contain this string.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getShouldContain() {
 			return this.base.getShouldContain();
 		}
+		
+		/**
+		 * Target site should NOT contain this string.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getShouldNotContain() {
 			return this.base.getShouldNotContain();
 		}
+		
+		/**
+		 * Data that should be posted to the web page, for example submission
+		 * data for a sign-up or login form. The data needs to be formatted in
+		 * the same way as a web browser would send it to the web server.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getPostData() {
 			return this.base.getPostData();
 		}
+		
+		/**
+		 * Custom HTTP headers. Entry name should match header name.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Map<String, String> getRequestHeaders() {
 			return this.base.getRequestHeaders();
 		}
@@ -162,21 +295,62 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 
+		/**
+		 * Path to target XML file on server.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getUrl() {
 			return this.base.getUrl();
 		}
+		
+		/**
+		 * Connection encryption.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getEncryption() {
 			return this.base.getEncryption();
 		}
+		
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * Username for target HTTP authentication.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getUsername() {
 			return this.base.getUsername();
 		}
+		
+		/**
+		 * Password for target HTTP authentication.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getPassword() {
 			return this.base.getPassword();
 		}
+		
+		/**
+		 * Full URL (including hostname) to target additional XML file.
+		 * 
+		 * @return List of values.
+		 * @since 2.0
+		 */
 		public List<String> getAdditionalUrls() {
 			return this.base.getAdditionalUrls();
 		}
@@ -188,12 +362,32 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 		
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * String to send.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToSend() {
 			return this.base.getStringToSend();
 		}
+		
+		/**
+		 * String to expect in response.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToExpect() {
 			return this.base.getStringToExpect();
 		}
@@ -213,9 +407,22 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 		
+		/**
+		 * DNS server to use.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getNameServer() {
 			return this.base.getNameServer();
 		}
+		
+		/**
+		 * Expected IP.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getExpectedIp() {
 			return this.base.getExpectedIp();
 		}
@@ -227,12 +434,32 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 		
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * String to send.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToSend() {
 			return this.base.getStringToSend();
 		}
+		
+		/**
+		 * String to expect in response.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToExpect() {
 			return this.base.getStringToExpect();
 		}
@@ -244,18 +471,52 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 		
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * Username for target SMTP authentication.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getUsername() {
 			return this.base.getUsername();
 		}
+		
+		/**
+		 * Password for target SMTP authentication.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getPassword() {
 			return this.base.getPassword();
 		}
+		
+		/**
+		 * Connection encryption.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getEncryption() {
 			return this.base.getEncryption();
 		}
+		
+		/**
+		 * String to expect in response.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToExpect() {
 			return this.base.getStringToExpect();
 		}
@@ -267,12 +528,32 @@ public final class Check implements PingdomEntity {
 			this.base = base;
 		}
 		
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * Connection encryption.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getEncryption() {
 			return this.base.getEncryption();
 		}
+		
+		/**
+		 * String to expect in response.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToExpect() {
 			return this.base.getStringToExpect();
 		}
@@ -283,13 +564,33 @@ public final class Check implements PingdomEntity {
 		private ImapType(CheckTypeBase base) {
 			this.base = base;
 		}
-		
+
+		/**
+		 * Target port.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getPort() {
 			return this.base.getPort();
 		}
+		
+		/**
+		 * Connection encryption.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getEncryption() {
 			return this.base.getEncryption();
 		}
+		
+		/**
+		 * String to expect in response.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getStringToExpect() {
 			return this.base.getStringToExpect();
 		}
@@ -313,54 +614,172 @@ public final class Check implements PingdomEntity {
 	@Since(2.0) private Boolean notifyWhenBackUp;
 	@Since(2.0) private Date created;
 	
+	/**
+	 * Check identifier.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getId() {
 		return this.id;
 	}
+	
+	/**
+	 * Check name.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getName() {
 		return this.name;
 	}
+	
+	/**
+	 * Check type.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public CheckTypeWrapper getType() {
 		return this.type;
 	}
+	
+	/**
+	 * Timestamp of last error (if any).
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Date getLastErrorTime() {
 		return this.lastErrorTime;
 	}
+	
+	/**
+	 * Timestamp of last test (if any).
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Date getLastTestTime() {
 		return this.lastTestTime;
 	}
+	
+	/**
+	 * Response time (in milliseconds) of last test.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Date getLastResponseTime() {
 		return this.lastResponseTime;
 	}
+	
+	/**
+	 * Current status of check.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public CheckStatus getStatus() {
 		return this.status;
 	}
+	
+	/**
+	 * How often should the check be tested? (minutes)
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getResolution() {
 		return this.resolution;
 	}
+	
+	/**
+	 * Target host.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getHostName() {
 		return this.hostName;
 	}
+	
+	/**
+	 * Send alerts as email.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Boolean getSendToEmail() {
 		return this.sendToEmail;
 	}
+	
+	/**
+	 * Send alerts as SMS.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Boolean getSendToSms() {
 		return this.sendToSms;
 	}
+	
+	/**
+	 * Send alerts through Twitter.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Boolean getSendToTwitter() {
 		return this.sendToTwitter;
 	}
+	
+	/**
+	 * Send alerts to iPhone.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Boolean getSendToIPhone() {
 		return this.sendToIPhone;
 	}
+	
+	/**
+	 * Send notification when down <em>n</em> times.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getSendNotificationWhenDown() {
 		return this.sendNotificationWhenDown;
 	}
+	
+	/**
+	 * Notify again every <em>n</em> result.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getNotifyAgainEvery() {
 		return this.notifyAgainEvery;
 	}
+	
+	/**
+	 * Notify when back up again.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Boolean getNotifyWhenBackUp() {
 		return this.notifyWhenBackUp;
 	}
+	
+	/**
+	 * Creating time.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Date getCreated() {
 		return this.created;
 	}

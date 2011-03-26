@@ -8,6 +8,12 @@ public final class Message implements PingdomEntity {
 
 	@Since(2.0) private String message;
 	
+	/**
+	 * Message body.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getMessage() {
 		return this.message;
 	}

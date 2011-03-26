@@ -24,39 +24,122 @@ public final class ReportShared implements PingdomEntity {
 		@Since(2.0) private Integer toMonth;
 		@Since(2.0) private Integer toDay;
 		
+		/**
+		 * Banner identifier.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getId() {
 			return this.id;
 		}
+		
+		/**
+		 * Banner name
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getName() {
 			return this.name;
 		}
+		
+		/**
+		 * Check identifier
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getCheckId() {
 			return this.checkId;
 		}
+		
+		/**
+		 * Automatic period activated?
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getAuto() {
 			return this.auto;
 		}
+		
+		/**
+		 * Banner type
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public BannerType getType() {
 			return this.type;
 		}
+		
+		/**
+		 * Banner URL.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getUrl() {
 			return this.url;
 		}
+		
+		/**
+		 * Period start: year.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getFromYear() {
 			return this.fromYear;
 		}
+		
+		/**
+		 * Period start: month
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getFromMonth() {
 			return this.fromMonth;
 		}
+		
+		/**
+		 * Period start: day.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getFromDay() {
 			return this.fromDay;
 		}
+		
+		/**
+		 * Period end: year.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getToYear() {
 			return this.toYear;
 		}
+		
+		/**
+		 * Period end: month.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getToMonth() {
 			return this.toMonth;
 		}
+		
+		/**
+		 * Period end: day.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getToDay() {
 			return this.toDay;
 		}
@@ -64,6 +147,12 @@ public final class ReportShared implements PingdomEntity {
 
 	@Since(2.0) public List<Banner> banners;
 	
+	/**
+	 * Get a list of banners.
+	 * 
+	 * @return List of values.
+	 * @since 2.0
+	 */
 	public List<Banner> getBanners() {
 		return this.banners;
 	}

@@ -10,12 +10,32 @@ public class TraceRoute implements PingdomEntity {
 	@Since(2.0) private Integer probeId;
 	@Since(2.0) private String probeDescription;
 	
+	/**
+	 * Traceroute output.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getResult() {
 		return this.result;
 	}
+	
+	/**
+	 * Probe identifier.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getProbeId() {
 		return this.probeId;
 	}
+	
+	/**
+	 * Probe description.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getProbeDescription() {
 		return this.probeDescription;
 	}

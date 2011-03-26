@@ -24,33 +24,101 @@ public final class Actions implements PingdomEntity {
 		@Since(2.0) private String sentTo;
 		@Since(2.0) private Boolean charged;
 		
+		/**
+		 * Name of alerted contact.
+		 *  
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getContactName() {
 			return this.contactName;
 		}
+		
+		/**
+		 * Identifier of alerted contact.
+		 * 
+		 * @return Value.
+		 */
 		public Integer getContactId() {
 			return this.contactId;
 		}
+		
+		/**
+		 * Identifier of check.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Integer getCheckId() {
 			return this.checkId;
 		}
+		
+		/**
+		 * Time of alert generation.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Date getTime() {
 			return this.time;
 		}
+		
+		/**
+		 * Alert medium.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public AlertVia getVia() {
 			return this.via;
 		}
+		
+		/**
+		 * Alert status.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public AlertStatus getStatus() {
 			return this.status;
 		}
+		
+		/**
+		 * Short description of message.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getMessageShort() {
 			return this.messageShort;
 		}
+		
+		/**
+		 * Full message body.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getMessageFull() {
 			return this.messageFull;
 		}
+		
+		/**
+		 * Target address, phone number, etc.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getSentTo() {
 			return this.sentTo;
 		}
+		
+		/**
+		 * True if your account was charged for this message.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getCharged() {
 			return this.charged;
 		}
@@ -58,6 +126,12 @@ public final class Actions implements PingdomEntity {
 	
 	private List<Alert> alerts;
 	
+	/**
+	 * Alert entries.
+	 * 
+	 * @return List of {@link Alert}s.
+	 * @since 2.0
+	 */
 	public List<Alert> getAlerts() {
 		return this.alerts;
 	}

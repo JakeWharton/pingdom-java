@@ -16,12 +16,32 @@ public final class SummaryOutage implements PingdomEntity {
 		@Since(2.0) private Date timeFrom;
 		@Since(2.0) private Date timeTo;
 		
+		/**
+		 * Interval status.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public StateStatus getStatus() {
 			return this.status;
 		}
+		
+		/**
+		 * Interval start.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Date getTimeFrom() {
 			return this.timeFrom;
 		}
+		
+		/**
+		 * Interval end.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Date getTimeTo() {
 			return this.timeTo;
 		}
@@ -29,6 +49,12 @@ public final class SummaryOutage implements PingdomEntity {
 	
 	@Since(2.0) private List<State> states;
 	
+	/**
+	 * Get a list of states.
+	 * 
+	 * @return List of values.
+	 * @since 2.0
+	 */
 	public List<State> getStates() {
 		return this.states;
 	}

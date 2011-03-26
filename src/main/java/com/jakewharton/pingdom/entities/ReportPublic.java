@@ -10,12 +10,32 @@ public final class ReportPublic implements PingdomEntity {
 	@Since(2.0) private String checkName;
 	@Since(2.0) private String reportUrl;
 	
+	/**
+	 * Check identifier.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getCheckId() {
 		return this.checkId;
 	}
+	
+	/**
+	 * Check name
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getCheckName() {
 		return this.checkName;
 	}
+	
+	/**
+	 * URL to report
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getReportUrl() {
 		return this.reportUrl;
 	}

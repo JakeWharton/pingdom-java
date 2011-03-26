@@ -14,9 +14,22 @@ public final class Settings implements PingdomEntity {
 		@Since(2.0) private String name;
 		@Since(2.0) private String iso;
 		
+		/**
+		 * Country name.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getName() {
 			return this.name;
 		}
+		
+		/**
+		 * Country ISO-code.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getIso() {
 			return this.iso;
 		}
@@ -27,9 +40,22 @@ public final class Settings implements PingdomEntity {
 		@Since(2.0) private String id;
 		@Since(2.0) private String description;
 		
+		/**
+		 * Time zone identifier.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getId() {
 			return this.id;
 		}
+		
+		/**
+		 * Time zone description.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getDescription() {
 			return this.description;
 		}
@@ -45,24 +71,72 @@ public final class Settings implements PingdomEntity {
 		@Since(2.0) private Boolean showOverview;
 		@Since(2.0) private String customDomain;
 		
+		/**
+		 * Use custom design for public reports.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getCustomDesign() {
 			return this.customDesign;
 		}
+		
+		/**
+		 * Custom text color.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getTextColor() {
 			return this.textColor;
 		}
+		
+		/**
+		 * Background color.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getBackgroundColor() {
 			return this.backgroundColor;
 		}
+		
+		/**
+		 * URL to custom logotype.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getLogoUrl() {
 			return this.logoUrl;
 		}
+		
+		/**
+		 * Number of months to show.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public PublicReportMonths getMonths() {
 			return this.months;
 		}
+		
+		/**
+		 * Enable overview.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public Boolean getShowOverview() {
 			return this.showOverview;
 		}
+		
+		/**
+		 * Custom domain.
+		 * 
+		 * @return Value.
+		 * @since 2.0
+		 */
 		public String getCustomDomain() {
 			return this.customDomain;
 		}
@@ -78,7 +152,7 @@ public final class Settings implements PingdomEntity {
 	@Since(2.0) private String address2;
 	@Since(2.0) private String zip;
 	@Since(2.0) private String location;
-	@Since(2.0) private String status;
+	@Since(2.0) private String state;
 	@Since(2.0) private Boolean autoLogout;
 	@Since(2.0) private Country country;
 	@Since(2.0) private String region;
@@ -90,66 +164,212 @@ public final class Settings implements PingdomEntity {
 	@Since(2.0) private String numberExample;
 	@Since(2.0) private PublicReports publicReports;
 	
+	/**
+	 * First name.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getFirstName() {
 		return this.firstName;
 	}
+	
+	/**
+	 * Last name.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getLastName() {
 		return this.lastName;
 	}
+	
+	/**
+	 * Company.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getCompany() {
 		return this.company;
 	}
+	
+	/**
+	 * Email.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getEmail() {
 		return this.email;
 	}
+	
+	/**
+	 * Phone.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getPhone() {
 		return this.phone;
 	}
+	
+	/**
+	 * Cellphone.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getCellPhone() {
 		return this.cellPhone;
 	}
+	
+	/**
+	 * Address line 1.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getAddress() {
 		return this.address;
 	}
+	
+	/**
+	 * Address line 2.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getAddress2() {
 		return this.address2;
 	}
+	
+	/**
+	 * Zip, postal code, or equivalent.
+	 * 
+	 * @return Value
+	 * @since 2.0
+	 */
 	public String getZip() {
 		return this.zip;
 	}
+	
+	/**
+	 * City / location.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getLocation() {
 		return this.location;
 	}
-	public String getStatus() {
-		return this.status;
+	
+	/**
+	 * State or equivalent.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
+	public String getState() {
+		return this.state;
 	}
+	
+	/**
+	 * Enable auto-logout.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Boolean getAutoLogout() {
 		return this.autoLogout;
 	}
+	
+	/**
+	 * Country.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Country getCountry() {
 		return this.country;
 	}
+	
+	/**
+	 * Region.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getRegion() {
 		return this.region;
 	}
+	
+	/**
+	 * Account creation timestamp.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Date getAccountCreated() {
 		return this.accountCreated;
 	}
+	
+	/**
+	 * Time zone.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public TimeZone getTimeZone() {
 		return this.timeZone;
 	}
+	
+	/**
+	 * Date format.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getDateFormat() {
 		return this.dateFormat;
 	}
+	
+	/**
+	 * Time format.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getTimeFormat() {
 		return this.timeFormat;
 	}
+	
+	/**
+	 * Number format.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getNumberFormat() {
 		return this.numberFormat;
 	}
+	
+	/**
+	 * Example of number presentation.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public String getNumberExample() {
 		return this.numberExample;
 	}
+	
+	/**
+	 * Public reports settings.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public PublicReports getPublicReports() {
 		return this.publicReports;
 	}

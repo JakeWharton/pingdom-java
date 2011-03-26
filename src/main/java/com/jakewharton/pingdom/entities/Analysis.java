@@ -10,12 +10,32 @@ public final class Analysis implements PingdomEntity {
 	@Since(2.0) private Integer timeFirstTest;
 	@Since(2.0) private Integer timeConfirmTest;
 	
+	/**
+	 * Analysis id.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getId() {
 		return this.id;
 	}
+	
+	/**
+	 * Time of test that initiated the confirmation test.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getTimeFirstTest() {
 		return this.timeFirstTest;
 	}
+	
+	/**
+	 * Time of the confirmation test that performed the error analysis.
+	 * 
+	 * @return Value.
+	 * @since 2.0
+	 */
 	public Integer getTimeConfirmTest() {
 		return this.timeConfirmTest;
 	}
