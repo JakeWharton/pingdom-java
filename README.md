@@ -1,7 +1,7 @@
 pingdom-java
 ============
 
-A Java wrapper around the Pingdom RESTful API and a simple DSL for easy
+A Java wrapper around the [Pingdom RESTful API][1] and a simple DSL for easy
 interaction.
 
 Remote services are grouped into local service objects which can be centrally
@@ -75,6 +75,14 @@ Quick example:
 Real examples and tests to come soon.
 
 
+Documentation
+-------------
+
+ * Javadocs are available at [jakewharton.github.com/pingdom-java/][2].
+ * Repository is hosted on [github.com/JakeWharton/pingdom-java/][3].
+ * Native API is documented on [pingdom.com/services/api-documentation-rest/][4].
+
+
 
 Developed By
 ============
@@ -86,7 +94,8 @@ Contributors
 ------------
 
 The overall package and class layout as well as approximately 50% of the code
-in the `Pingdom*` classes are based on nabeelmukhtar's github-java-sdk library.
+in the `Pingdom*` classes are based on [nabeelmukhtar's github-java-sdk
+library][5].
 
 
 
@@ -106,3 +115,12 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+
+
+
+ [1]: http://www.pingdom.com/services/api/
+ [2]: http://jakewharton.github.com/pingdom-java/
+ [3]: https://github.com/JakeWharton/pingdom-java/
+ [4]: http://www.pingdom.com/services/api-documentation-rest/
+ [5]: https://github.com/nabeelmukhtar/github-java-sdk
