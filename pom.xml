@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 	<version>0.9.0-SNAPSHOT</version>
 
-	<name>Pingdom Java Library</name>
+	<name>Pingdom Java RESTful API Wrapper</name>
 	<description>A Java wrapper around the Pingdom RESTful API and a simple DSL for easy interaction.</description>
 	<url>https://github.com/JakeWharton/pingdom-java/</url>
 
