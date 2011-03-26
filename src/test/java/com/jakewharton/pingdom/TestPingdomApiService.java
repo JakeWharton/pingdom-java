@@ -112,17 +112,17 @@ public class TestPingdomApiService extends TestCase {
 		SmsProvider smsProvider1 = SmsProvider.BulkSms;
 		StateStatus stateStatus1 = StateStatus.Down;
 		
-		AlertStatus alertStatus2 = this.gson.fromJson("\"" + alertStatus1.value() + "\"", AlertStatus.class);
-		AlertVia alertVia2 = this.gson.fromJson("\"" + alertVia1.value() + "\"", AlertVia.class);
-		BannerType bannerType2 = this.gson.fromJson("\"" + bannerType1.value() + "\"", BannerType.class);
-		CheckStatus checkStatus2 = this.gson.fromJson("\"" + checkStatus1.value() + "\"", CheckStatus.class);
-		CheckType checkType2 = this.gson.fromJson("\"" + checkType1.value() + "\"", CheckType.class);
-		PerformanceResolution performanceResolution2 = this.gson.fromJson("\"" + performanceResolution1.value() + "\"", PerformanceResolution.class);
-		PublicReportMonths publicReportMonths2 = this.gson.fromJson("\"" + publicReportMonths1.value() + "\"", PublicReportMonths.class);
-		ReportFrequency reportFrequency2 = this.gson.fromJson("\"" + reportFrequency1.value() + "\"", ReportFrequency.class);
-		SharedReportType sharedReportType2 = this.gson.fromJson("\"" + sharedReportType1.value() + "\"", SharedReportType.class);
-		SmsProvider smsProvider2 = this.gson.fromJson("\"" + smsProvider1.value() + "\"", SmsProvider.class);
-		StateStatus stateStatus2 = this.gson.fromJson("\"" + stateStatus1.value() + "\"", StateStatus.class);
+		AlertStatus alertStatus2 = this.gson.fromJson("\"" + alertStatus1 + "\"", AlertStatus.class);
+		AlertVia alertVia2 = this.gson.fromJson("\"" + alertVia1 + "\"", AlertVia.class);
+		BannerType bannerType2 = this.gson.fromJson("\"" + bannerType1 + "\"", BannerType.class);
+		CheckStatus checkStatus2 = this.gson.fromJson("\"" + checkStatus1 + "\"", CheckStatus.class);
+		CheckType checkType2 = this.gson.fromJson("\"" + checkType1 + "\"", CheckType.class);
+		PerformanceResolution performanceResolution2 = this.gson.fromJson("\"" + performanceResolution1 + "\"", PerformanceResolution.class);
+		PublicReportMonths publicReportMonths2 = this.gson.fromJson("\"" + publicReportMonths1 + "\"", PublicReportMonths.class);
+		ReportFrequency reportFrequency2 = this.gson.fromJson("\"" + reportFrequency1 + "\"", ReportFrequency.class);
+		SharedReportType sharedReportType2 = this.gson.fromJson("\"" + sharedReportType1 + "\"", SharedReportType.class);
+		SmsProvider smsProvider2 = this.gson.fromJson("\"" + smsProvider1 + "\"", SmsProvider.class);
+		StateStatus stateStatus2 = this.gson.fromJson("\"" + stateStatus1 + "\"", StateStatus.class);
 		
 		Assert.assertEquals(alertStatus1, alertStatus2);
 		Assert.assertEquals(alertVia1, alertVia2);
