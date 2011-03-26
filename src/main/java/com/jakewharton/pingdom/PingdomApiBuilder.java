@@ -310,7 +310,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * Add a request body parameter value.
      * 
      * @param name Name.
-     * @param value Value.
+     * @param hasValue Value.
      * @return Current instance for builder pattern.
      */
     public <K extends HasValue> PingdomApiBuilder<T> postParameter(String name, K hasValue) {

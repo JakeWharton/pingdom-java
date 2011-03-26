@@ -77,7 +77,7 @@ public class ResultsService extends PingdomApiService {
 		/**
 		 * Filter to only show results with specified statuses.
 		 * 
-		 * @param status List of statuses.
+		 * @param statuses List of statuses.
 		 * @return Builder instance.
 		 */
 		public GetBuilder status(List<StateStatus> statuses) {

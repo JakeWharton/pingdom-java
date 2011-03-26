@@ -212,7 +212,7 @@ public class SettingsService extends PingdomApiService {
 		/**
 		 * Address line 2.
 		 * 
-		 * @param address Value.
+		 * @param address2 Value.
 		 * @return Builder instance.
 		 */
 		public ModifyBuilder address2(String address2) {
