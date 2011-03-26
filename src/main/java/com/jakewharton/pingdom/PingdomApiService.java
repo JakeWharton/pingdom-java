@@ -147,7 +147,7 @@ public abstract class PingdomApiService extends ApiService {
 
 	@SuppressWarnings("unchecked")
 	protected <T> T unmarshall(TypeToken<T> typeToken, JsonElement response) {
-		Gson gson = this.getGsonBuilder().setVersion(this.apiVersion).create();
+		Gson gson = PingdomApiService.getGsonBuilder().setVersion(this.apiVersion).create();
 		return (T)gson.fromJson(response, typeToken.getType());
 	}
 	
@@ -176,7 +176,7 @@ public abstract class PingdomApiService extends ApiService {
 		this.handlers.add(handler);
 	}
 
-	private GsonBuilder getGsonBuilder() {
+	static GsonBuilder getGsonBuilder() {
 		GsonBuilder builder = new GsonBuilder();
 		builder.setFieldNamingStrategy(new PingdomFieldNamingStrategy());
 
@@ -188,7 +188,7 @@ public abstract class PingdomApiService extends ApiService {
 				
 				if (json.isJsonPrimitive()) {
 					//Get the type from the string
-					typeNative = CheckType.fromValue(json.getAsString());
+					typeNative = CheckType.fromValue(json.getAsString());	
 				} else {
 					//Get the first key/value pair (should be the only one)
 					Entry<String, JsonElement> entry = json.getAsJsonObject().entrySet().iterator().next();
@@ -204,7 +204,7 @@ public abstract class PingdomApiService extends ApiService {
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
 			@Override
 			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				return new Date(json.getAsInt() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
+				return new Date(json.getAsLong() * PingdomApiBuilder.MILLISECONDS_IN_SECOND); //S to MS
 			}
 		});
 		builder.registerTypeAdapter(AvgResponseWrapper.class, new JsonDeserializer<AvgResponseWrapper>() {

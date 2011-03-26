@@ -17,7 +17,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	private static final String BASE_URI = "/api/{" + FIELD_VERSION + "}";
 	
 	/** Number of milliseconds in a single second. */
-	static final int MILLISECONDS_IN_SECOND = 1000;
+	static final long MILLISECONDS_IN_SECOND = 1000;
 	
 	/** Default API version. */
 	private static final double DEFAULT_VERSION = 2.0;
