@@ -20,11 +20,11 @@ public class ApiBuilder {
 	private static final String DEFAULT_FORMAT = "json";
 	private static final String CONTENT_ENCODING = "UTF-8";
         
-    /** Opening bracket of a field variable. */
-    public static final char API_URL_PLACEHOLDER_START = '{';
+	/** Opening bracket of a field variable. */
+	protected static final char API_URL_PLACEHOLDER_START = '{';
 
-    /** Closing bracket of a field variable. */
-    public static final char API_URL_PLACEHOLDER_END = '}';
+	/** Closing bracket of a field variable. */
+	protected static final char API_URL_PLACEHOLDER_END = '}';
     
 	/** The URL format. */
     private final String urlFormat;
@@ -64,7 +64,7 @@ public class ApiBuilder {
 	 * 
 	 * @return Current instance for builder pattern.
 	 */
-    public ApiBuilder parameter(String name, String value) {
+    protected ApiBuilder parameter(String name, String value) {
     	if ((value != null) && (value.length() > 0)) {
     		this.parametersMap.put(name, encodeUrl(value));
     	}
@@ -80,7 +80,7 @@ public class ApiBuilder {
 	 * 
 	 * @return Current instance for builder pattern.
 	 */
-	public ApiBuilder field(String name) {
+    protected ApiBuilder field(String name) {
 		this.fieldsMap.put(name, "");
 
 		return this;
@@ -96,7 +96,7 @@ public class ApiBuilder {
 	 * 
 	 * @return Current instance for builder pattern.
 	 */
-	public ApiBuilder field(String name, String value) {
+    protected ApiBuilder field(String name, String value) {
 		return this.field(name, value, false);
 	}
 
@@ -112,7 +112,7 @@ public class ApiBuilder {
 	 * 
 	 * @return Current instance for builder pattern.
 	 */
-	public ApiBuilder field(String name, String value, boolean escape) {
+    protected ApiBuilder field(String name, String value, boolean escape) {
 		if (escape) {
 			this.fieldsMap.put(name, ApiBuilder.encodeUrl(value));
 		} else {
@@ -128,7 +128,7 @@ public class ApiBuilder {
 	 * @param name Name of key.
 	 * @return Boolean.
 	 */
-	public boolean hasParameter(String name) {
+    protected boolean hasParameter(String name) {
 		return this.parametersMap.containsKey(name);
 	}
 	
@@ -138,7 +138,7 @@ public class ApiBuilder {
 	 * @param name Name of key.
 	 * @return Boolean.
 	 */
-	public boolean hasField(String name) {
+    protected boolean hasField(String name) {
 		return this.fieldsMap.containsKey(name);
 	}
 	
@@ -147,7 +147,7 @@ public class ApiBuilder {
 	 * 
 	 * @return String representation of the URL.
 	 */
-	public String buildUrl() {
+    protected String buildUrl() {
 		return this.buildUrl(true);
 	}
 	
@@ -157,7 +157,7 @@ public class ApiBuilder {
 	 * @param appendAllParameters Whether to append parameters that were not explicitly defined in the URI.
 	 * @return String representation of the URL.
 	 */
-	public String buildUrl(boolean appendAllParameters) {
+    protected String buildUrl(boolean appendAllParameters) {
 		StringBuilder urlBuilder = new StringBuilder();
 		StringBuilder placeHolderBuilder = new StringBuilder();
 		boolean placeHolderFlag = false;

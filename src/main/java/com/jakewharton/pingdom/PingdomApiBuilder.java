@@ -153,7 +153,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param value Value.
 	 * @return Current instance for builder pattern.
 	 */
-	public ApiBuilder parameter(String name, Date value) {
+	protected ApiBuilder parameter(String name, Date value) {
 		return this.parameter(name, Long.toString(value.getTime() / MILLISECONDS_IN_SECOND));
 	}
 	
@@ -164,7 +164,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param value Value.
 	 * @return Current instance for builder pattern.
 	 */
-	public ApiBuilder parameter(String name, int value) {
+	protected ApiBuilder parameter(String name, int value) {
 		return this.parameter(name, Integer.toString(value));
 	}
 	
@@ -175,7 +175,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param value Value.
 	 * @return Current instance for builder pattern.
 	 */
-	public ApiBuilder parameter(String name, boolean value) {
+	protected ApiBuilder parameter(String name, boolean value) {
 		return this.parameter(name, Boolean.toString(value));
 	}
 	
@@ -186,7 +186,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param value Value.
 	 * @return Current instance for builder pattern.
 	 */
-    public <K extends PingdomEnumeration> ApiBuilder parameter(String name, K value) {
+	protected <K extends PingdomEnumeration> ApiBuilder parameter(String name, K value) {
 		if ((value == null) || (value.toString() == null) || (value.toString().length() == 0)) {
 			return this.parameter(name, "");
 		} else {
@@ -201,7 +201,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param valueList List of values.
 	 * @return Current instance for builder pattern.
 	 */
-    public <K extends Object> ApiBuilder parameter(String name, List<K> valueList) {
+	protected <K extends Object> ApiBuilder parameter(String name, List<K> valueList) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueList.iterator();
     	while (iterator.hasNext()) {
@@ -220,7 +220,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 * @param valueSet Set of values.
 	 * @return Current instance for builder pattern.
 	 */
-    public <K extends PingdomEnumeration> ApiBuilder parameter(String name, Set<K> valueSet) {
+	protected <K extends PingdomEnumeration> ApiBuilder parameter(String name, Set<K> valueSet) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueSet.iterator();
     	while (iterator.hasNext()) {
@@ -240,7 +240,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-    public ApiBuilder field(String name, int value) {
+	protected ApiBuilder field(String name, int value) {
     	return this.field(name, Integer.toString(value));
     }
     
@@ -251,7 +251,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-    public ApiBuilder field(String name, boolean value) {
+	protected ApiBuilder field(String name, boolean value) {
     	return this.field(name, Boolean.toString(value));
     }
     
@@ -262,7 +262,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-	public <K extends PingdomEnumeration> ApiBuilder field(String name, K value) {
+	protected <K extends PingdomEnumeration> ApiBuilder field(String name, K value) {
 		if ((value == null) || (value.toString() == null) || (value.toString().length() == 0)) {
 			return this.field(name);
 		} else {
@@ -277,7 +277,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-	public PingdomApiBuilder<T> postParameter(String name, String value) {
+	protected PingdomApiBuilder<T> postParameter(String name, String value) {
 		this.postParameters.put(name, value);
 		return this;
 	}
@@ -289,7 +289,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-	public PingdomApiBuilder<T> postParameter(String name, boolean value) {
+	protected PingdomApiBuilder<T> postParameter(String name, boolean value) {
 		return this.postParameter(name, Boolean.toString(value));
 	}
     
@@ -300,7 +300,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-	public PingdomApiBuilder<T> postParameter(String name, int value) {
+	protected PingdomApiBuilder<T> postParameter(String name, int value) {
 		return this.postParameter(name, Integer.toString(value));
 	}
     
@@ -311,7 +311,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param valueList List of value.
      * @return Current instance for builder pattern.
      */
-    public <K extends Object> PingdomApiBuilder<T> postParameter(String name, List<K> valueList) {
+	protected <K extends Object> PingdomApiBuilder<T> postParameter(String name, List<K> valueList) {
     	StringBuilder builder = new StringBuilder();
     	Iterator<K> iterator = valueList.iterator();
     	while (iterator.hasNext()) {
@@ -330,7 +330,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
      * @param value Value.
      * @return Current instance for builder pattern.
      */
-    public <K extends PingdomEnumeration> PingdomApiBuilder<T> postParameter(String name, K value) {
+	protected <K extends PingdomEnumeration> PingdomApiBuilder<T> postParameter(String name, K value) {
     	return this.postParameter(name, value.toString());
     }
 }
