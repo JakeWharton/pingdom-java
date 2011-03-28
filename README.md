@@ -37,40 +37,43 @@ Usage
 Quick example:
 
     ServiceManager manager = new ServiceManager();
-    manager.setAuthentication("your_pingdom@email.com", "your_password");
+    manager.setAuthentication("your_email@email.com", "your_password");
     manager.setAppKey("your_api_key");
     
-    System.out.println();
-    Actions actions = manager.actionsService().get().fire();
-    for (Actions.Alert alert : actions.getAlerts()) {
-    	System.out.println(alert.getMessageFull());
-    	System.out.println();
-    }
-    
-    System.out.println();
+    System.out.println("\nLast two alerts:");
     Actions actionsLimited = manager.actionsService().get().limit(2).fire();
     for (Actions.Alert alert : actionsLimited.getAlerts()) {
     	System.out.println(alert.getMessageFull());
-    	System.out.println();
     }
     
-    System.out.println();
+    System.out.println("\nCheck list:");
+    Integer firstCheck = null;
     List<Check> checks = manager.checkService().list().fire();
     for (Check check : checks) {
-    	System.out.println(check.getId());
-    	System.out.println(check.getName());
-    	System.out.println(check.getHostName());
-    	System.out.println();
+    	if (firstCheck == null) {
+    		firstCheck = check.getId();
+    	}
+    	System.out.println(check.getName() + " - " + check.getHostName());
     }
-    System.out.println();
-    Check check = manager.checkService().get(197967).fire();
-    System.out.println(check.getName());
-    System.out.println(check.getHostName());
-    System.out.println(check.getSendToEmail());
-    System.out.println(check.getSendToSms());
-    System.out.println(check.getSendToTwitter());
-    System.out.println(check.getSendToIPhone());
-    System.out.println();
+    
+    System.out.println("\nCheck " + firstCheck + ":");
+    Check check = manager.checkService().get(firstCheck).fire();
+    System.out.println("- Name: " + check.getName());
+    System.out.println("- Host: " + check.getHostName());
+    System.out.println("- Type: " + check.getType().getNative());
+    System.out.println("- Send to Email: " + check.getSendToEmail());
+    System.out.println("- Send to SMS: " + check.getSendToSms());
+    System.out.println("- Send to Twitter: " + check.getSendToTwitter());
+    System.out.println("- Send to iPhone: " + check.getSendToIPhone());
+    
+    System.out.println("\nPingdom Server Time:");
+    System.out.println(manager.serverTimeService().get().fire().getServiceTime());
+    
+    System.out.println("\nSettings:");
+    Settings settings = manager.settingsService().get().fire();
+    System.out.println("- Name: " + settings.getFirstName() + " " + settings.getLastName());
+    System.out.println("- Email: " + settings.getEmail());
+    System.out.println("- Registered: " + settings.getAccountCreated());
 
 Real examples and tests to come soon.
 
