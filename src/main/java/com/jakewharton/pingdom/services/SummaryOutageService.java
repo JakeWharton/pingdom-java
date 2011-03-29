@@ -21,7 +21,10 @@ public class SummaryOutageService extends PingdomApiService {
 	public GetBuilder get(int checkId) {
 		return new GetBuilder(this, checkId);
 	}
-	
+
+	/**
+	 * Request builder for {@link SummaryOutageService#get(int)}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<SummaryOutage> {
 		private static final String PARAM_FROM = "from";
 		private static final String PARAM_TO = "to";

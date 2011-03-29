@@ -22,7 +22,10 @@ public class SummaryProbeService extends PingdomApiService {
 	public GetBuilder get(int checkId) {
 		return new GetBuilder(this, checkId);
 	}
-	
+
+	/**
+	 * Request builder for {@link SummaryProbeService#get(int)}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<List<Integer>> {
 		private static final String PARAM_FROM = "from";
 		private static final String PARAM_TO = "to";

@@ -24,7 +24,10 @@ public class SummaryPerformanceService extends PingdomApiService {
 	public GetBuilder get(int checkId) {
 		return new GetBuilder(this, checkId);
 	}
-	
+
+	/**
+	 * Request builder for {@link SummaryPerformanceService#get(int)}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<SummaryPerformance> {
 		private static final String PARAM_FROM = "from";
 		private static final String PARAM_TO = "to";

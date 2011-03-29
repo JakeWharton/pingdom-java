@@ -18,7 +18,10 @@ public class ServerTimeService extends PingdomApiService {
 	public GetBuilder get() {
 		return new GetBuilder(this);
 	}
-	
+
+	/**
+	 * Request builder for {@link ServerTimeService#get()}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<ServerTime> {
 		private static final String URI = "/servertime";
 		

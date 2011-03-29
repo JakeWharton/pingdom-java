@@ -21,7 +21,10 @@ public class TraceRouteService extends PingdomApiService {
 	public TraceBuilder trace(String host) {
 		return new TraceBuilder(this, host);
 	}
-	
+
+	/**
+	 * Request builder for {@link TraceRouteService#trace(String)}.
+	 */
 	public static final class TraceBuilder extends PingdomApiBuilder<TraceRoute> {
 		private static final String PARAM_HOST = "host";
 		private static final String PARAM_PROBE_ID = "probeid";

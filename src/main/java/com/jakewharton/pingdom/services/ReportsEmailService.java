@@ -22,6 +22,9 @@ public class ReportsEmailService extends PingdomApiService {
 		return new ListBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsEmailService#list()}.
+	 */
 	public static final class ListBuilder extends PingdomApiBuilder<List<ReportSubscription>> {
 		private static final String URI = "/reports.email";
 		
@@ -46,6 +49,9 @@ public class ReportsEmailService extends PingdomApiService {
 		return new CreateBuilder(this, name);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsEmailService#create(String)}.
+	 */
 	public static final class CreateBuilder extends PingdomApiBuilder<Message> {
 		private static final String POST_NAME = "name";
 		private static final String POST_CHECK_ID = "checkid";
@@ -117,6 +123,9 @@ public class ReportsEmailService extends PingdomApiService {
 		return new ModifyBuilder(this, reportId);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsEmailService#modify(int)}.
+	 */
 	public static final class ModifyBuilder extends PingdomApiBuilder<Message> {
 		private static final String POST_NAME = "name";
 		private static final String POST_CHECK_ID = "checkid";
@@ -201,6 +210,9 @@ public class ReportsEmailService extends PingdomApiService {
 		return new DeleteBuilder(this, reportId);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsEmailService#delete(int)}.
+	 */
 	public static final class DeleteBuilder extends PingdomApiBuilder<Message> {
 		private static final String FIELD_REPORT_ID = "reportid";
 		

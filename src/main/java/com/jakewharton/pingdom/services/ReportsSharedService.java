@@ -23,6 +23,9 @@ public class ReportsSharedService extends PingdomApiService {
 		return new GetBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsSharedService#get()}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<List<ReportShared>> {
 		private static final String URI = "/reports.shared";
 		
@@ -46,6 +49,9 @@ public class ReportsSharedService extends PingdomApiService {
 		return new CreateBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsSharedService#create()}.
+	 */
 	public static final class CreateBuilder extends PingdomApiBuilder<Message> {
 		private static final String POST_SHARED_TYPE = "sharedtype";
 		private static final String POST_CHECK_ID = "checkid";
@@ -176,7 +182,10 @@ public class ReportsSharedService extends PingdomApiService {
 	public DeleteBuilder delete(int reportId) {
 		return new DeleteBuilder(this, reportId);
 	}
-	
+
+	/**
+	 * Request builder for {@link ReportsSharedService#delete(int)}.
+	 */
 	public static final class DeleteBuilder extends PingdomApiBuilder<Message> {
 		private static final String FIELD_REPORT_ID = "reportid";
 		

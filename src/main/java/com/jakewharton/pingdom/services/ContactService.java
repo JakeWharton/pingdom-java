@@ -22,6 +22,9 @@ public class ContactService extends PingdomApiService {
 		return new ListBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ContactService#list()}.
+	 */
 	public static final class ListBuilder extends PingdomApiBuilder<List<Contact>> {
 		private static final String PARAM_LIMIT = "limit";
 		private static final String PARAM_OFFSET = "offset";
@@ -75,6 +78,9 @@ public class ContactService extends PingdomApiService {
 		return new CreateBuilder(this, name);
 	}
 	
+	/**
+	 * Request builder for {@link ContactService#create(String)}.
+	 */
 	public static final class CreateBuilder extends PingdomApiBuilder<Contact> {
 		private static final String POST_NAME = "name";
 		private static final String POST_EMAIL = "email";
@@ -188,6 +194,9 @@ public class ContactService extends PingdomApiService {
 		return new ModifyBuilder(this, contactId);
 	}
 	
+	/**
+	 * Request builder for {@link ContactService#modify(int)}.
+	 */
 	public static final class ModifyBuilder extends PingdomApiBuilder<Message> {
 		private static final String POST_NAME = "name";
 		private static final String POST_EMAIL = "email";
@@ -309,6 +318,9 @@ public class ContactService extends PingdomApiService {
 		return new DeleteBuilder(this, contactId);
 	}
 	
+	/**
+	 * Request builder for {@link ContactService#delete(int)}.
+	 */
 	public static final class DeleteBuilder extends PingdomApiBuilder<Message> {
 		private static final String FIELD_CONTACT_ID = "contactid";
 		

@@ -21,6 +21,9 @@ public final class AnalysisService extends PingdomApiService {
 		return new ListBuilder(this, checkId);
 	}
 	
+	/**
+	 * Request builder for {@link AnalysisService#list(int)}.
+	 */
 	public static final class ListBuilder extends PingdomApiBuilder<List<Analysis>> {
 		private static final String FIELD_CHECK_ID = "checkid";
 		

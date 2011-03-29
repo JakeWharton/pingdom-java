@@ -24,6 +24,9 @@ public final class ActionsService extends PingdomApiService {
 		return new GetBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ActionsService#get()}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<Actions> {
 		private static final String PARAM_FROM = "from";
 		private static final String PARAM_TO = "to";

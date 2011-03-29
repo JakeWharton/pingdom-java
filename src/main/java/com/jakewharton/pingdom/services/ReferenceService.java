@@ -20,6 +20,9 @@ public class ReferenceService extends PingdomApiService {
 		return new GetBuilder(this);
 	}
 
+	/**
+	 * Request builder for {@link ReferenceService#get()}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<Reference> {
 		private static final String URI = "/reference";
 		

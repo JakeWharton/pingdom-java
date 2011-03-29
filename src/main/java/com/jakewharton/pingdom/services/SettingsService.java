@@ -22,7 +22,10 @@ public class SettingsService extends PingdomApiService {
 	public GetBuilder get() {
 		return new GetBuilder(this);
 	}
-	
+
+	/**
+	 * Request builder for {@link SettingsService#get()}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<Settings> {
 		private static final String URI = "/settings";
 		
@@ -45,7 +48,10 @@ public class SettingsService extends PingdomApiService {
 	public ModifyBuilder modify() {
 		return new ModifyBuilder(this);
 	}
-	
+
+	/**
+	 * Request builder for {@link SettingsService#modify()}.
+	 */
 	public static final class ModifyBuilder extends PingdomApiBuilder<Message> {
 		private static final String POST_FIRST_NAME = "firstname";
 		private static final String POST_LAST_NAME = "lastname";

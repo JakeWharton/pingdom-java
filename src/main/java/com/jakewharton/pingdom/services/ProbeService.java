@@ -21,6 +21,9 @@ public class ProbeService extends PingdomApiService {
 		return new ListBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ProbeService#list()}.
+	 */
 	public static final class ListBuilder extends PingdomApiBuilder<List<Probe>> {
 		private static final String URI = "/probes";
 		

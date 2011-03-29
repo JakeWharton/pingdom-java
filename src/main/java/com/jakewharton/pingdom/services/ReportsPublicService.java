@@ -22,6 +22,9 @@ public class ReportsPublicService extends PingdomApiService {
 		return new ListBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsPublicService#list()}.
+	 */
 	public static final class ListBuilder extends PingdomApiBuilder<List<ReportPublic>> {
 		private static final String URI = "/reports.public";
 		
@@ -46,6 +49,9 @@ public class ReportsPublicService extends PingdomApiService {
 		return new ActivateBuilder(this, checkId);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsPublicService#activate(int)}.
+	 */
 	public static final class ActivateBuilder extends PingdomApiBuilder<Message> {
 		private static final String FIELD_CHECK_ID = "checkid";
 		
@@ -69,6 +75,9 @@ public class ReportsPublicService extends PingdomApiService {
 		return new DeactivateBuilder(this, checkId);
 	}
 	
+	/**
+	 * Request builder for {@link ReportsPublicService#deactivate(int)}.
+	 */
 	public static final class DeactivateBuilder extends PingdomApiBuilder<Message> {
 		private static final String FIELD_CHECK_ID = "checkid";
 		

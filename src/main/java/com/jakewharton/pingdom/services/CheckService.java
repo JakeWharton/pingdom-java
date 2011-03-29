@@ -23,6 +23,9 @@ public class CheckService extends PingdomApiService {
 		return new ListBuilder(this);
 	}
 	
+	/**
+	 * Request builder for {@link CheckService#list()}.
+	 */
 	public static final class ListBuilder extends PingdomApiBuilder<List<Check>> {
 		private static final String PARAM_LIMIT = "limit";
 		private static final String PARAM_OFFSET = "offset";
@@ -82,6 +85,9 @@ public class CheckService extends PingdomApiService {
 		return new GetBuilder(this, checkId);
 	}
 	
+	/**
+	 * Request builder for {@link CheckService#get(int)}.
+	 */
 	public static final class GetBuilder extends PingdomApiBuilder<Check> {
 		private static final String FIELD_CHECK_ID = "checkid";
 		
@@ -112,6 +118,10 @@ public class CheckService extends PingdomApiService {
 		return new CreateBuilder(this, name, host, type);
 	}
 	
+	/**
+	 * Request builder for
+	 * {@link CheckService#create(String, String, CheckType)}.
+	 */
 	public static final class CreateBuilder extends PingdomApiBuilder<Check> {
 		private static final String POST_NAME = "name";
 		private static final String POST_HOST = "host";
@@ -266,6 +276,9 @@ public class CheckService extends PingdomApiService {
 		return new DeleteBuilder(this, checkId);
 	}
 	
+	/**
+	 * Request builder for {@link CheckService#delete(int)}.
+	 */
 	public static final class DeleteBuilder extends PingdomApiBuilder<Message> {
 		private static final String FIELD_CHECK_ID = "checkid";
 		
