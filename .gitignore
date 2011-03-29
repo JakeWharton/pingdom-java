@@ -1,0 +1,5 @@
+#So we can switch to this branch without losing project or generated docs
+.project
+.classpath
+.settings
+target
