@@ -28,7 +28,7 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	private static final String BASE_URI = "/api/{" + FIELD_VERSION + "}";
 	
 	/** Number of milliseconds in a single second. */
-	static final long MILLISECONDS_IN_SECOND = 1000;
+	/*package*/ static final long MILLISECONDS_IN_SECOND = 1000;
 	
 	/** Default API version. */
 	private static final double DEFAULT_VERSION = 2.0;
@@ -38,17 +38,20 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	
 	
 	/** Valid HTTP request methods. */
-	public enum HttpMethod {
+	protected enum HttpMethod {
 		Get, Post, Delete, Put
 	}
 	
 	
 	/** Service instance. */
 	private final PingdomApiService service;
+	
 	/** Type token of return type. */
 	private final TypeToken<T> token;
+	
 	/** HTTP request method to use. */
 	private final HttpMethod method;
+	
 	/** Parameters to send in body of request. */
 	private final Map<String, String> postParameters;
 	
@@ -145,7 +148,6 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 		}
 	}
 	
-	
 	/**
 	 * Add a URL parameter value.
 	 * 
@@ -155,28 +157,6 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
 	 */
 	protected ApiBuilder parameter(String name, Date value) {
 		return this.parameter(name, Long.toString(value.getTime() / MILLISECONDS_IN_SECOND));
-	}
-	
-	/**
-	 * Add a URL parameter value.
-	 * 
-	 * @param name Name.
-	 * @param value Value.
-	 * @return Current instance for builder pattern.
-	 */
-	protected ApiBuilder parameter(String name, int value) {
-		return this.parameter(name, Integer.toString(value));
-	}
-	
-	/**
-	 * Add a URL parameter value.
-	 * 
-	 * @param name Name.
-	 * @param value Value.
-	 * @return Current instance for builder pattern.
-	 */
-	protected ApiBuilder parameter(String name, boolean value) {
-		return this.parameter(name, Boolean.toString(value));
 	}
 	
 	/**
@@ -232,28 +212,6 @@ public abstract class PingdomApiBuilder<T> extends ApiBuilder {
     	
     	return this.parameter(name, builder.toString());
 	}
-    
-    /**
-     * Add a URL field value.
-     * 
-     * @param name Name.
-     * @param value Value.
-     * @return Current instance for builder pattern.
-     */
-	protected ApiBuilder field(String name, int value) {
-    	return this.field(name, Integer.toString(value));
-    }
-    
-    /**
-     * Add a URL field value.
-     * 
-     * @param name Name.
-     * @param value Value.
-     * @return Current instance for builder pattern.
-     */
-	protected ApiBuilder field(String name, boolean value) {
-    	return this.field(name, Boolean.toString(value));
-    }
     
     /**
      * Add a URL field value.
