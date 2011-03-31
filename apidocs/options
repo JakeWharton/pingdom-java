@@ -1,21 +1,21 @@
 -classpath
-'/home/jake/Dropbox/Projects/pingdom-java/target/classes:/home/jake/.m2/repository/com/google/code/gson/gson/1.6/gson-1.6.jar:/home/jake/.m2/repository/com/jakewharton/apibuilder/1.0.0/apibuilder-1.0.0.jar'
+'/home/jake/Dropbox/Projects/pingdom-java/target/checkout/target/classes:/home/jake/.m2/repository/com/google/code/gson/gson/1.6/gson-1.6.jar:/home/jake/.m2/repository/com/jakewharton/apibuilder/1.0.0/apibuilder-1.0.0.jar'
 -encoding
 'UTF-8'
 -protected
 -sourcepath
-'/home/jake/Dropbox/Projects/pingdom-java/src/main/java'
+'/home/jake/Dropbox/Projects/pingdom-java/target/checkout/src/main/java'
 -author
 -bottom
 'Copyright &#169; 2011 <a href="http://jakewharton.com">Jake Wharton</a>. All Rights Reserved.'
 -charset
 'UTF-8'
 -d
-'/home/jake/Dropbox/Projects/pingdom-java/target/site/apidocs'
+'/home/jake/Dropbox/Projects/pingdom-java/target/checkout/target/site/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
-'Pingdom Java API Wrapper 0.9.0-SNAPSHOT API'
+'Pingdom Java API Wrapper 0.9.0 API'
 -link
 'http://download.oracle.com/javase/6/docs/api'
 -link
@@ -23,4 +23,4 @@
 -use
 -version
 -windowtitle
-'Pingdom Java API Wrapper 0.9.0-SNAPSHOT API'
+'Pingdom Java API Wrapper 0.9.0 API'
