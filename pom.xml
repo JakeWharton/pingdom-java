@@ -195,15 +195,48 @@
 			</plugin>
 		</plugins>
 	</reporting>
-
-	<repositories>
-		<repository>
-			<id>google-gson</id>
-			<url>http://google-gson.googlecode.com/svn/mavenrepo/</url>
-		</repository>
-		<repository>
-			<id>repository.jakewharton.com</id>
-			<url>http://r.jakewharton.com/maven/release/</url>
-		</repository>
-	</repositories>
+	
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+					<plugin>
+						<groupId>com.jakewharton</groupId>
+						<artifactId>github-deploy-maven-plugin</artifactId>
+						<version>1.0.1</version>
+						<configuration>
+							<types>
+								<type>jar</type>
+							</types>
+						</configuration>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
