@@ -97,7 +97,7 @@ public final class RawResults implements PingdomEntity {
 		}
 	}
 	
-	@Since(2.0) private List<RawResults> results;
+	@Since(2.0) private List<Results> results;
 	@Since(2.0) private List<Integer> somethingIds;
 	
 	/**
@@ -106,7 +106,7 @@ public final class RawResults implements PingdomEntity {
 	 * @return List of values.
 	 * @since 2.0
 	 */
-	public List<RawResults> getResults() {
+	public List<Results> getResults() {
 		return this.results;
 	}
 	
